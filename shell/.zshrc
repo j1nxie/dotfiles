@@ -118,10 +118,15 @@ alias la='exa -lAh'
 alias ll='exa -lh'
 alias ls='exa'
 alias lsa='exa -lah'
+alias nnn='nnn -e'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=60'
 
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
 n ()
 {
     # Block nesting of nnn in subshells
