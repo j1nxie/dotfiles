@@ -1,6 +1,7 @@
 #! /bin/sh
 
 sxhkd &
+dunst &
 pkill polybar
 ~/.config/polybar/launch.sh
 picom &
