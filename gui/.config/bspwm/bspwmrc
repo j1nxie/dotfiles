@@ -7,7 +7,7 @@ pkill polybar
 picom &
 lightscreen &
 kitty &
-ibus-daemon &
+ibus-daemon -drx &
 nitrogen --set-scaled /mnt/sda5/owo.jpg
 xsetroot -cursor_name left_ptr
 
