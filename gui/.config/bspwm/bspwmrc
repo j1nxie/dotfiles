@@ -9,6 +9,7 @@ lightscreen &
 kitty &
 ibus-daemon &
 nitrogen --set-scaled /mnt/sda5/owo.jpg
+xsetroot -cursor_name left_ptr
 
 bspc monitor -d terminal web discord osu V VI VII VIII IX X
 
@@ -28,3 +29,4 @@ bspc rule -a Screenkey manage=off
 bspc rule -a Lightscreen desktop='^9'
 bspc rule -a discord desktop='^3'
 bspc rule -a Spotify desktop='^6' state=pseudo_tiled
+bspc rule -a osu!.exe desktop='^4'
