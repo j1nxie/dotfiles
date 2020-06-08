@@ -38,9 +38,10 @@ symlink these config files for you. This script should be ran under `sudo`,
 since the script includes two Xorg .conf files for my peripherals,
 which will be symlinked to `/etc/X11/xorg.conf.d/`.
 
-- **Step 1:** Clone this repository: `git clone https://github.com/j1nxie/configs`
-- **Step 2:** Change directory into the cloned folder: `cd configs`
-- **Step 3:** Execute the shell script: `./symlink.sh`  
+**Step 1:** Clone this repository:
+`git clone https://github.com/j1nxie/configs`  
+**Step 2:** Change directory into the cloned folder: `cd configs`  
+**Step 3:** Execute the shell script: `./symlink.sh`  
 
 You should be done here already. Take note that your old configuration files
 will not be backed up automatically, but removed.
