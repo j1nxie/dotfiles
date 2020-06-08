@@ -20,9 +20,9 @@ These are my Linux configuration files, used across all of my Linux environments
 
 ## 2. Installation
 
-**NOTE: ALWAYS CLONE THIS TO YOUR HOME DIRECTORY! THIS WILL REMOVE YOUR CURRENT CONFIGURATIONS. THIS PROCESS IS NOT RECOVERABLE.**
-I have included a shell script (symlink.sh) to quickly make the directories and symlink these config files for you. This script should be ran under `sudo`, since the script includes two Xorg .conf files for my peripherals, which will be symlinked to `/etc/X11/xorg.conf.d/`.
-**Step 1:** Clone this repository: `git clone https://github.com/j1nxie/configs`
-**Step 2:** Change directory into the cloned folder: `cd configs`
-**Step 3:** Execute the shell script: `./symlink.sh`
+**NOTE: ALWAYS CLONE THIS TO YOUR HOME DIRECTORY! THIS WILL REMOVE YOUR CURRENT CONFIGURATIONS. THIS PROCESS IS NOT RECOVERABLE.** <br />
+I have included a shell script (symlink.sh) to quickly make the directories and symlink these config files for you. This script should be ran under `sudo`, since the script includes two Xorg .conf files for my peripherals, which will be symlinked to `/etc/X11/xorg.conf.d/`. <br />
+**Step 1:** Clone this repository: `git clone https://github.com/j1nxie/configs` <br />
+**Step 2:** Change directory into the cloned folder: `cd configs` <br />
+**Step 3:** Execute the shell script: `./symlink.sh` <br />
 You should be done here already. Take note that your old configuration files will not be backed up automatically, but removed. Make sure to back them up if you're looking to try out these configurations.
