@@ -21,11 +21,11 @@ my platforms, hence the inclusion of files such as
   - Shell: zsh + powerlevel10k
   - Colorscheme: Solarized Dark
 
-- This repository also includes two Xorg .conf files, which configures my tablet
+- This repository also includes two Xorg `.conf` files, which configures my tablet
 (XP-PEN STAR G640) to work under Wacom drivers, and my mouse
 to have acceleration disabled. These files are removable, and should not affect
 your installation in any unrecoverable way, if installed.
-- This also includes a .gitconfig file, which will **overwrite**
+- This also includes a `.gitconfig` file, which will **overwrite**
 your global Git config! Make sure to backup this file as well as all your old configurations.
 
 ## 2. Installation
