@@ -10,11 +10,11 @@ if &compatible
     set nocompatible
 endif
 
-set runtimepath+=/home/rylie/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('/home/rylie/.cache/dein')
-    call dein#begin('/home/rylie/.cache/dein')
-    call dein#add('/home/rylie/.cache/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state('~/.cache/dein')
+    call dein#begin('~/.cache/dein')
+    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
     
 " Load plugins
 " UI enhancements
