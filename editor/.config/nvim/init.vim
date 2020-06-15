@@ -19,7 +19,7 @@ if dein#load_state('~/.cache/dein')
 " Load plugins
 " UI enhancements
     call dein#add('itchyny/lightline.vim')
-    call dein#add('altercation/vim-colors-solarized')
+    call dein#add('overcache/NeoSolarized')
     call dein#add('taohexxx/lightline-solarized')
     call dein#add('ryanoasis/vim-devicons')
 
@@ -50,9 +50,9 @@ filetype plugin indent on
 syntax enable
 
 " Set colorscheme to Solarized (Dark by default, F5 to switch)
-colorscheme solarized
+colorscheme NeoSolarized 
 set background=dark
-call togglebg#map("<F5>")
+set termguicolors
 
 " Enable absolute and relative line numbering
 set number relativenumber
