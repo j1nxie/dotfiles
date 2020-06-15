@@ -21,6 +21,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('itchyny/lightline.vim')
     call dein#add('overcache/NeoSolarized')
     call dein#add('taohexxx/lightline-solarized')
+    call dein#add('j1nxie/togglebg')
     call dein#add('ryanoasis/vim-devicons')
 
 " Fuzzy finder
@@ -53,6 +54,7 @@ syntax enable
 colorscheme NeoSolarized 
 set background=dark
 set termguicolors
+call togglebg#map("<F5>")
 
 " Enable absolute and relative line numbering
 set number relativenumber
