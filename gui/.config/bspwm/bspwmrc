@@ -11,7 +11,7 @@ ibus-daemon -drx &
 nitrogen --set-scaled /mnt/sda5/owo.jpg
 xsetroot -cursor_name left_ptr
 
-bspc monitor -d terminal web discord osu spotify 
+bspc monitor -d terminal web discord osu random spotify 
 
 bspc config border_width         0 
 bspc config window_gap           0 
@@ -21,12 +21,12 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc rule -a polybar border=off manage=off
-bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Gimp desktop='^5' state=floating follow=on
 bspc rule -a Google-chrome desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-bspc rule -a Lightscreen desktop='^5'
+bspc rule -a Lightscreen desktop='^6'
 bspc rule -a discord desktop='^3'
-bspc rule -a Spotify desktop='^5' state=pseudo_tiled
+bspc rule -a Spotify desktop='^6' state=pseudo_tiled
 bspc rule -a osu!.exe desktop='^4'
