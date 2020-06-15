@@ -13,6 +13,5 @@ ln -sf ~/configs/peripherals/etc/X11/xorg.conf.d/50-mouse-acceleration.conf /etc
 ln -sf ~/configs/shell/.bashrc ~/.bashrc
 ln -sf ~/configs/shell/.p10k.zsh ~/.p10k.zsh
 ln -sf ~/configs/shell/.zshrc ~/.zshrc
-ln -sf '/mnt/sdb2/osu!/osu!.db' '/home/rylie/.local/share/wineprefixes/osu/drive_c/users/rylie/Local Settings/Application Data/osu!/osu!.db'
-ln -sf '/mnt/sdb2/osu!/collection.db' '/home/rylie/.local/share/wineprefixes/osu/drive_c/users/rylie/Local Settings/Application Data/osu!/collection.db'
-ln -sf '/mnt/sdb2/osu!/scores.db' '/home/rylie/.local/share/wineprefixes/osu/drive_c/users/rylie/Local Settings/Application Data/osu!/scores.db'
+ln -sf ~/configs/gui/.xinitrc ~/.xinitrc
+ln -sf ~/configs/shell/.tmux.conf ~/.tmux.conf
