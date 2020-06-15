@@ -29,3 +29,7 @@ ln -sf ~/configs/shell/.bashrc ~/.bashrc
 ln -sf ~/configs/shell/.p10k.zsh ~/.p10k.zsh
 ln -sf ~/configs/shell/.zshrc ~/.zshrc
 ln -sf ~/configs/shell/.tmux.conf ~/.tmux.conf
+
+# Terminal configs
+ln -sf ~/configs/gui/.config/kitty/kitty.conf ~/.configs/kitty/kitty.conf
+ln -sf ~/configs/gui/.config/kitty/theme.conf ~/.configs/kitty/theme.conf
