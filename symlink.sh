@@ -15,6 +15,8 @@ ln -sf ~/configs/git/.gitconfig ~/.gitconfig
 ln -sf ~/configs/gui/.config/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
 ln -sf ~/configs/gui/.config/sxhkd/sxhkdrc ~/.config/sxhkd/sxhkdrc
 ln -sf ~/configs/gui/.config/dunst/dunstrc ~/.config/dunst/dunstrc
+ln -sf ~/configs/gui/.config/polybar/config ~/.config/polybar/config
+ln -sf ~/configs/gui/.config/polybar/launch.sh ~/.config/polybar/launch.sh
 
 # X configs
 ln -sf ~/configs/gui/.xprofile ~/.xprofile
