@@ -124,10 +124,22 @@ super + {Left,Down,Up,Right}
 # media keys
 #
 XF86AudioRaiseVolume
-    $HOME/.config/bspwm/panel/notify_volume + 2
+    amixer set Master 2%+
 
 XF86AudioLowerVolume
-    $HOME/.config/bspwm/panel/notify_volume - 2
+    amixer set Master 2%-
 
 XF86AudioMute
-    $HOME/.config/bspwm/panel/notify_volume !
+    amixer set Master toggle
+
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+    
+XF86AudioPrev
+    playerctl previous
+
+XF86AudioStop
+    playerctl stop
