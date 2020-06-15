@@ -147,3 +147,16 @@ fi
 if [[ ! "$SSH_AUTH_SOCK" ]]; then
         source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
+
+case "$TERM" in
+  tmux*)
+    export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+    ;;
+  xterm*)
+    if [ $ITERM_SESSION_ID ]; then
+      export PROMPT_COMMAND='echo -ne "\033];${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"; '
+    else
+      export PROMPT_COMMAND='echo -ne "\033]${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"; '
+    fi
+    ;;
+esac
