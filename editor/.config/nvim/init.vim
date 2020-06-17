@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 " ==========================
 " PLUGINS
 " ==========================
@@ -214,6 +216,8 @@ endfunction
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
 
+let g:python_highlight_all = 1
+
 " ==========================
 " EDITOR
 " ==========================
@@ -259,3 +263,9 @@ nnoremap <right> :bn<CR>
 
 nnoremap j gj
 nnoremap k gk
+
+map H ^
+map L $
+
+noremap <leader>p :read !xsel --clipboard --output<cr>
+noremap <leader>c :w !xsel -lb<cr><cr>
