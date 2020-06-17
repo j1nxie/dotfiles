@@ -25,17 +25,27 @@ if dein#load_state('~/.cache/dein')
     call dein#add('ryanoasis/vim-devicons')
 
 " Fuzzy finder
+    call dein#add('junegunn/fzf') 
     call dein#add('junegunn/fzf.vim')
-
-" File explorer
-    call dein#add('preservim/nerdtree')
 
 " Semantic language support
     call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
-    call dein#add('sheerun/vim-polyglot')
     
+" Syntactic language support
+    call dein#add('vim-jp/vim-cpp')
+    call dein#add('octol/vim-cpp-enhanced-highlight')
+    call dein#add('godlygeek/tabular')
+    call dein#add('plasticboy/vim-markdown')
+    call dein#add('vim-python/python-syntax')
+    call dein#add('Vimjas/vim-python-pep8-indent')
+    call dein#add('aliev/vim-compiler-python')
+
 " Discord RPC integration
     call dein#add('ObserverOfTime/discord.nvim')
+
+" Git plugins
+    call dein#add('airblade/vim-gitgutter')
+    call dein#add('tpope/vim-fugitive')
 
     call dein#end()
     call dein#save_state()
@@ -46,36 +56,6 @@ if dein#check_install()
     call dein#install()
 endif
 
-" Enable syntax highlighting
-filetype plugin indent on
-syntax enable
-
-" Set colorscheme to Solarized (Dark by default, F5 to switch)
-colorscheme NeoSolarized 
-set background=dark
-set termguicolors
-call togglebg#map("<F5>")
-
-" Enable absolute and relative line numbering
-set number relativenumber
-
-" Unbind Q key
-nmap Q <Nop>
-
-" Unbind arrow keys in normal and insert mode
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
-
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
-
-" Bind Ctrl-O to toggle NERDTREE
-map <C-o> :NERDTreeToggle<CR>
-
 " Required functions to enable vim-devicons with lightline
 function! MyFiletype()
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -84,26 +64,6 @@ endfunction
 function! MyFileformat()
   return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
-
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-set cmdheight=2
-set noshowmode
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -177,7 +137,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
+" Apply AutoFix to problem on the current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
@@ -253,3 +213,49 @@ endfunction
 
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
+
+" ==========================
+" EDITOR
+" ==========================
+
+filetype plugin indent on
+syntax enable
+colorscheme NeoSolarized 
+set background=dark
+set termguicolors
+set number relativenumber
+set splitright
+set splitbelow
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set noshowmode
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+set scrolloff=2
+set autoindent
+set nowrap
+set nojoinspaces
+
+call togglebg#map("<F5>")
+
+" Keyboard shortcuts
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+nnoremap <left> :bp<CR>
+nnoremap <right> :bn<CR>
+
+nnoremap j gj
+nnoremap k gk
