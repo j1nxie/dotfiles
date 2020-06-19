@@ -51,6 +51,6 @@ fi
 xrandr --newmode "1920x1080R_75.00" 167.85 1920 1928 1960 2000 1080 1105 1113 1119 -hsync -vsync
 xrandr --addmode HDMI-A-0 "1920x1080R_75.00"
 xrandr --output HDMI-A-0 --mode "1920x1080R_75.00"
-xsetwacom set "XP-PEN STAR G640 Pen stylus" area 0 10000 16000 20000
+xsetwacom set "XP-PEN STAR G640 Pen stylus" area 0 0 16000 10000
 exec bspwm 
 

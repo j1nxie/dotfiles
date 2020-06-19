@@ -49,6 +49,9 @@ if dein#load_state('~/.cache/dein')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('tpope/vim-fugitive')
 
+" Note plugin
+    call dein#add('vimwiki/vimwiki')
+
     call dein#end()
     call dein#save_state()
 endif
@@ -242,6 +245,7 @@ set scrolloff=2
 set autoindent
 set nowrap
 set nojoinspaces
+set showtabline=2
 
 call togglebg#map("<F5>")
 
