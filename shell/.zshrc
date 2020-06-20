@@ -156,3 +156,6 @@ n ()
 }
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/configs/shell/.p10k.zsh.
+[[ ! -f ~/configs/shell/.p10k.zsh ]] || source ~/configs/shell/.p10k.zsh
