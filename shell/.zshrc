@@ -159,3 +159,7 @@ n ()
 
 # To customize prompt, run `p10k configure` or edit ~/configs/shell/.p10k.zsh.
 [[ ! -f ~/configs/shell/.p10k.zsh ]] || source ~/configs/shell/.p10k.zsh
+
+export EDITOR=nvim
+export VISUAL=nvim
+bindkey -v

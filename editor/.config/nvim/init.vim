@@ -49,6 +49,9 @@ if dein#load_state('~/.cache/dein')
     call dein#add('airblade/vim-gitgutter')
     call dein#add('tpope/vim-fugitive')
 
+" Undotree
+    call dein#add('mbbill/undotree')
+
 " Note plugin
     call dein#add('vimwiki/vimwiki')
 
@@ -220,6 +223,11 @@ endfunction
 call SetupCommandAbbrs('C', 'CocConfig')
 
 let g:python_highlight_all = 1
+if has("persistent_undo")
+    set undodir=$HOME"/.undodir"
+    set undofile
+endif
+nnoremap <F5> :UndotreeToggle<CR>
 
 " ==========================
 " EDITOR
