@@ -3,3 +3,5 @@
 	email = 52886388+j1nxie@users.noreply.github.com
 [core]
 	editor = nvim
+[pull]
+	rebase = false
