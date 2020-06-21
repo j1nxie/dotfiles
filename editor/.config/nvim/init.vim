@@ -51,6 +51,7 @@ if dein#load_state('~/.cache/dein')
 
 " Undotree
     call dein#add('mbbill/undotree')
+
 " Note plugin
     call dein#add('vimwiki/vimwiki')
 
