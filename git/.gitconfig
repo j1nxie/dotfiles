@@ -1,7 +1,8 @@
 [user]
 	name = j1nxie
-	email = 52886388+j1nxie@users.noreply.github.com
+	email = rylieeeeexd@gmail.com
 [core]
 	editor = nvim
+	autocrlf = false
 [pull]
 	rebase = false
