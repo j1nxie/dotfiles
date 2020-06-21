@@ -10,14 +10,6 @@ environments:
 - Arch Linux on Windows Subsystem for Linux
 - Termux on Android
 
-## Overview
-
-[- 1. Terminal](https://github.com/j1nxie/configs#terminal)
-[- 2. Graphical user interface](https://github.com/j1nxie/configs#graphical-user-interface)
-[- 3. Email client](https://github.com/j1nxie/configs#email-client)
-[- 4. Editor](https://github.com/j1nxie/configs#editor)
-[- 5. Shell](https://github.com/j1nxie/configs#shell)
-
 ## Terminal
 
 - `kitty`
@@ -57,9 +49,9 @@ by itself.
 ## Editor
 
 - `neovim`
-- Configuration:
+- Plugins:
   - Color scheme: [`NeoSolarized`](https://github.com/overcache/NeoSolarized)
-  (fork of Solarized Dark, has true color support)
+  (fork of Solarized, has true color support)
   - Plugin manager: [`dein`](https://github.com/Shougo/dein.vim)
   - Status line: [`lightline`](https://github.com/itchyny/lightline.vim)
   - Fuzzy finder: [`fzf`](https://github.com/junegunn/fzf)
@@ -68,3 +60,25 @@ by itself.
   [`vim-fugitive`](https://github.com/tpope/vim-fugitive)
   - [`undotree`](https://github.com/mbbill/undotree)
   - [`vimwiki`](https://github.com/vimwiki/vimwiki)
+- Arrow keys are unbound (this is to remove my bad habit of using arrow keys in
+vim)
+- `F5` is bound to `togglebg#map`, which is used to switch between Solarized
+Light and Dark if needed. This is taken from [`vim-colors-solarized`](https://github.com/altercation/vim-colors-solarized)'s
+`autoload/togglebg.vim`.
+- Various other keybinds are also described in my `init.vim`.
+
+## Shell
+
+- `zsh`
+- Theme: [`powerlevel10k`](https://github.com/romkatv/powerlevel10k)
+- Plugin manager: [`oh-my-zsh`](https://github.com/ohmyzsh/ohmyzsh)
+- Keybinds: vim-styled
+- Plugins:
+  - [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions)
+  - [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting)
+  - `git`
+  - `colored-man-pages`
+  - `command-not-found`
+  - `fzf`
+  - `github`
+- I also alias every instance of `ls`-related commands to `exa`.
