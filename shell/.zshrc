@@ -162,3 +162,4 @@ n ()
 
 export EDITOR=nvim
 export VISUAL=nvim
+bindkey -v

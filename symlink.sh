@@ -2,7 +2,7 @@
 
 # Create required directories
 mkdir ~/.vim
-mkdir -p ~/.config/{bspwm,nvim,sxhkd}
+mkdir -p ~/.config/{bspwm,nvim,sxhkd,dunst,polybar,kitty}
 
 # Editor configs 
 ln -sf ~/configs/editor/.config/nvim/init.vim ~/.config/nvim/init.vim
