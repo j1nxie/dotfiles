@@ -118,5 +118,3 @@ xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use C to open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
-
-
