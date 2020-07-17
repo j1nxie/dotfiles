@@ -24,12 +24,16 @@ if dein#load_state('~/.cache/dein')
     call dein#add('j1nxie/togglebg')
     call dein#add('ryanoasis/vim-devicons')
 
+" Easymotion
+    call dein#add('easymotion/vim-easymotion')
+
 " Fuzzy finder
     call dein#add('junegunn/fzf') 
     call dein#add('junegunn/fzf.vim')
 
 " Semantic language support
     call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+    call dein#add('dense-analysis/ale')
     
 " Syntactic language support
     call dein#add('vim-jp/vim-cpp')
