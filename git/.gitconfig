@@ -1,3 +1,5 @@
+[init]
+	defaultBranch = main
 [user]
 	name = j1nxie
 	email = rylieeeeexd@gmail.com
@@ -6,3 +8,5 @@
 	autocrlf = false
 [pull]
 	rebase = false
+[color]
+	ui = auto
