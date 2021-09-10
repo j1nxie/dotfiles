@@ -6,7 +6,6 @@ mkdir -p ~/.config/{bspwm,nvim,sxhkd,dunst,polybar,kitty}
 
 # Editor configs 
 ln -sf ~/configs/editor/.config/nvim/init.vim ~/.config/nvim/init.vim
-ln -sf ~/configs/.vim/coc-settings.json ~/.vim/coc-settings.json
 
 # Window manager (bspwm + sxhkd + dunst) configs
 ln -sf ~/configs/gui/.config/bspwm/bspwmrc ~/.config/bspwm/bspwmrc
