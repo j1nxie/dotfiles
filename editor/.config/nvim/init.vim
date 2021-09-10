@@ -29,6 +29,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'dense-analysis/ale'
+Plug 'neovim/nvim-lspconfig'
 
 " Syntactic language support
 Plug 'bfrg/vim-cpp-modern'
@@ -113,6 +114,7 @@ noremap <leader>p :read !xsel --clipboard --output<cr>
 noremap <leader>c :w !xsel -lb<cr><cr>
 
 nnoremap <F6> :UndotreeToggle<CR>
+nnoremap <F5> :CHADnow<CR>
 
 " ==========================
 " LIGHTLINE
