@@ -5,7 +5,6 @@ pkill polybar
 dunst &
 picom &
 kitty &
-nitrogen --set-scaled /mnt/hgfs/F/owo.jpg
 xsetroot -cursor_name left_ptr
 
 bspc monitor -d terminal web random spotify
