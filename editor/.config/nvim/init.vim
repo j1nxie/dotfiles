@@ -31,8 +31,7 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'dense-analysis/ale'
 
 " Syntactic language support
-Plug 'vim-jp/vim-cpp'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'bfrg/vim-cpp-modern'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
