@@ -46,14 +46,15 @@ by itself.
 - `neovim`
 - Plugins:
   - Color scheme: [`Nightfox`](https://github.com/EdenEast/nightfox.nvim)
-  - Plugin manager: [`dein`](https://github.com/Shougo/dein.vim)
+  - Plugin manager: [`vim-plug`](https://github.com/junegunn/vim-plug)
   - Status line: [`lightline`](https://github.com/itchyny/lightline.vim)
   - Fuzzy finder: [`fzf`](https://github.com/junegunn/fzf)
-  - Code completion: [coq.nvim](https://github.com/ms-jpq/coq.nvim)
+  - Code completion: [`coq.nvim`](https://github.com/ms-jpq/coq.nvim)
   - Git plugins: [`vim-gitgutter`](https://github.com/airblade/vim-gitgutter) +
   [`vim-fugitive`](https://github.com/tpope/vim-fugitive)
   - [`undotree`](https://github.com/mbbill/undotree)
   - [`vimwiki`](https://github.com/vimwiki/vimwiki)
+  - [`CHADtree`](https://github.com/ms-jpq/chadtree)
 - Arrow keys are unbound (this is to remove my bad habit of using arrow keys in
 vim)
 - Various other keybinds are also described in my `init.vim`.
@@ -73,4 +74,3 @@ vim)
   - `fzf`
   - `github`
 - I also alias every instance of `ls`-related commands to `exa`.
-    
