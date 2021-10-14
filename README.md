@@ -1,76 +1,99 @@
 <!-- vim:ft=markdown 
 -->
 
-# My Linux configuration
+# lumi's personal linux dotfiles
 
-These are my current Linux configuration files, running on Arch Linux on a VMware virtual machine on Windows 10.
+![screenshot of main workspace](https://i.imgur.com/KkEBmoA.jpeg)
 
-## Terminal
+## about
 
-- `kitty`
-- Usually used in tandem with `tmux` if I'm working over `ssh`, else it is used
-by itself.
-- **Configuration:**
-  - Color scheme: [Nightfox](https://github.com/EdenEast/nightfox.nvim) 
-  - True color support
-  - Font: Fira Code (latest version, patched with Nerd Fonts)
-  - `tmux`:
-    - Color scheme: [Nightfox](https://github.com/EdenEast/nightfox.nvim)
-    - Vim-like keybindings
-    - True color support
+my personal dotfiles, powered by arch linux, running on a vmware workstation virtual machine on top of windows 10!
+(blasphemy, i know, but it's the only way i could manage running linux for work while still being able to play games)
 
-## Graphical user interface
+## desktop environment
+- [bspwm](https://github.com/baskerville/bspwm): tiling window manager that does what it needs to do.
+- [sxhkd](https://github.com/baskerville/sxhkd): hotkey daemon for use with bspwm.
+- [dunst](https://github.com/dunst-project/dunst): lightweight notification daemon.
+- [picom](https://github.com/yshui/picom): desktop compositor for x11.
+- [polybar](https://github.com/polybar/polybar): fast and easy-to-use status bar. 
+- [kitty](https://github.com/kovidgoyal/kitty): fast gpu-based terminal emulator.
 
-- `bspwm` + `polybar`
-- **Configuration:**
-  - `bspwm:`
-    - Compositor: picom
-    - Hotkeys daemon: sxhkd
-    - Notifications: dunst
-  - `polybar:`
-    - Mainly taken from [jonhoo](https://github.com/jonhoo/)'s `polybar`
-    [config](https://github.com/jonhoo/configs/).
-    - Color scheme: Solarized Dark
-    - Fonts:
-      - Noto Sans Mono
-      - Noto Sans CJK
-      - Noto Sans Symbols 1/2
+## applications
+- [git](https://git-scm.com): version control system, all of my stuff is hosted on github.
+- [lazygit](https://github.com/jesseduffield/lazygit): very fast terminal-based git ui.
+- [zsh](https://zsh.org): preferred shell for daily usage.
+- [neovim](https://neovim.io): vim, the terminal text editor, but on crack.
+- [neovide](https://github.com/neovide/neovide): fast as fuck neovim gui with smooth scrolling and cursor animations.
+- [nnn](https://github.com/jarun/nnn): terminal file manager
+- [fzf](https://github.com/junegunn/fzf): command-line fuzzy finder
 
-## Email client
+## zsh
+i basically live inside the terminal, and i use [zsh](https://zsh.org) for it.
 
-- `neomutt` + `msmtp`
-- WIP! I have yet to finish `neomuttrc` and `msmtprc`!
+### plugin manager - zinit
+[zinit](https://github.com/zdharma/zinit) is a flexible and speedy (!) zsh plugin manager.
 
-## Editor
+### plugins
+- [zinit](https://github.com/zdharma/zinit): manages zsh plugins for me.
+- [bubblified](https://github.com/hohmannr/bubblified): very clean and pretty theme, with full powerline support.
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions): [fish](https://fishshell.com)-like autosuggestions, very fast and unobtrusive.
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting): [fish](https://fishshell.org)-like syntax highlighting.
+- fzf: integrates [fzf](https://github.com/junegunn/fzf) into zsh.
+- colored-man-pages: add colors to man pages.
+- git: adds git aliases to zsh.
+- command-not-found: processes commands not found.
+- github: adds github specific aliases to zsh.
 
-- `neovim`
-- Plugins:
-  - Color scheme: [`Nightfox`](https://github.com/EdenEast/nightfox.nvim)
-  - Plugin manager: [`vim-plug`](https://github.com/junegunn/vim-plug)
-  - Status line: [`lightline`](https://github.com/itchyny/lightline.vim)
-  - Fuzzy finder: [`fzf`](https://github.com/junegunn/fzf)
-  - Code completion: [`coq.nvim`](https://github.com/ms-jpq/coq.nvim)
-  - Git plugins: [`vim-gitgutter`](https://github.com/airblade/vim-gitgutter) +
-  [`vim-fugitive`](https://github.com/tpope/vim-fugitive)
-  - [`undotree`](https://github.com/mbbill/undotree)
-  - [`vimwiki`](https://github.com/vimwiki/vimwiki)
-  - [`CHADtree`](https://github.com/ms-jpq/chadtree)
-- Arrow keys are unbound (this is to remove my bad habit of using arrow keys in
-vim)
-- Various other keybinds are also described in my `init.vim`.
+### theme - bubblified
+[bubblified](https://github.com/hohmannr/bubblified) is a very clean theme, built on top of [nerdfonts](https://github.com/ryanoasis/nerd-fonts)
+with a built-in git parser and a high level of customizability.
 
-## Shell
+## neovim
+i wanted to have something terminal-based for clean and fast text editing, and my choice is [neovim](https://neovim.io), on top of
+[neovide](https://github.io/neovide/neovide) for an ui implementation.
 
-- `zsh`
-- Theme: [`powerlevel10k`](https://github.com/romkatv/powerlevel10k)
-- Plugin manager: [`oh-my-zsh`](https://github.com/ohmyzsh/ohmyzsh)
-- Keybinds: vim-styled
-- Plugins:
-  - [`zsh-autosuggestions`](https://github.com/zsh-users/zsh-autosuggestions)
-  - [`zsh-syntax-highlighting`](https://github.com/zsh-users/zsh-syntax-highlighting)
-  - `git`
-  - `colored-man-pages`
-  - `command-not-found`
-  - `fzf`
-  - `github`
-- I also alias every instance of `ls`-related commands to `exa`.
+### plugin manager - vim-plug
+[vim-plug](https://github.com/junegunn/vim-plug) is a minimalistic, simple and fast vim/neovim plugin manager.
+
+### plugins
+**plugin manager:**
+- [vim-plug](https://github.com/junegunn/vim-plug): manages vim plugins.
+
+**ui enhancements:**
+- [nightfox](https://github.com/EdenEast/nightfox.nvim): soft dark theme built with lua.
+- [vim-devicons](https://github.com/ryanoasis/vim-devicons): adds icons to vim plugins.
+- [lightline](https://github.com/itchyny/lightline.vim): light and minimalistic statusline/tabline for vim.
+
+**trees:**
+- [chadtree](https://github.com/ms-jpq/chadtree): file system explorer, faster than nerdtree!
+- [undotree](https://github.com/mbbill/undotree): visualizer for undo history.
+
+**git:**
+- [vim-gitgutter](https://github.com/airblade/vim-gitgutter): adds `git diff` in "gutter".
+- [vim-fugitive](https://github.com/junegunn/vim-fugitive): adds git support to neovim.
+
+**language support:**
+- [coq.nvim](https://github.com/ms-jpq/coq_nvim): very fast code completion plugin.
+- [ale](https://github.com/dense-analysis/ale): linter for vim.
+- [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): configuration for lsps in neovim.
+- [vim-cpp-modern](https://github.com/bfrg/vim-cpp-modern): c++ syntax highlighting.
+- [tabular](https://github.com/godlygeek/tabular): helps with text aligning and filtering.
+- [vim-markdown](https://github.com/plasticboy/vim-markdown): markdown syntax highlighting.
+
+**note plugin:**
+- [vimwiki](https://github.com/vimwiki/vimwiki): personalized wiki built for vim.
+
+**others:**
+- [vim-easymotion](https://github.com/easymotion/vim-easymotion): adds quick and easy motions to navigate inside vim.
+- [fzf](https://github.com/junegunn/fzf): basic fzf support in vim.
+- [fzf.vim](https://github.com/junegunn/fzf.vim): plugin to enhance fzf inside vim.
+- [minimap.vim](https://github.com/wfxr/minimap.nvim): code minimap to help navigation.
+
+## known issues
+- the `symlink.sh` script inside the repo is very outdated! i'm thinking of migrating it to [yadm](https://github.com/TheLocehiliosan/yadm) for
+cleaner management.
+- a lot of the files, especially my zsh dotfile is very messy since i recently migrated to zinit and i haven't rewritten it!
+
+## credits
+- inspired by [pwyde's](https://github.com/pwyde/dotfiles) dotfiles. one day i stumbled upon by them and i was in love with how they're presented!
+their dotfiles are also what made me know about yadm, and i'm planning to migrate to it soon.
