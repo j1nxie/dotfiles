@@ -31,7 +31,7 @@ my personal dotfiles, powered by arch linux, running on a vmware workstation vir
 ## zsh
 i basically live inside the terminal, and i use [zsh](https://zsh.org) for it.
 
-![zsh screenshot](https://i.imgur.com/cJvlplm.jpeg)
+![zsh screenshot](https://i.imgur.com/cJvIpIm.jpeg)
 
 ### plugin manager - zinit
 [zinit](https://github.com/zdharma/zinit) is a flexible and speedy (!) zsh plugin manager.
