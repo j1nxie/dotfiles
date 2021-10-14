@@ -114,7 +114,7 @@ noremap <leader>p :read !xsel --clipboard --output<cr>
 noremap <leader>c :w !xsel -lb<cr><cr>
 
 nnoremap <F6> :UndotreeToggle<CR>
-nnoremap <F5> :CHADnow<CR>
+nnoremap <F5> :CHADopen<CR>
 
 " ==========================
 " LIGHTLINE
