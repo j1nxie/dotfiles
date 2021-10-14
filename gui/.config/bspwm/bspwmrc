@@ -5,7 +5,7 @@ pkill polybar
 dunst &
 picom &
 kitty &
-nitrogen --restrore &
+nitrogen --restore &
 xsetroot -cursor_name left_ptr
 
 bspc monitor -d terminal editor web random spotify
