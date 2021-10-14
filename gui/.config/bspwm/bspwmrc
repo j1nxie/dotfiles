@@ -9,8 +9,8 @@ xsetroot -cursor_name left_ptr
 
 bspc monitor -d terminal web random spotify
 
-bspc config border_width         0 
-bspc config window_gap           0 
+bspc config border_width         2
+bspc config window_gap           10
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
@@ -20,6 +20,3 @@ bspc rule -a polybar border=off manage=off
 bspc rule -a Google-chrome desktop='^2'
 bspc rule -a Screenkey manage=off
 bspc rule -a Spotify desktop='^4'
-
-Spotify
-
