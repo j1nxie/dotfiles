@@ -47,6 +47,9 @@ Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 " Note plugin
 Plug 'vimwiki/vimwiki'
 
+" Code minimap
+Plug 'wfxr/minimap.vim'
+
 call plug#end()
 unlet pluginsPath
 
@@ -151,3 +154,7 @@ if has("persistent_undo")
     set undodir=$HOME"/.undodir"
     set undofile
 endif
+
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1
