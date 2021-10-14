@@ -198,3 +198,4 @@ zinit snippet OMZP::git
 zinit cdclear -q
 setopt promptsubst
 zinit light hohmannr/bubblified
+alias lg='lazygit'
