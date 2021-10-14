@@ -16,23 +16,26 @@ green                = #859900
 [bar/main]
 monitor = 
 width = 100%
-height = 2.5%
-radius = 0 
+height = 2.75%
+radius = 0
 fixed-center = false
 bottom = true
 
-background = ${colors.background}
+background = #212129
 foreground = ${colors.foreground}
+
+overline-size = 3 
+underline-size = 3
 
 border-size = 0
 line-size = 2 
 padding = 1
 module-margin = 1
 
-font-0 = "Noto Sans Mono:size=10;1"
-font-1 = "Noto Sans CJK JP:size=10;1"
-font-2 = "Noto Sans Symbols:size=10;2"
-font-3 = "Noto Sans Symbols2:size=10;2"
+font-0 = "Noto Sans Mono:style=Bold:size=10;1"
+font-1 = "Noto Sans CJK JP:style=Bold:size=10;1"
+font-2 = "Noto Sans Symbols:style=Bold:size=10;2"
+font-3 = "Noto Sans Symbols2:style=Bold:size=10;2"
 
 override-redirect = false
 wm-restack = bspwm
@@ -47,6 +50,7 @@ tray-maxsize = 24
 
 [global/wm]
 margin-top = 0
+margin-bottom = 0
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -76,6 +80,8 @@ enable-click = false
 enable-scroll = false
 
 label-focused = " %name% "
+label-focused-foreground = #ffffff
+label-focused-background = #323949
 label-focused-underline = #fba922
 
 label-occupied = " %name% "
@@ -90,46 +96,62 @@ label-empty-foreground = #555555
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "💻 "
-format-prefix-foreground = ${colors.foreground}
-format-underline = #f90000
-label = %percentage:2%%
+
+format-prefix = " 💻 "
+format-prefix-foreground = #3d3e51
+format-prefix-background = #a485c8
+format-underline = #3d3e51
+
+label = "%percentage:2%% "
+label-foreground = #3d3e51
+label-background = #a485c8
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "🗍 "
-format-prefix-foreground = ${colors.foreground}
-format-underline = #4bffdc
-label = %percentage_used:2%%
+
+format-prefix = " 🗍 "
+format-prefix-foreground = #3d3e51
+format-prefix-background = #dd8885
+format-underline = #4c5265
+
+label = "%percentage_used%% "
+label-foreground = #3d3e51
+label-background = #dd8885
 
 [module/eth1]
 type = internal/network
-interface = enp30s0 
+interface = ens33
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = "🖧 "
-format-connected-prefix-foreground = ${colors.foreground}
-label-connected = %local_ip%
-
+format-connected-underline = #4c5265
+format-connected-prefix = " 🖧 "
+format-connected-prefix-foreground = #3d3e51
+format-connected-prefix-background = #7eafcd
 format-disconnected =
+
+label-connected = "%local_ip% "
+label-connected-foreground = #3d3e51
+label-connected-background = #7eafcd
 
 [module/date]
 type = internal/date
 interval = 5
 
-label = %date% %time%
+label = " %date% %time% "
+label-foreground = #ffffff
+label-background = #323949
 
 date = "%a %d"
 date-alt = %a %b %d
 
-time = %I:%M
+time = %I:%M %p
 time-alt = %I:%M %p
 
 format-prefix =
-format-prefix-foreground = ${colors.foreground}
-format-underline = #0a6cf5
+format-prefix-foreground = #ffffff
+format-prefix-background = #323949
+format-underline = #4c5265
 
 [module/player-mpris-tail]
 type = custom/script
