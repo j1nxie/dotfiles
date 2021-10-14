@@ -52,6 +52,8 @@ with a built-in git parser and a high level of customizability.
 i wanted to have something terminal-based for clean and fast text editing, and my choice is [neovim](https://neovim.io), on top of
 [neovide](https://github.io/neovide/neovide) for an ui implementation.
 
+![neovim screenshot](https://i.imgur.com/F6RCO3c.jpeg)
+
 ### plugin manager - vim-plug
 [vim-plug](https://github.com/junegunn/vim-plug) is a minimalistic, simple and fast vim/neovim plugin manager.
 
