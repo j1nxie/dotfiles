@@ -3,14 +3,15 @@
 
 # lumi's personal linux dotfiles
 
-![screenshot of main workspace](https://i.imgur.com/KkEBmoA.jpeg)
-
 ## about
 
 my personal dotfiles, powered by arch linux, running on a vmware workstation virtual machine on top of windows 10!
 (blasphemy, i know, but it's the only way i could manage running linux for work while still being able to play games)
 
 ## desktop environment
+
+![screenshot of main workspace](https://i.imgur.com/KkEBmoA.jpeg)
+
 - [bspwm](https://github.com/baskerville/bspwm): tiling window manager that does what it needs to do.
 - [sxhkd](https://github.com/baskerville/sxhkd): hotkey daemon for use with bspwm.
 - [dunst](https://github.com/dunst-project/dunst): lightweight notification daemon.
@@ -29,6 +30,8 @@ my personal dotfiles, powered by arch linux, running on a vmware workstation vir
 
 ## zsh
 i basically live inside the terminal, and i use [zsh](https://zsh.org) for it.
+
+![zsh screenshot](https://i.imgur.com/cJvlplm.jpeg)
 
 ### plugin manager - zinit
 [zinit](https://github.com/zdharma/zinit) is a flexible and speedy (!) zsh plugin manager.
