@@ -6,6 +6,7 @@ dunst &
 picom &
 kitty &
 nitrogen --restore &
+neovide &
 xsetroot -cursor_name left_ptr
 
 bspc monitor -d terminal editor web random spotify
@@ -23,3 +24,4 @@ bspc rule -a polybar border=off manage=off
 bspc rule -a Google-chrome desktop='^2'
 bspc rule -a Screenkey manage=off
 bspc rule -a Spotify desktop='^4'
+bspc rule -a Neovide desktop='^2'
