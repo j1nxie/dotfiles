@@ -26,16 +26,17 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Semantic language support
+" Language support
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 
-" Syntactic language support
 Plug 'bfrg/vim-cpp-modern'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'wlangstroth/vim-racket'
+Plug 'rust-lang/rust.vim'
 
 " Git plugins
 Plug 'airblade/vim-gitgutter'
@@ -169,3 +170,18 @@ endif
 let g:minimap_width = 10
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
+
+let g:coq_settings = { "keymap.jump_to_mark": "<c-n>"}
+let g:coq_settings = { "keymap.bigger_preview": "<c-b>"}
+
+" ==========================
+" LANGUAGE SERVERS
+" ==========================
+lua << EOF
+local lsp = require "lspconfig"
+local coq = require "coq"
+
+lsp.rls.setup (
+    coq.lsp_ensure_capabilities()
+)
+EOF
