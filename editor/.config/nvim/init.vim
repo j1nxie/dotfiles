@@ -32,11 +32,8 @@ Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 
-Plug 'bfrg/vim-cpp-modern'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'wlangstroth/vim-racket'
-Plug 'rust-lang/rust.vim'
+Plug 'sheerun/vim-polyglot'
 
 " Git plugins
 Plug 'airblade/vim-gitgutter'
