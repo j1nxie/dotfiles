@@ -65,7 +65,7 @@ language en_US
 colorscheme nightfox
 set termguicolors
 set guifont=FiraCode\ Nerd\ Font:style=Retina:h12
-set clipboard^=unnamed, unnamedplus
+set clipboard^=unnamed,unnamedplus
 
 set number relativenumber
 
