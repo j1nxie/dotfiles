@@ -60,6 +60,7 @@ let mapleader = "\<Space>"
 
 filetype plugin indent on
 syntax enable
+language en_US
 
 colorscheme nightfox
 set termguicolors
