@@ -51,6 +51,9 @@ Plug 'vimwiki/vimwiki'
 " Code minimap
 Plug 'wfxr/minimap.vim'
 
+" Discord
+Plug 'andweeb/presence.nvim'
+
 call plug#end()
 unlet pluginsPath
 
