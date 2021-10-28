@@ -5,7 +5,7 @@
 let autoload_plug_path = stdpath('data') . '/site/autoload/plug.vim'
 if !filereadable(autoload_plug_path)
     silent execute '!curl -fLo ' . autoload_plug_path . ' --create-dirs
-		\ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
+	\ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 unlet autoload_plug_path
@@ -18,6 +18,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Easymotion
 Plug 'easymotion/vim-easymotion'
@@ -64,7 +65,7 @@ language en_US
 
 colorscheme nightfox
 set termguicolors
-set guifont=FiraCode\ Nerd\ Font:style=Retina:h12
+set guifont=FiraCode\ NF:style=Retina:h12
 set clipboard^=unnamed,unnamedplus
 
 set number relativenumber
@@ -185,10 +186,10 @@ lsp.rust_analyzer.setup (
 )
 
 lsp.clangd.setup (
-		coq.lsp_ensure_capabilities()
+    coq.lsp_ensure_capabilities()
 )
 
 lsp.racket_langserver.setup (
-		coq.lsp_ensure_capabilities()
+    coq.lsp_ensure_capabilities()
 )
 EOF
