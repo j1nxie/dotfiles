@@ -179,7 +179,7 @@ lua << EOF
 local lsp = require "lspconfig"
 local coq = require "coq"
 
-lsp.rls.setup (
+lsp.rust_analyzer.setup (
     coq.lsp_ensure_capabilities()
 )
 EOF
