@@ -19,6 +19,7 @@ Plug 'mengelbrecht/lightline-bufferline'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'yamatsum/nvim-cursorline'
 
 " Easymotion
 Plug 'easymotion/vim-easymotion'
