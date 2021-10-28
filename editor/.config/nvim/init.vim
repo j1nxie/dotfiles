@@ -183,7 +183,11 @@ lsp.rust_analyzer.setup (
     coq.lsp_ensure_capabilities()
 )
 
-lsp.clangd.setup(
+lsp.clangd.setup (
+		coq.lsp_ensure_capabilities()
+)
+
+lsp.racket_langserver.setup (
 		coq.lsp_ensure_capabilities()
 )
 EOF
