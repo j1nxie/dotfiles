@@ -182,4 +182,8 @@ local coq = require "coq"
 lsp.rust_analyzer.setup (
     coq.lsp_ensure_capabilities()
 )
+
+lsp.clangd.setup(
+		coq.lsp_ensure_capabilities()
+)
 EOF
