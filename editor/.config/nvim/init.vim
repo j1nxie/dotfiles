@@ -93,6 +93,7 @@ set nojoinspaces
 set showtabline=2
 
 set shiftwidth=4
+set tabstop=8 softtabstop=0 expandtab smarttab
 
 " ==========================
 " KEYBINDS
