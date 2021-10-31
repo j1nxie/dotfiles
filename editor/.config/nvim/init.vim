@@ -72,6 +72,8 @@ colorscheme nightfox
 set termguicolors
 set guifont=FiraCode\ NF:style=Retina:h12
 set clipboard^=unnamed,unnamedplus
+set fileformats=unix,dos
+set fileformat=unix
 
 set number relativenumber
 
