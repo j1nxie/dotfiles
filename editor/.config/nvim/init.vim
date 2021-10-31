@@ -40,6 +40,7 @@ Plug 'sheerun/vim-polyglot'
 " Git plugins
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'kdheepak/lazygit.nvim'
 
 " Trees
 Plug 'mbbill/undotree'
@@ -117,6 +118,8 @@ nnoremap <right> :bn<CR>
 
 nnoremap j gj
 nnoremap k gk
+
+nnoremap <silent> <leader>gg :LazyGit<CR>
 
 map H ^
 map L $
