@@ -23,6 +23,7 @@ Plug 'yamatsum/nvim-cursorline'
 
 " Lightspeed
 Plug 'ggandor/lightspeed.nvim'
+Plug 'tpope/vim-repeat'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'
