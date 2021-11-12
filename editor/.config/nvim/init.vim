@@ -21,8 +21,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'yamatsum/nvim-cursorline'
 
-" Easymotion
-Plug 'easymotion/vim-easymotion'
+" Lightspeed
+Plug 'ggandor/lightspeed.nvim'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'
