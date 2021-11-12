@@ -26,6 +26,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'
+Plug 'vijaymarupudi/nvim-fzf'
 Plug 'ibhagwan/fzf-lua'
 
 " Language support
