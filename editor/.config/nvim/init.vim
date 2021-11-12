@@ -180,6 +180,11 @@ endif
 let g:minimap_width = 10
 let g:minimap_auto_start = 1
 let g:minimap_auto_start_win_enter = 1
+let g:minimap_block_filetypes = ['fugitive', 'nerdtree', 'chadtree', 'tagbar', 'undotree']
+let g:minimap_close_buftypes = ['startify', 'netrw', 'vim-plug']
+let g:minimap_highlight_range = 1
+let g:minimap_git_colors = 1
+let g:minimap_highlight_search = 1
 
 let g:coq_settings = { "keymap.jump_to_mark": "<c-n>"}
 let g:coq_settings = { "keymap.bigger_preview": "<c-b>"}
