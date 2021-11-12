@@ -53,9 +53,6 @@ Plug 'wfxr/minimap.vim'
 " Discord
 Plug 'andweeb/presence.nvim'
 
-" YABS
-Plug 'pianocomposer321/yabs.nvim'
-
 call plug#end()
 unlet pluginsPath
 
@@ -208,50 +205,4 @@ lsp.clangd.setup (
 lsp.racket_langserver.setup (
     coq.lsp_ensure_capabilities()
 )
-
-require("yabs"):setup {
-    languages = {
-        cpp = {
-            default_task = "build_and_run",
-            tasks = {
-                build = {
-                    command = "clang++ % -Wall -Wextra -O2",
-                    output = "quickfix",
-                    opts = {
-                        open_on_run = "always"
-                        }
-                },
-                run = {
-                    command = "./a.out",
-                    output = "consolation",
-                },
-                build_and_run = {
-                    command = function()
-                        require("yabs"):run_task("build", {on_exit = function()
-                            require("yabs").languages.cpp:run_task("run")
-                        end})
-                    end,
-                    type = "lua"
-                }
-            }
-        }
-    },
-    tasks = {
-        build = {
-            command = "echo building project...",
-            output = "consolation"
-        },
-        run = {
-            command = "echo running project...",
-            output = "echo"
-        }
-    },
-    opts = {
-        output_types = {
-            quickfix = {
-                open_on_run = "always"
-            }
-        }
-    }
-}
 EOF
