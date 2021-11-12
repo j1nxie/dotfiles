@@ -31,7 +31,6 @@ Plug 'junegunn/fzf.vim'
 " Language support
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'dense-analysis/ale'
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'godlygeek/tabular'
