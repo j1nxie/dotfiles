@@ -26,7 +26,7 @@ Plug 'easymotion/vim-easymotion'
 
 " Fuzzy finder
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua'
 
 " Language support
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps'}
