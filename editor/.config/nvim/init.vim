@@ -45,9 +45,6 @@ Plug 'kdheepak/lazygit.nvim'
 Plug 'mbbill/undotree'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
-" Note plugin
-Plug 'vimwiki/vimwiki'
-
 " Code minimap
 Plug 'wfxr/minimap.vim'
 
