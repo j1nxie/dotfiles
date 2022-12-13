@@ -3,10 +3,20 @@
 [user]
 	name = j1nxie
 	email = rylieeeeexd@gmail.com
+	signingkey = C:\\Users\\chief\\.ssh\\id_ed25519.pub
 [core]
 	editor = nvim
-	autocrlf = false
+	autocrlf = input
 [pull]
-	rebase = false
+	rebase = true
 [color]
 	ui = auto
+[safe]
+	directory = C:/Users/chief/Desktop/projects/solutions
+	directory = C:/Users/chief/AppData/Local/nvim-data/plugged/chadtree
+[credential]
+	helper = store
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
