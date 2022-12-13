@@ -41,7 +41,6 @@ Plug 'simrat39/rust-tools.nvim', {'for': 'rust'}
 Plug 'sevko/vim-nand2tetris-syntax', {'for': 'hdl'}
 Plug 'tranvansang/octave.vim', {'for': 'octave'}
 Plug 'saecki/crates.nvim'
-Plug 'puremourning/vimspector'
 
 Plug 'godlygeek/tabular'
 Plug 'sheerun/vim-polyglot'
@@ -76,7 +75,6 @@ let mapleader = "\<Space>"
 
 filetype plugin indent on
 syntax enable
-language en_US
 
 colorscheme carbonfox 
 set termguicolors
