@@ -32,7 +32,7 @@ Plug 'vijaymarupudi/nvim-fzf'
 Plug 'ibhagwan/fzf-lua'
 
 " Language support
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 " Plug 'mfussenegger/nvim-lint'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps', 'commit': '84ec5faf2aaf49819e626f64dd94f4e71cf575bc'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
@@ -190,6 +190,8 @@ let g:ale_fixers = {
             \    'cpp': ['clangtidy'],
             \    'c': ['clangtidy'],
             \ }
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_use_global = 1
 let g:ale_fix_on_save = 1
 
 " ==========================
