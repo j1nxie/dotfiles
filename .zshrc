@@ -41,3 +41,11 @@ zinit light romkatv/powerlevel10k
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty kitten +ssh"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/lumi/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end

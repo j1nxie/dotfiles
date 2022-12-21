@@ -34,4 +34,5 @@ fi
 
 sxhkd &
 exec bspwm 
+vmware-user
 

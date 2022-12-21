@@ -78,7 +78,7 @@ syntax enable
 
 colorscheme carbonfox 
 set termguicolors
-set guifont=FiraCode\ NF:style=Regular:h12
+set guifont=FiraCode\ NF:style=Regular:h10
 set clipboard^=unnamed,unnamedplus
 set fileformats=unix,dos
 set fileformat=unix

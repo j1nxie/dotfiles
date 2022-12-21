@@ -23,4 +23,4 @@ bspc rule -a polybar border=off manage=off
 bspc rule -a Google-chrome desktop'^3'
 bspc rule -a Screenkey manage=off
 bspc rule -a Spotify desktop='^5'
-bspc rule -a Neovide desktop='^2'
+bspc rule -a neovide desktop='^2'

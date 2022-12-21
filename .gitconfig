@@ -14,6 +14,7 @@
 [safe]
 	directory = C:/Users/chief/Desktop/projects/solutions
 	directory = C:/Users/chief/AppData/Local/nvim-data/plugged/chadtree
+	directory = /mnt/hgfs/projects/kt-maimaidx-site-importer
 [credential]
 	helper = store
 [gpg]
