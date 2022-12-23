@@ -32,7 +32,7 @@ Plug 'vijaymarupudi/nvim-fzf'
 Plug 'ibhagwan/fzf-lua'
 
 " Language support
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 " Plug 'mfussenegger/nvim-lint'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQdeps', 'commit': '84ec5faf2aaf49819e626f64dd94f4e71cf575bc'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
