@@ -12,7 +12,7 @@ require "dep" {
 	"EdenEast/nightfox.nvim",
 	-- colorizer for color previews
 	{
-		"nvchad/nvim-colorizer.lua"
+		"nvchad/nvim-colorizer.lua",
 		function()
 			require("colorizer").setup()
 		end
@@ -84,14 +84,14 @@ vim.g.mapleader = " "
 vim.cmd [[
 	filetype plugin indent on
 	syntax enable
-	colorscheme carbon fox
+	colorscheme carbonfox
 ]]
 
 local set = vim.opt
 set.termguicolors = true
 set.guifont = "FiraCode NF:style=Regular:h12"
-set.clipboard = "unnamed, unnamedplus"
-set.fileformats = "unix, dos"
+set.clipboard = "unnamed,unnamedplus"
+set.fileformats = "unix,dos"
 set.fileformat = unix
 
 set.number = true
@@ -130,3 +130,41 @@ key.set("i", "<up>", "<nop>")
 key.set("i", "<down>", "<nop>")
 key.set("i", "<left>", "<nop>")
 key.set("i", "<right>", "<nop>")
+
+key.set("n", "<left>", ":bp<CR>")
+key.set("n", "<right>", ":bn<CR>")
+
+key.set("n", "j", "gj")
+key.set("n", "k", "gk")
+
+key.set("n", "<leader>gg", ":LazyGit<CR>", { silent = true })
+
+key.set("", "H", "^")
+key.set("", "L", "$")
+
+key.set("n", "<F6>", ":UndotreeToggle<CR>")
+key.set("n", "<F5>", ":Neotree<CR>")
+
+local lsp = require("lspconfig")
+local coq = require("coq")
+local rt = require("rust-tools")
+
+rt.setup({
+	server = {
+		coq.lsp_ensure_capabilities({
+			settings = {
+				["rust-analyzer"] = {
+					["checkOnSave.command"] = "cippy"
+				}
+			}
+		})
+	}
+})
+
+lsp.clangd.setup(
+	coq.lsp_ensure_capabilities()
+)
+
+lsp.eslint.setup(
+	coq.lsp_ensure_capabilities()
+)
