@@ -6,6 +6,10 @@ require "dep" {
 		"nvim-lualine/lualine.nvim",
 		function()
 			require("lualine").setup()
+			require("lualine").hide({
+				place = { "tabline" },
+				unhide = false
+			})
 		end
 	},
 	-- nightfox colorscheme
@@ -22,6 +26,13 @@ require "dep" {
 		"yamatsum/nvim-cursorline",
 		function()
 			require("nvim-cursorline").setup()
+		end
+	},
+	{
+		"noib3/nvim-cokeline",
+		requires = "nvim-tree/nvim-web-devicons",
+		function()
+			require("cokeline").setup()
 		end
 	},
 
@@ -63,7 +74,11 @@ require "dep" {
 	{
 		"lewis6991/gitsigns.nvim",
 		function()
-			require("gitsigns").setup()
+			require("gitsigns").setup({
+				yadm = {
+					enable = true
+				}
+			})
 		end
 	},
 	-- lazygit
@@ -77,6 +92,7 @@ require "dep" {
 			"nvim-lua/plenary.nvim"
 		}
 	},
+	"mbbill/undotree",
 	"wfxr/minimap.vim"
 }
 
@@ -109,10 +125,12 @@ set.showmode = false
 set.updatetime = 300
 set.shortmess = "filnxtToOFAc"
 set.signcolumn = "yes"
+set.showtabline = 2
 set.scrolloff = 2
 set.autoindent = true
 set.wrap = false
 set.joinspaces = false
+set.showtabline = 1
 
 set.shiftwidth = 4
 set.tabstop = 4
@@ -146,7 +164,6 @@ key.set("n", "<F6>", ":UndotreeToggle<CR>")
 key.set("n", "<F5>", ":Neotree<CR>")
 
 local g = vim.g
-
 g.minimap_width = 10
 g.minimap_auto_start = 1
 g.minimap_auto_start_win_enter = 1
