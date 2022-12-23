@@ -8,7 +8,7 @@ i could manage running linux for work while still being able to play games)
 
 ## desktop environment
 
-![screenshot of main workspace](https://i.imgur.com/KkEBmoA.jpeg)
+![screenshot of main workspace](https://nazunacord.me/o36nmpngfprx.png)
 
 - [bspwm](https://github.com/baskerville/bspwm): tiling window manager that does
   what it needs to do.
@@ -32,8 +32,6 @@ i could manage running linux for work while still being able to play games)
 ## zsh
 i basically live inside the terminal, and i use [zsh](https://zsh.org) for it.
 
-![zsh screenshot](https://i.imgur.com/cJvIplm.jpeg)
-
 ### plugin manager - zinit
 [zinit](https://github.com/zdharma/zinit) is a flexible and speedy (!) zsh
 plugin manager.
@@ -44,7 +42,7 @@ plugin manager.
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k): very clean and
   pretty theme, with full powerline support.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions):
-- [fish](https://fishshell.com)-like autosuggestions, very fast and unobtrusive.
+  [fish](https://fishshell.com)-like autosuggestions, very fast and unobtrusive.
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting):
 - [fish](https://fishshell.org)-like syntax highlighting.
 - colored-man-pages: add colors to man pages.
@@ -63,7 +61,7 @@ i wanted to have something terminal-based for clean and fast text
 editing, and my choice is [neovim](https://neovim.io), on top of
 [neovide](https://github.com/neovide/neovide) for an ui implementation.
 
-![neovim screenshot](https://i.imgur.com/F6RCO3c.jpeg)
+![neovim screenshot](https://nazunacord.me/jbia3nennoqu.png)
 
 ### plugin manager - dep
 
@@ -95,12 +93,12 @@ editing, and my choice is [neovim](https://neovim.io), on top of
   plugin.
 - [ale](https://github.com/dense-analysis/ale): linter for vim.
 - [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): configuration for
-- lsps in neovim.
+  lsps in neovim.
 
 **miscellaneous:**
 - [minimap.vim](https://github.com/wfxr/minimap.nvim): code minimap to help
-- navigation.
+  navigation.
 
 ## credits
 - inspired by [pwyde's](https://github.com/pwyde/dotfiles) dotfiles. one day i
-- stumbled upon by them and i was in love with how they're presented!
+  stumbled upon by them and i was in love with how they're presented!
