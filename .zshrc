@@ -13,6 +13,7 @@ alias ls='exa'
 alias lsa='exa -lah'
 alias nnn='nnn -e'
 alias lg='lazygit'
+alias ly='lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git'
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
