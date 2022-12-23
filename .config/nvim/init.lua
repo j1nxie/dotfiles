@@ -101,18 +101,18 @@ set.splitright = true
 set.splitbelow = true
 
 set.hidden = true
-set.nobackup = true
-set.nowritebackup = true
+set.backup = false
+set.writebackup = false
 
 set.cmdheight = 1
-set.noshowmode = true
+set.showmode = false
 set.updatetime = 300
 set.shortmess = "filnxtToOFAc"
 set.signcolumn = "yes"
 set.scrolloff = 2
 set.autoindent = true
-set.nowrap = true
-set.nojoinspaces = true
+set.wrap = false
+set.joinspaces = false
 
 set.shiftwidth = 4
 set.tabstop = 4
@@ -144,6 +144,28 @@ key.set("", "L", "$")
 
 key.set("n", "<F6>", ":UndotreeToggle<CR>")
 key.set("n", "<F5>", ":Neotree<CR>")
+
+local g = vim.g
+
+g.minimap_width = 10
+g.minimap_auto_start = 1
+g.minimap_auto_start_win_enter = 1
+g.minimap_block_filetypes = { "undotree" }
+g.minimap_highlight_range = 1
+g.minimap_git_colors = 1
+g.minimap_highlight_search = 1
+
+g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
+
+g.ale_disablelsp = 1
+g.ale_fixers = {
+	["javascript"] = { "eslint" },
+	["typescript"] = { "eslint" },
+	["rust"] = { "rustfmt" }
+}
+g.ale_javascript_eslint_executable = "eslint_d"
+g.ale_javascript_eslint_use_global = 1
+g.ale_fix_on_save = 1
 
 local lsp = require("lspconfig")
 local coq = require("coq")
