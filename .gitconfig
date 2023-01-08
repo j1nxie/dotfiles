@@ -16,6 +16,7 @@
 	directory = C:/Users/chief/AppData/Local/nvim-data/plugged/chadtree
 	directory = /mnt/hgfs/projects/kt-maimaidx-site-importer
 	directory = /mnt/hgfs/projects/solutions
+	directory = /mnt/hgfs/projects/stellarium
 [credential]
 	helper = store
 [gpg]
