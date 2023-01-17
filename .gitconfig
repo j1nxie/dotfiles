@@ -17,6 +17,7 @@
 	directory = /mnt/hgfs/projects/kt-maimaidx-site-importer
 	directory = /mnt/hgfs/projects/solutions
 	directory = /mnt/hgfs/projects/stellarium
+	directory = /mnt/hgfs/projects/j1nxie.github.io
 [credential]
 	helper = store
 [gpg]

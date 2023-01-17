@@ -6,14 +6,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 alias chrome="google-chrome-stable"
-alias l='exa -lah'
-alias la='exa -lAh'
-alias ll='exa -lh'
-alias ls='exa'
-alias lsa='exa -lah'
-alias nnn='nnn -e'
-alias lg='lazygit'
-alias ly='lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git'
+alias l="exa -lah"
+alias la="exa -lAh"
+alias ll="exa -lh"
+alias ls="exa"
+alias lsa="exa -lah"
+alias lg="lazygit"
+alias ly="lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git"
+alias icat="kitty +kitten icat"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -50,3 +50,5 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PNPM_HOME="/home/lumi/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+eval "$(rbenv init - zsh)"

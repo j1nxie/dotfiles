@@ -5,6 +5,7 @@ pkill polybar
 dunst &
 picom &
 kitty &
+xrandr --output Virtual1 --mode 1920x1080
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
 
