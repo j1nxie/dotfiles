@@ -1,7 +1,5 @@
 require "bootstrap"
 require "dep" {
-	-- UI enhancements
-	-- lualine
 	{
 		"nvim-lualine/lualine.nvim",
 		function()
@@ -12,16 +10,13 @@ require "dep" {
 			})
 		end
 	},
-	-- nightfox colorscheme
 	"EdenEast/nightfox.nvim",
-	-- colorizer for color previews
 	{
 		"nvchad/nvim-colorizer.lua",
 		function()
 			require("colorizer").setup()
 		end
 	},
-	-- cursorline
 	{
 		"yamatsum/nvim-cursorline",
 		function()
@@ -35,11 +30,7 @@ require "dep" {
 			require("cokeline").setup()
 		end
 	},
-
-	-- Language support
-	-- ale
 	"dense-analysis/ale",
-	-- coq for completion
 	{
 		"ms-jpq/coq_nvim",
 		branch = "coq",
@@ -48,9 +39,7 @@ require "dep" {
 			vim.cmd("COQdeps")
 		end
 	},
-	-- lspconfig
 	"neovim/nvim-lspconfig",
-	-- rust-tools
 	"simrat39/rust-tools.nvim",
 	{
 		"saecki/crates.nvim",
@@ -66,11 +55,20 @@ require "dep" {
 			}
 		end
 	},
-	-- misc languages
-	"sheerun/vim-polyglot",
-
-	-- Git plugins
-	-- gitsigns
+	{
+		"nvim-treesitter/nvim-treesitter",
+		config = function()
+			vim.cmd("TSUpdate")
+		end
+	}, 
+	{
+		"m-demare/hlargs.nvim",
+		requires = "nvim-treesitter/nvim-treesitter",
+	},
+	{
+		"mrjones2014/nvim-ts-rainbow",
+		requires = "nvim-treesitter/nvim-treesitter",
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 		function()
@@ -81,7 +79,6 @@ require "dep" {
 			})
 		end
 	},
-	-- lazygit
 	"kdheepak/lazygit.nvim",
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -165,7 +162,7 @@ key.set("n", "<F5>", ":Neotree<CR>")
 
 local g = vim.g
 g.minimap_width = 10
-g.minimap_auto_start = 1
+g.minimap_auto_start = 0
 g.minimap_auto_start_win_enter = 1
 g.minimap_block_filetypes = { "undotree" }
 g.minimap_highlight_range = 1
@@ -207,3 +204,23 @@ lsp.clangd.setup(
 lsp.eslint.setup(
 	coq.lsp_ensure_capabilities()
 )
+
+lsp.pyright.setup(
+	coq.lsp_ensure_capabilities()
+)
+
+require("nvim-treesitter.configs").setup({
+	ensure_installed = { "c", "lua", "vim", "help" },
+	sync_install = false,
+	auto_install = true,
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = true,
+	},
+	rainbow = {
+		enable = true,
+		extended_mode = true,
+	}
+})
+
+require("hlargs").setup()
