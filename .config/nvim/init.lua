@@ -10,7 +10,12 @@ require "dep" {
 			})
 		end
 	},
-	"EdenEast/nightfox.nvim",
+	{
+		"rebelot/kanagawa.nvim",
+		function()
+			require("kanagawa").setup()
+		end
+	},
 	{
 		"nvchad/nvim-colorizer.lua",
 		function()
@@ -98,7 +103,7 @@ vim.g.mapleader = " "
 vim.cmd [[
 	filetype plugin indent on
 	syntax enable
-	colorscheme carbonfox
+	colorscheme kanagawa
 ]]
 
 local set = vim.opt
