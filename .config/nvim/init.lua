@@ -90,7 +90,8 @@ require "dep" {
 		}
 	},
 	"mbbill/undotree",
-	"wfxr/minimap.vim"
+	"wfxr/minimap.vim",
+	"ludovicchabant/vim-gutentags"
 }
 
 vim.g.mapleader = " "
