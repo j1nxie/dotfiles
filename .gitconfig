@@ -7,6 +7,7 @@
 [core]
 	editor = nvim
 	autocrlf = input
+	excludesfile = /home/lumi/.gitignore_global
 [pull]
 	rebase = true
 [color]
