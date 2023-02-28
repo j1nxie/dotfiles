@@ -71,3 +71,16 @@ function fish_greeting
 
 	set_color normal
 end
+
+if status is-login
+	if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+		exec startx -- -keeptty
+	end
+end
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+# pnpm
+set -gx PNPM_HOME "/home/lumi/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
