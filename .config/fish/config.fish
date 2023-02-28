@@ -21,6 +21,7 @@ end
 abbr -a lg "lazygit"
 abbr -a ly "lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git"
 abbr -a icat "kitten +icat"
+abbr -a nvide "neovide"
 
 setenv EDITOR nvim
 
