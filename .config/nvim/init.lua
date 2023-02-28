@@ -13,7 +13,9 @@ require "dep" {
 	{
 		"rebelot/kanagawa.nvim",
 		function()
-			require("kanagawa").setup()
+			require("kanagawa").setup({
+				commentStyle = { italic = false },
+			})
 		end
 	},
 	{
