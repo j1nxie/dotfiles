@@ -110,7 +110,7 @@ vim.cmd [[
 
 local set = vim.opt
 set.termguicolors = true
-set.guifont = "FiraCode NF:style=Regular:h12"
+set.guifont = "FiraCode Nerd Font Mono:style=Bold,Regular:h12"
 set.clipboard = "unnamed,unnamedplus"
 set.fileformats = "unix,dos"
 set.fileformat = unix
