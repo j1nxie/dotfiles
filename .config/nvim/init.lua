@@ -252,7 +252,7 @@ rt.setup({
 		coq.lsp_ensure_capabilities({
 			settings = {
 				["rust-analyzer"] = {
-					["checkOnSave.command"] = "cippy"
+					["checkOnSave.command"] = "clippy"
 				}
 			}
 		})
