@@ -65,11 +65,30 @@ require "dep" {
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			vim.cmd("TSUpdate")
+		end,
+
+		function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "c", "lua", "vim", "help" },
+				sync_install = false,
+				auto_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = true,
+				},
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+				}
+			})
 		end
 	}, 
 	{
 		"m-demare/hlargs.nvim",
 		requires = "nvim-treesitter/nvim-treesitter",
+		function()
+			require("hlargs").setup()
+		end
 	},
 	{
 		"mrjones2014/nvim-ts-rainbow",
@@ -195,19 +214,3 @@ lsp.eslint.setup(
 lsp.pyright.setup(
 	coq.lsp_ensure_capabilities()
 )
-
-require("nvim-treesitter.configs").setup({
-	ensure_installed = { "c", "lua", "vim", "help" },
-	sync_install = false,
-	auto_install = true,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
-	rainbow = {
-		enable = true,
-		extended_mode = true,
-	}
-})
-
-require("hlargs").setup()
