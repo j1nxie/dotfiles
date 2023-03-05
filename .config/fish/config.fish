@@ -23,6 +23,7 @@ abbr -a ly "lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm
 abbr -a icat "kitten +icat"
 abbr -a nvide "neovide"
 abbr -a random "python3 ~/projects/scripts/random-org.py"
+abbr -a cat "bat --style=\"numbers,changes,header\""
 
 setenv EDITOR nvim
 
