@@ -130,6 +130,38 @@ require "dep" {
 			})
 		end
 	},
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.code_actions.eslint_d,
+					null_ls.builtins.code_actions.gitrebase,
+					null_ls.builtins.code_actions.gitsigns,
+					null_ls.builtins.diagnostics.eslint_d,
+					null_ls.builtins.diagnostics.stylelint,
+					null_ls.builtins.formatting.prettierd,
+				},
+				on_attach = function(client, bufnr)
+					if client.supports_method("textDocument/formatting") then
+						vim.api.nvim_clear_autocmds({
+							group = augroup,
+							buffer = bufnr,
+						})
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							group = augroup,
+							buffer = bufnr,
+							callback = function()
+								vim.lsp.buf.format({ bufnr = bufnr })
+							end,
+						})
+					end
+				end,
+			})
+		end
+	},
 	"ludovicchabant/vim-gutentags"
 }
 
@@ -138,6 +170,7 @@ vim.cmd [[
 	filetype plugin indent on
 	syntax enable
 	colorscheme kanagawa
+	autocmd BufWritePre * lua vim.lsp.buf.format({ bufnr = bufnr })
 ]]
 
 local set = vim.opt
@@ -206,8 +239,9 @@ key.set("n", "<Leader>mr", MiniMap.refresh)
 key.set("n", "<Leader>ms", MiniMap.toggle_side)
 key.set("n", "<Leader>mt", MiniMap.toggle)
 
-g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
 
+local g = vim.g
+g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
 
 local lsp = require("lspconfig")
 local coq = require("coq")
