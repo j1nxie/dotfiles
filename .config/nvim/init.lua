@@ -114,6 +114,22 @@ require "dep" {
 			"nvim-lua/plenary.nvim"
 		}
 	},
+	{
+		"echasnovski/mini.nvim",
+		function()
+			local map = require("mini.map")
+			map.setup({
+				window = {
+					show_integration_count = false,
+				},
+				integrations = {
+					map.gen_integration.builtin_search(),
+					map.gen_integration.gitsigns(),
+					map.gen_integration.diagnostic(),
+				}
+			})
+		end
+	},
 	"ludovicchabant/vim-gutentags"
 }
 
@@ -183,6 +199,12 @@ key.set("", "L", "$")
 
 key.set("n", "<F5>", ":Neotree<CR>")
 
+key.set("n", "<Leader>mc", MiniMap.close)
+key.set("n", "<Leader>mf", MiniMap.toggle_focus)
+key.set("n", "<Leader>mo", MiniMap.open)
+key.set("n", "<Leader>mr", MiniMap.refresh)
+key.set("n", "<Leader>ms", MiniMap.toggle_side)
+key.set("n", "<Leader>mt", MiniMap.toggle)
 
 g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
 
