@@ -162,6 +162,25 @@ require "dep" {
 			})
 		end
 	},
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+
+		function()
+			require("telescope").setup()
+		end
+	},
+	{
+		"pwntester/octo.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("octo").setup()
+		end
+	},
 	"ludovicchabant/vim-gutentags"
 }
 
@@ -239,6 +258,11 @@ key.set("n", "<Leader>mr", MiniMap.refresh)
 key.set("n", "<Leader>ms", MiniMap.toggle_side)
 key.set("n", "<Leader>mt", MiniMap.toggle)
 
+local builtin = require("telescope.builtin")
+key.set("n", "<Leader>ff", builtin.find_files, {})
+key.set("n", "<Leader>fg", builtin.live_grep, {})
+key.set("n", "<Leader>fb", builtin.buffers, {})
+key.set("n", "<Leader>fh", builtin.help_tags, {})
 
 local g = vim.g
 g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
