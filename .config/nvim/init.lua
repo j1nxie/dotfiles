@@ -11,6 +11,12 @@ require "dep" {
 		end
 	},
 	{
+		"petertriho/nvim-scrollbar",
+		function()
+			require("scrollbar").setup()
+		end
+	},
+	{
 		"rebelot/kanagawa.nvim",
 		function()
 			require("kanagawa").setup({
@@ -66,7 +72,6 @@ require "dep" {
 		config = function()
 			vim.cmd("TSUpdate")
 		end,
-
 		function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = { "c", "lua", "vim", "help" },
@@ -82,7 +87,7 @@ require "dep" {
 				}
 			})
 		end
-	}, 
+	},
 	{
 		"m-demare/hlargs.nvim",
 		requires = "nvim-treesitter/nvim-treesitter",
@@ -96,12 +101,14 @@ require "dep" {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		requires = "petertriho/nvim-scrollbar",
 		function()
 			require("gitsigns").setup({
 				yadm = {
 					enable = true
 				}
 			})
+			require("scrollbar.handlers.gitsigns").setup()
 		end
 	},
 	"kdheepak/lazygit.nvim",
@@ -115,22 +122,6 @@ require "dep" {
 		}
 	},
 	{
-		"echasnovski/mini.nvim",
-		function()
-			local map = require("mini.map")
-			map.setup({
-				window = {
-					show_integration_count = false,
-				},
-				integrations = {
-					map.gen_integration.builtin_search(),
-					map.gen_integration.gitsigns(),
-					map.gen_integration.diagnostic(),
-				}
-			})
-		end
-	},
-	{
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		function()
@@ -142,7 +133,9 @@ require "dep" {
 					null_ls.builtins.code_actions.gitsigns,
 					null_ls.builtins.diagnostics.eslint_d,
 					null_ls.builtins.diagnostics.stylelint,
+					null_ls.builtins.diagnostics.ruff,
 					null_ls.builtins.formatting.prettierd,
+					null_ls.builtins.formatting.ruff,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
@@ -165,7 +158,6 @@ require "dep" {
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
-
 		function()
 			require("telescope").setup()
 		end
@@ -177,10 +169,19 @@ require "dep" {
 			"nvim-telescope/telescope.nvim",
 			"nvim-tree/nvim-web-devicons",
 		},
-		config = function()
+		function()
 			require("octo").setup()
 		end
 	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		requires = "petertriho/nvim-scrollbar",
+		function()
+			require("hlslens").setup()
+			require("scrollbar.handlers.search").setup()
+		end
+	},
+	"wakatime/vim-wakatime",
 	"ludovicchabant/vim-gutentags"
 }
 
@@ -251,21 +252,27 @@ key.set("", "L", "$")
 
 key.set("n", "<F5>", ":Neotree<CR>")
 
-key.set("n", "<Leader>mc", MiniMap.close)
-key.set("n", "<Leader>mf", MiniMap.toggle_focus)
-key.set("n", "<Leader>mo", MiniMap.open)
-key.set("n", "<Leader>mr", MiniMap.refresh)
-key.set("n", "<Leader>ms", MiniMap.toggle_side)
-key.set("n", "<Leader>mt", MiniMap.toggle)
-
 local builtin = require("telescope.builtin")
 key.set("n", "<Leader>ff", builtin.find_files, {})
 key.set("n", "<Leader>fg", builtin.live_grep, {})
 key.set("n", "<Leader>fb", builtin.buffers, {})
 key.set("n", "<Leader>fh", builtin.help_tags, {})
 
+local kopts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "n",
+	[[<Cmd>execute("normal! " . v:count1 . "n")<CR><Cmd>lua require("hlslens").start()<CR>]],
+	kopts)
+vim.api.nvim_set_keymap("n", "N",
+	[[<Cmd>execute("normal! " . v:count1 . "N")<CR><Cmd>lua require("hlslens").start()<CR>]],
+	kopts)
+vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
+
 local g = vim.g
-g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
+g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>",["keymap.bigger_preview"] = "<C-B>" }
 
 local lsp = require("lspconfig")
 local coq = require("coq")
@@ -275,8 +282,8 @@ rt.setup({
 	server = {
 		coq.lsp_ensure_capabilities({
 			settings = {
-				["rust-analyzer"] = {
-					["checkOnSave.command"] = "clippy"
+					["rust-analyzer"] = {
+						["checkOnSave.command"] = "clippy"
 				}
 			}
 		})
@@ -293,4 +300,25 @@ lsp.eslint.setup(
 
 lsp.pyright.setup(
 	coq.lsp_ensure_capabilities()
+)
+
+lsp.lua_ls.setup(
+	coq.lsp_ensure_capabilities({
+		settings = {
+			Lua = {
+				runtime = {
+					version = "LuaJIT",
+				},
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true)
+				},
+				telemetry = {
+					enable = false,
+				},
+			},
+		},
+	})
 )
