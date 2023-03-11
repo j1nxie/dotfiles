@@ -12,16 +12,15 @@
 	rebase = true
 [color]
 	ui = auto
-[safe]
-	directory = C:/Users/chief/Desktop/projects/solutions
-	directory = C:/Users/chief/AppData/Local/nvim-data/plugged/chadtree
-	directory = /mnt/hgfs/projects/kt-maimaidx-site-importer
-	directory = /mnt/hgfs/projects/solutions
-	directory = /mnt/hgfs/projects/stellarium
-	directory = /mnt/hgfs/projects/j1nxie.github.io
 [credential]
 	helper = store
 [gpg]
 	format = ssh
 [commit]
 	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

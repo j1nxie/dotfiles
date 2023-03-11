@@ -11,6 +11,12 @@ require "dep" {
 		end
 	},
 	{
+		"petertriho/nvim-scrollbar",
+		function()
+			require("scrollbar").setup()
+		end
+	},
+	{
 		"rebelot/kanagawa.nvim",
 		function()
 			require("kanagawa").setup({
@@ -37,7 +43,6 @@ require "dep" {
 			require("cokeline").setup()
 		end
 	},
-	"dense-analysis/ale",
 	{
 		"ms-jpq/coq_nvim",
 		branch = "coq",
@@ -66,11 +71,29 @@ require "dep" {
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
 			vim.cmd("TSUpdate")
+		end,
+		function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "c", "lua", "vim", "help" },
+				sync_install = false,
+				auto_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = true,
+				},
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+				}
+			})
 		end
-	}, 
+	},
 	{
 		"m-demare/hlargs.nvim",
 		requires = "nvim-treesitter/nvim-treesitter",
+		function()
+			require("hlargs").setup()
+		end
 	},
 	{
 		"mrjones2014/nvim-ts-rainbow",
@@ -78,12 +101,14 @@ require "dep" {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		requires = "petertriho/nvim-scrollbar",
 		function()
 			require("gitsigns").setup({
 				yadm = {
 					enable = true
 				}
 			})
+			require("scrollbar.handlers.gitsigns").setup()
 		end
 	},
 	"kdheepak/lazygit.nvim",
@@ -96,8 +121,67 @@ require "dep" {
 			"nvim-lua/plenary.nvim"
 		}
 	},
-	"mbbill/undotree",
-	"wfxr/minimap.vim",
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		function()
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.code_actions.eslint_d,
+					null_ls.builtins.code_actions.gitrebase,
+					null_ls.builtins.code_actions.gitsigns,
+					null_ls.builtins.diagnostics.stylelint,
+					null_ls.builtins.diagnostics.ruff,
+					null_ls.builtins.formatting.eslint_d,
+					null_ls.builtins.formatting.stylelint,
+					null_ls.builtins.formatting.ruff,
+				},
+				on_attach = function(client, bufnr)
+					if client.supports_method("textDocument/formatting") then
+						vim.api.nvim_clear_autocmds({
+							group = augroup,
+							buffer = bufnr,
+						})
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							group = augroup,
+							buffer = bufnr,
+							callback = function()
+								vim.lsp.buf.format({ bufnr = bufnr })
+							end,
+						})
+					end
+				end,
+			})
+		end
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		function()
+			require("telescope").setup()
+		end
+	},
+	{
+		"pwntester/octo.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		function()
+			require("octo").setup()
+		end
+	},
+	{
+		"kevinhwang91/nvim-hlslens",
+		requires = "petertriho/nvim-scrollbar",
+		function()
+			require("hlslens").setup()
+			require("scrollbar.handlers.search").setup()
+		end
+	},
+	"wakatime/vim-wakatime",
 	"ludovicchabant/vim-gutentags"
 }
 
@@ -106,6 +190,7 @@ vim.cmd [[
 	filetype plugin indent on
 	syntax enable
 	colorscheme kanagawa
+	autocmd BufWritePre * lua vim.lsp.buf.format({ bufnr = bufnr })
 ]]
 
 local set = vim.opt
@@ -165,29 +250,30 @@ key.set("n", "<leader>gg", ":LazyGit<CR>", { silent = true })
 key.set("", "H", "^")
 key.set("", "L", "$")
 
-key.set("n", "<F6>", ":UndotreeToggle<CR>")
 key.set("n", "<F5>", ":Neotree<CR>")
+key.set("n", "<Leader>cs", ":nohlsearch<CR>", { silent = true })
+
+local builtin = require("telescope.builtin")
+key.set("n", "<Leader>ff", builtin.find_files, {})
+key.set("n", "<Leader>fg", builtin.live_grep, {})
+key.set("n", "<Leader>fb", builtin.buffers, {})
+key.set("n", "<Leader>fh", builtin.help_tags, {})
+
+local kopts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "n",
+	[[<Cmd>execute("normal! " . v:count1 . "n")<CR><Cmd>lua require("hlslens").start()<CR>]],
+	kopts)
+vim.api.nvim_set_keymap("n", "N",
+	[[<Cmd>execute("normal! " . v:count1 . "N")<CR><Cmd>lua require("hlslens").start()<CR>]],
+	kopts)
+vim.api.nvim_set_keymap("n", "*", [[*<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require("hlslens").start()<CR>]], kopts)
+vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 
 local g = vim.g
-g.minimap_width = 10
-g.minimap_auto_start = 0
-g.minimap_auto_start_win_enter = 1
-g.minimap_block_filetypes = { "undotree" }
-g.minimap_highlight_range = 1
-g.minimap_git_colors = 1
-g.minimap_highlight_search = 1
-
-g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>", ["keymap.bigger_preview"] = "<C-B>" }
-
-g.ale_disablelsp = 1
-g.ale_fixers = {
-	["javascript"] = { "eslint" },
-	["typescript"] = { "eslint" },
-	["rust"] = { "rustfmt" }
-}
-g.ale_javascript_eslint_executable = "eslint_d"
-g.ale_javascript_eslint_use_global = 1
-g.ale_fix_on_save = 1
+g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>",["keymap.bigger_preview"] = "<C-B>" }
 
 local lsp = require("lspconfig")
 local coq = require("coq")
@@ -197,8 +283,10 @@ rt.setup({
 	server = {
 		coq.lsp_ensure_capabilities({
 			settings = {
-				["rust-analyzer"] = {
-					["checkOnSave.command"] = "cippy"
+					["rust-analyzer"] = {
+					check = {
+						command = "clippy"
+					}
 				}
 			}
 		})
@@ -217,18 +305,23 @@ lsp.pyright.setup(
 	coq.lsp_ensure_capabilities()
 )
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = { "c", "lua", "vim", "help" },
-	sync_install = false,
-	auto_install = true,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
-	rainbow = {
-		enable = true,
-		extended_mode = true,
-	}
-})
-
-require("hlargs").setup()
+lsp.lua_ls.setup(
+	coq.lsp_ensure_capabilities({
+		settings = {
+			Lua = {
+				runtime = {
+					version = "LuaJIT",
+				},
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = vim.api.nvim_get_runtime_file("", true)
+				},
+				telemetry = {
+					enable = false,
+				},
+			},
+		},
+	})
+)
