@@ -251,6 +251,7 @@ key.set("", "H", "^")
 key.set("", "L", "$")
 
 key.set("n", "<F5>", ":Neotree<CR>")
+key.set("n", "<Leader>cs", ":nohlsearch<CR>", { silent = true })
 
 local builtin = require("telescope.builtin")
 key.set("n", "<Leader>ff", builtin.find_files, {})
