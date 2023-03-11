@@ -43,28 +43,13 @@ require "dep" {
 			require("cokeline").setup()
 		end
 	},
-	{
-		"ms-jpq/coq_nvim",
-		branch = "coq",
-		requires = "ms-jpq/coq.artifacts",
-		config = function()
-			vim.cmd("COQdeps")
-		end
-	},
 	"neovim/nvim-lspconfig",
 	"simrat39/rust-tools.nvim",
 	{
 		"saecki/crates.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		function()
-			require("crates").setup {
-				src = {
-					coq = {
-						enabled = true,
-						name = "crates.nvim"
-					}
-				}
-			}
+			require("crates").setup()
 		end
 	},
 	{
@@ -181,6 +166,65 @@ require "dep" {
 			require("scrollbar.handlers.search").setup()
 		end
 	},
+	{
+		"hrsh7th/nvim-cmp",
+		requires = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"petertriho/cmp-git",
+		},
+		function()
+			local cmp = require("cmp")
+			cmp.setup({
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+						["<C-b>"] = cmp.mapping.scroll_docs(-4),
+						["<C-f>"] = cmp.mapping.scroll_docs(4),
+						["<C-Space>"] = cmp.mapping.complete(),
+						["<C-e>"] = cmp.mapping.abort(),
+						["<CR>"] = cmp.mapping.confirm({ select = true }),
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+				}, {
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.filetype("gitcommit", {
+				sources = cmp.config.sources({
+					{ name = "cmp_git" },
+				}, {
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.cmdline({ "/", "?" }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{ name = "cmdline" },
+				})
+			})
+		end
+	},
+	"L3MON4D3/LuaSnip",
+	"saadparwaiz1/cmp_luasnip",
 	"wakatime/vim-wakatime",
 	"ludovicchabant/vim-gutentags"
 }
@@ -272,56 +316,43 @@ vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require("hlslens").start()<CR>]]
 vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require("hlslens").start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
 
-local g = vim.g
-g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>",["keymap.bigger_preview"] = "<C-B>" }
-
 local lsp = require("lspconfig")
-local coq = require("coq")
 local rt = require("rust-tools")
+local cmp = require("cmp_nvim_lsp").default_capabilities()
 
 rt.setup({
 	server = {
-		coq.lsp_ensure_capabilities({
-			settings = {
-					["rust-analyzer"] = {
-					check = {
-						command = "clippy"
-					}
+		capabilities = cmp,
+		settings = {
+				["rust-analyzer"] = {
+				check = {
+					command = "clippy"
 				}
 			}
-		})
+		}
 	}
 })
 
-lsp.clangd.setup(
-	coq.lsp_ensure_capabilities()
-)
+lsp.eslint.setup({ capabilities = cmp })
 
-lsp.eslint.setup(
-	coq.lsp_ensure_capabilities()
-)
+lsp.pyright.setup({ capabilities = cmp })
 
-lsp.pyright.setup(
-	coq.lsp_ensure_capabilities()
-)
-
-lsp.lua_ls.setup(
-	coq.lsp_ensure_capabilities({
-		settings = {
-			Lua = {
-				runtime = {
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					globals = { "vim" },
-				},
-				workspace = {
-					library = vim.api.nvim_get_runtime_file("", true)
-				},
-				telemetry = {
-					enable = false,
-				},
+lsp.lua_ls.setup({
+	capabilties = cmp,
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true)
+			},
+			telemetry = {
+				enable = false,
 			},
 		},
-	})
-)
+	},
+})
