@@ -28,6 +28,7 @@ require "dep" {
 		function()
 			require("kanagawa").setup({
 				commentStyle = { italic = false },
+				theme = "dragon",
 			})
 		end
 	},
