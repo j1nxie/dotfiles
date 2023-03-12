@@ -268,6 +268,7 @@ require "dep" {
 }
 
 vim.g.mapleader = " "
+vim.o.background = ""
 vim.cmd [[
 	filetype plugin indent on
 	syntax enable
