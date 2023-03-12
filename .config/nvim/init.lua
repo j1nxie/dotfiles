@@ -3,7 +3,14 @@ require "dep" {
 	{
 		"nvim-lualine/lualine.nvim",
 		function()
-			require("lualine").setup()
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+					globalstatus = true,
+					section_separators = { left = "", right = "" },
+				},
+				extensions = { "neo-tree" },
+			})
 			require("lualine").hide({
 				place = { "tabline" },
 				unhide = false
