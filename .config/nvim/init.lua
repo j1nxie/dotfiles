@@ -258,12 +258,27 @@ require "dep" {
 			require("scrollbar.handlers.search").setup()
 		end
 	},
+	"wakatime/vim-wakatime",
 	{
+		"lukas-reineke/indent-blankline.nvim",
 		function()
+			vim.opt.list = true
+			vim.opt.listchars:append "space:·"
+			require("indent_blankline").setup({
+				space_char_blankline = " ",
+				show_current_context = true,
+				char_highlight_list = {
+					"TSRainbowRed",
+					"TSRainbowYellow",
+					"TSRainbowBlue",
+					"TSRainbowOrange",
+					"TSRainbowGreen",
+					"TSRainbowViolet",
+					"TSRainbowCyan",
+				}
 			})
 		end
 	},
-	"wakatime/vim-wakatime",
 	"ludovicchabant/vim-gutentags"
 }
 
