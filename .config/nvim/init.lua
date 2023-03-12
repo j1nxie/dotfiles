@@ -207,7 +207,7 @@ require "dep" {
 		end
 	},
 	{
-		"mrjones2014/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		requires = "nvim-treesitter/nvim-treesitter",
 	},
 	{
