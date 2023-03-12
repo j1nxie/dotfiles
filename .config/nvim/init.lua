@@ -272,7 +272,7 @@ vim.cmd [[
 	filetype plugin indent on
 	syntax enable
 	colorscheme kanagawa
-	autocmd BufWritePre * lua vim.lsp.buf.format({ bufnr = bufnr })
+	autocmd BufWritePre * lua vim.lsp.buf.format()
 ]]
 
 local set = vim.opt
