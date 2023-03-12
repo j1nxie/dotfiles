@@ -362,7 +362,7 @@ rt.setup({
 	server = {
 		capabilities = cmp,
 		settings = {
-				["rust-analyzer"] = {
+			["rust-analyzer"] = {
 				check = {
 					command = "clippy"
 				}
