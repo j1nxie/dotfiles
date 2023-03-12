@@ -51,6 +51,124 @@ require "dep" {
 			require("cokeline").setup()
 		end
 	},
+	{
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v1.x",
+		requires = {
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"petertriho/cmp-git",
+			"lukas-reineke/cmp-under-comparator",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		function()
+			local lsp = require("lsp-zero").preset({
+				name = "minimal",
+				set_lsp_keymaps = true,
+				manage_nvim_cmp = true,
+				configure_diagnostics = true,
+				suggest_lsp_servers = false,
+				sign_icons = {
+					error = "✘",
+					warn = "▲",
+					hint = "⚑",
+					info = "",
+				},
+			})
+			local cmp = require("cmp")
+			lsp.nvim_workspace()
+			lsp.setup_nvim_cmp({
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+				}, {
+					{ name = "buffer" },
+				}),
+				sorting = {
+					comparators = {
+						cmp.config.compare.offset,
+						cmp.config.compare.exact,
+						cmp.config.compare.score,
+						require("cmp-under-comparator").under,
+						cmp.config.compare.kind,
+						cmp.config.compare.sort_text,
+						cmp.config.compare.length,
+						cmp.config.compare.order,
+					},
+				}
+			})
+
+			cmp.setup.filetype("gitcommit", {
+				sources = cmp.config.sources({
+					{ name = "cmp_git" },
+				}, {
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.cmdline({ "/", "?" }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{ name = "cmdline" },
+				})
+			})
+			lsp.on_attach(function(client, bufnr)
+				local function buf_set_option(...)
+					vim.api.nvim_buf_set_option(bufnr, ...)
+				end
+				local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ bufnr = bufnr })
+						end,
+					})
+				end
+
+				if (client.name == "eslint") then
+					vim.api.nvim_command("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
+				end
+			end)
+			lsp.configure("stylelint-lsp", {
+				settings = {
+					autoFixOnFormat = true,
+					autoFixOnSave = true,
+				}
+			})
+			lsp.setup()
+		end
+	},
 	"neovim/nvim-lspconfig",
 	"simrat39/rust-tools.nvim",
 	{
@@ -115,40 +233,6 @@ require "dep" {
 		}
 	},
 	{
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		function()
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.code_actions.eslint_d,
-					null_ls.builtins.code_actions.gitrebase,
-					null_ls.builtins.code_actions.gitsigns,
-					null_ls.builtins.diagnostics.stylelint,
-					null_ls.builtins.diagnostics.ruff,
-					null_ls.builtins.formatting.eslint_d,
-					null_ls.builtins.formatting.stylelint,
-					null_ls.builtins.formatting.ruff,
-				},
-				on_attach = function(client, bufnr)
-					if client.supports_method("textDocument/formatting") then
-						vim.api.nvim_clear_autocmds({
-							group = augroup,
-							buffer = bufnr,
-						})
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = augroup,
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({ bufnr = bufnr })
-							end,
-						})
-					end
-				end,
-			})
-		end
-	},
-	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
 		function()
@@ -175,64 +259,10 @@ require "dep" {
 		end
 	},
 	{
-		"hrsh7th/nvim-cmp",
-		requires = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"petertriho/cmp-git",
-		},
 		function()
-			local cmp = require("cmp")
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-						["<C-b>"] = cmp.mapping.scroll_docs(-4),
-						["<C-f>"] = cmp.mapping.scroll_docs(4),
-						["<C-Space>"] = cmp.mapping.complete(),
-						["<C-e>"] = cmp.mapping.abort(),
-						["<CR>"] = cmp.mapping.confirm({ select = true }),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" },
-				}, {
-					{ name = "buffer" },
-				})
-			})
-
-			cmp.setup.filetype("gitcommit", {
-				sources = cmp.config.sources({
-					{ name = "cmp_git" },
-				}, {
-					{ name = "buffer" },
-				})
-			})
-
-			cmp.setup.cmdline({ "/", "?" }, {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "buffer" },
-				})
-			})
-
-			cmp.setup.cmdline(":", {
-				mapping = cmp.mapping.preset.cmdline(),
-				sources = cmp.config.sources({
-					{ name = "path" },
-				}, {
-					{ name = "cmdline" },
-				})
 			})
 		end
 	},
-	"L3MON4D3/LuaSnip",
-	"saadparwaiz1/cmp_luasnip",
 	"wakatime/vim-wakatime",
 	"ludovicchabant/vim-gutentags"
 }
@@ -339,28 +369,4 @@ rt.setup({
 			}
 		}
 	}
-})
-
-lsp.eslint.setup({ capabilities = cmp })
-
-lsp.pyright.setup({ capabilities = cmp })
-
-lsp.lua_ls.setup({
-	capabilties = cmp,
-	settings = {
-		Lua = {
-			runtime = {
-				version = "LuaJIT",
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = vim.api.nvim_get_runtime_file("", true)
-			},
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
 })
