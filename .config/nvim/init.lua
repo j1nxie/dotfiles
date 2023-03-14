@@ -67,6 +67,7 @@ require "dep" {
 			"lukas-reineke/cmp-under-comparator",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
+			"simrat39/rust-tools.nvim",
 		},
 		function()
 			local lsp = require("lsp-zero").preset({
@@ -84,6 +85,7 @@ require "dep" {
 			})
 			local cmp = require("cmp")
 			lsp.nvim_workspace()
+			lsp.skip_server_setup("rust-analyzer")
 			lsp.setup_nvim_cmp({
 				snippet = {
 					expand = function(args)
@@ -167,6 +169,15 @@ require "dep" {
 				}
 			})
 			lsp.setup()
+
+			local rust_lsp = lsp.build_options("rust-analyzer", {
+				single_file_support = false,
+				check = {
+					command = "clippy",
+				}
+			})
+
+			require("rust-tools").setup({ server = rust_lsp })
 		end
 	},
 	"neovim/nvim-lspconfig",
@@ -369,20 +380,3 @@ vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require("hlslens").start()<CR>]], 
 vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require("hlslens").start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require("hlslens").start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
-
-local lsp = require("lspconfig")
-local rt = require("rust-tools")
-local cmp = require("cmp_nvim_lsp").default_capabilities()
-
-rt.setup({
-	server = {
-		capabilities = cmp,
-		settings = {
-			["rust-analyzer"] = {
-				check = {
-					command = "clippy"
-				}
-			}
-		}
-	}
-})
