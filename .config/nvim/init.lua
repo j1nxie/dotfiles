@@ -68,6 +68,7 @@ require "dep" {
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"simrat39/rust-tools.nvim",
+			"onsails/lspkind.nvim",
 		},
 		function()
 			local lsp = require("lsp-zero").preset({
@@ -84,6 +85,7 @@ require "dep" {
 				},
 			})
 			local cmp = require("cmp")
+			local lspkind = require("lspkind")
 			lsp.nvim_workspace()
 			lsp.skip_server_setup("rust-analyzer")
 			lsp.setup_nvim_cmp({
@@ -116,6 +118,13 @@ require "dep" {
 						cmp.config.compare.length,
 						cmp.config.compare.order,
 					},
+				},
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol_text",
+						max_width = 50,
+						ellipsis_char = "..."
+					})
 				}
 			})
 
@@ -142,6 +151,7 @@ require "dep" {
 					{ name = "cmdline" },
 				})
 			})
+
 			lsp.on_attach(function(client, bufnr)
 				local function buf_set_option(...)
 					vim.api.nvim_buf_set_option(bufnr, ...)
@@ -162,6 +172,7 @@ require "dep" {
 					vim.api.nvim_command("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
 				end
 			end)
+
 			lsp.configure("stylelint-lsp", {
 				settings = {
 					autoFixOnFormat = true,
