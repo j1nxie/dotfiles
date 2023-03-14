@@ -3,7 +3,14 @@ require "dep" {
 	{
 		"nvim-lualine/lualine.nvim",
 		function()
-			require("lualine").setup()
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+					globalstatus = true,
+					section_separators = { left = "", right = "" },
+				},
+				extensions = { "neo-tree" },
+			})
 			require("lualine").hide({
 				place = { "tabline" },
 				unhide = false
@@ -21,6 +28,7 @@ require "dep" {
 		function()
 			require("kanagawa").setup({
 				commentStyle = { italic = false },
+				theme = "dragon",
 			})
 		end
 	},
@@ -44,11 +52,143 @@ require "dep" {
 		end
 	},
 	{
-		"ms-jpq/coq_nvim",
-		branch = "coq",
-		requires = "ms-jpq/coq.artifacts",
-		config = function()
-			vim.cmd("COQdeps")
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v1.x",
+		requires = {
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"petertriho/cmp-git",
+			"lukas-reineke/cmp-under-comparator",
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"simrat39/rust-tools.nvim",
+			"onsails/lspkind.nvim",
+		},
+		function()
+			local lsp = require("lsp-zero").preset({
+				name = "minimal",
+				set_lsp_keymaps = true,
+				manage_nvim_cmp = true,
+				configure_diagnostics = true,
+				suggest_lsp_servers = false,
+				sign_icons = {
+					error = "✘",
+					warn = "▲",
+					hint = "⚑",
+					info = "",
+				},
+			})
+			local cmp = require("cmp")
+			local lspkind = require("lspkind")
+			lsp.nvim_workspace()
+			lsp.skip_server_setup("rust-analyzer")
+			lsp.setup_nvim_cmp({
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+				}, {
+					{ name = "buffer" },
+				}),
+				sorting = {
+					comparators = {
+						cmp.config.compare.offset,
+						cmp.config.compare.exact,
+						cmp.config.compare.score,
+						require("cmp-under-comparator").under,
+						cmp.config.compare.kind,
+						cmp.config.compare.sort_text,
+						cmp.config.compare.length,
+						cmp.config.compare.order,
+					},
+				},
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol_text",
+						max_width = 50,
+						ellipsis_char = "..."
+					})
+				}
+			})
+
+			cmp.setup.filetype("gitcommit", {
+				sources = cmp.config.sources({
+					{ name = "cmp_git" },
+				}, {
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.cmdline({ "/", "?" }, {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "buffer" },
+				})
+			})
+
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{ name = "cmdline" },
+				})
+			})
+
+			lsp.on_attach(function(client, bufnr)
+				local function buf_set_option(...)
+					vim.api.nvim_buf_set_option(bufnr, ...)
+				end
+				local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = augroup,
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ bufnr = bufnr })
+						end,
+					})
+				end
+
+				if (client.name == "eslint") then
+					vim.api.nvim_command("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
+				end
+			end)
+
+			lsp.configure("stylelint-lsp", {
+				settings = {
+					autoFixOnFormat = true,
+					autoFixOnSave = true,
+				}
+			})
+			lsp.setup()
+
+			local rust_lsp = lsp.build_options("rust-analyzer", {
+				single_file_support = false,
+				check = {
+					command = "clippy",
+				}
+			})
+
+			require("rust-tools").setup({ server = rust_lsp })
 		end
 	},
 	"neovim/nvim-lspconfig",
@@ -57,14 +197,7 @@ require "dep" {
 		"saecki/crates.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		function()
-			require("crates").setup {
-				src = {
-					coq = {
-						enabled = true,
-						name = "crates.nvim"
-					}
-				}
-			}
+			require("crates").setup()
 		end
 	},
 	{
@@ -96,7 +229,7 @@ require "dep" {
 		end
 	},
 	{
-		"mrjones2014/nvim-ts-rainbow",
+		"HiPhish/nvim-ts-rainbow2",
 		requires = "nvim-treesitter/nvim-treesitter",
 	},
 	{
@@ -120,40 +253,6 @@ require "dep" {
 			"nvim-tree/nvim-web-devicons",
 			"nvim-lua/plenary.nvim"
 		}
-	},
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		requires = "nvim-lua/plenary.nvim",
-		function()
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.code_actions.eslint_d,
-					null_ls.builtins.code_actions.gitrebase,
-					null_ls.builtins.code_actions.gitsigns,
-					null_ls.builtins.diagnostics.stylelint,
-					null_ls.builtins.diagnostics.ruff,
-					null_ls.builtins.formatting.eslint_d,
-					null_ls.builtins.formatting.stylelint,
-					null_ls.builtins.formatting.ruff,
-				},
-				on_attach = function(client, bufnr)
-					if client.supports_method("textDocument/formatting") then
-						vim.api.nvim_clear_autocmds({
-							group = augroup,
-							buffer = bufnr,
-						})
-						vim.api.nvim_create_autocmd("BufWritePre", {
-							group = augroup,
-							buffer = bufnr,
-							callback = function()
-								vim.lsp.buf.format({ bufnr = bufnr })
-							end,
-						})
-					end
-				end,
-			})
-		end
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -182,15 +281,36 @@ require "dep" {
 		end
 	},
 	"wakatime/vim-wakatime",
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		function()
+			vim.opt.list = true
+			vim.opt.listchars:append "space:·"
+			require("indent_blankline").setup({
+				space_char_blankline = " ",
+				show_current_context = true,
+				char_highlight_list = {
+					"TSRainbowRed",
+					"TSRainbowYellow",
+					"TSRainbowBlue",
+					"TSRainbowOrange",
+					"TSRainbowGreen",
+					"TSRainbowViolet",
+					"TSRainbowCyan",
+				}
+			})
+		end
+	},
 	"ludovicchabant/vim-gutentags"
 }
 
 vim.g.mapleader = " "
+vim.o.background = ""
 vim.cmd [[
 	filetype plugin indent on
 	syntax enable
 	colorscheme kanagawa
-	autocmd BufWritePre * lua vim.lsp.buf.format({ bufnr = bufnr })
+	autocmd BufWritePre * lua vim.lsp.buf.format()
 ]]
 
 local set = vim.opt
@@ -271,57 +391,3 @@ vim.api.nvim_set_keymap("n", "#", [[#<Cmd>lua require("hlslens").start()<CR>]], 
 vim.api.nvim_set_keymap("n", "g*", [[g*<Cmd>lua require("hlslens").start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "g#", [[g#<Cmd>lua require("hlslens").start()<CR>]], kopts)
 vim.api.nvim_set_keymap("n", "<Leader>l", "<Cmd>noh<CR>", kopts)
-
-local g = vim.g
-g.coq_settings = { ["keymap.jump_to_mark"] = "<C-N>",["keymap.bigger_preview"] = "<C-B>" }
-
-local lsp = require("lspconfig")
-local coq = require("coq")
-local rt = require("rust-tools")
-
-rt.setup({
-	server = {
-		coq.lsp_ensure_capabilities({
-			settings = {
-					["rust-analyzer"] = {
-					check = {
-						command = "clippy"
-					}
-				}
-			}
-		})
-	}
-})
-
-lsp.clangd.setup(
-	coq.lsp_ensure_capabilities()
-)
-
-lsp.eslint.setup(
-	coq.lsp_ensure_capabilities()
-)
-
-lsp.pyright.setup(
-	coq.lsp_ensure_capabilities()
-)
-
-lsp.lua_ls.setup(
-	coq.lsp_ensure_capabilities({
-		settings = {
-			Lua = {
-				runtime = {
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					globals = { "vim" },
-				},
-				workspace = {
-					library = vim.api.nvim_get_runtime_file("", true)
-				},
-				telemetry = {
-					enable = false,
-				},
-			},
-		},
-	})
-)
