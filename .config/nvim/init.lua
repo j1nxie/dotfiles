@@ -320,6 +320,12 @@ require "dep" {
 			})
 		end
 	},
+	{
+		"m4xshen/smartcolumn.nvim",
+		function()
+			require("smartcolumn").setup()
+		end
+	},
 	"ludovicchabant/vim-gutentags"
 }
 
@@ -360,6 +366,7 @@ set.autoindent = true
 set.wrap = false
 set.joinspaces = false
 set.showtabline = 1
+set.colorcolumn = "80"
 
 set.shiftwidth = 4
 set.tabstop = 4
