@@ -268,7 +268,16 @@ require "dep" {
 		},
 		branch = "0.1.x",
 		function()
-			require("telescope").setup()
+			require("telescope").setup({
+				pickers = {
+					find_files = {
+						theme = "dropdown",
+					},
+					live_grep = {
+						theme = "dropdown",
+					}
+				}
+			})
 		end
 	},
 	{
