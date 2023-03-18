@@ -220,6 +220,7 @@ require "dep" {
 			})
 		end
 	},
+	"nvim-treesitter/playground",
 	{
 		"m-demare/hlargs.nvim",
 		requires = "nvim-treesitter/nvim-treesitter",
