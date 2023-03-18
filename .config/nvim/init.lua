@@ -255,7 +255,17 @@ require "dep" {
 		}
 	},
 	{
+		"xiyaowong/telescope-emoji.nvim",
+		requires = "nvim-telescope/telescope.nvim",
+		function()
+			require("telescope").load_extension("emoji")
+		end
+	},
+	{
 		"nvim-telescope/telescope.nvim",
+		deps = {
+			"xiyaowong/telescope-emoji.nvim",
+		},
 		branch = "0.1.x",
 		function()
 			require("telescope").setup()
