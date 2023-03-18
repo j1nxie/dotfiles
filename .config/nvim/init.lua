@@ -357,15 +357,19 @@ set.writebackup = false
 
 set.cmdheight = 1
 set.showmode = false
-set.updatetime = 300
+set.updatetime = 50
 set.shortmess = "filnxtToOFAc"
 set.signcolumn = "yes"
 set.showtabline = 2
 set.scrolloff = 2
 set.autoindent = true
+set.smartindent = true
 set.wrap = false
 set.joinspaces = false
 set.showtabline = 1
+set.incsearch = true
+set.scrolloff = 8
+set.isfname:append("@-@")
 set.colorcolumn = "80"
 
 set.shiftwidth = 4
@@ -396,7 +400,7 @@ key.set("n", "<leader>gg", ":LazyGit<CR>", { silent = true })
 key.set("", "H", "^")
 key.set("", "L", "$")
 
-key.set("n", "<F5>", ":Neotree<CR>")
+key.set("n", "<F5>", ":Neotree<CR>", { silent = true })
 key.set("n", "<Leader>cs", ":nohlsearch<CR>", { silent = true })
 
 local builtin = require("telescope.builtin")
@@ -404,6 +408,7 @@ key.set("n", "<Leader>ff", builtin.find_files, {})
 key.set("n", "<Leader>fg", builtin.live_grep, {})
 key.set("n", "<Leader>fb", builtin.buffers, {})
 key.set("n", "<Leader>fh", builtin.help_tags, {})
+key.set("n", "<Leader>fe", ":Telescope emoji<CR>", { silent = true })
 
 local kopts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "n",
