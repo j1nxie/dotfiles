@@ -192,7 +192,6 @@ require "dep" {
 		end
 	},
 	"neovim/nvim-lspconfig",
-	"simrat39/rust-tools.nvim",
 	{
 		"saecki/crates.nvim",
 		requires = "nvim-lua/plenary.nvim",
