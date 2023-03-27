@@ -9,7 +9,7 @@ xrandr --output Virtual1 --mode 1920x1080
 nitrogen --restore &
 xsetroot -cursor_name left_ptr
 
-bspc monitor -d terminal editor web random spotify
+bspc monitor -d terminal editor things
 
 bspc config border_width         2
 bspc config normal_border_color  "#6272a4"
