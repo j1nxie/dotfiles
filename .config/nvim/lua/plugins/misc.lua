@@ -105,6 +105,19 @@ return {
 			require("smartcolumn").setup()
 		end
 	},
+	{
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		function()
+			require("todo-comments").setup()
+		end
+	},
+	{
+		"windwp/nvim-autopairs",
+		function()
+			require("nvim-autopairs").setup()
+		end
+	},
 	"kdheepak/lazygit.nvim",
 	"wakatime/vim-wakatime",
 	"ludovicchabant/vim-gutentags"
