@@ -36,6 +36,7 @@ return {
 			local lspkind = require("lspkind")
 			lsp.nvim_workspace()
 			lsp.skip_server_setup("rust-analyzer")
+			lsp.skip_server_setup("hls")
 			lsp.setup_nvim_cmp({
 				snippet = {
 					expand = function(args)
@@ -116,6 +117,14 @@ return {
 				if (client.name == "eslint") then
 					vim.api.nvim_command("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
 				end
+
+				local ht = require("haskell-tools")
+				if (client.name == "hls") then
+					local opts = vim.tbl.extend("keep", { noremap = true, silent = true }, { buffer = bufnr })
+					vim.keymap.set("n", "<Leader>ca", vim.lsp.codelens.run, opts)
+					vim.keymap.set("n", "<Leader>hs", ht.hoogle.hoogle_signature, opts)
+					vim.keymap.set("n", "<Leader>ea", ht.lsp.buf_eval_all, opts)
+				end
 			end)
 
 			lsp.configure("stylelint-lsp", {
@@ -133,7 +142,22 @@ return {
 				}
 			})
 
+			local haskell_lsp = lsp.build_options("hls", {})
+
 			require("rust-tools").setup({ server = rust_lsp })
+			require("haskell-tools").setup({
+				hls = haskell_lsp
+			})
+		end
+	},
+	{
+		"mrcjkb/haskell-tools.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		branch = "1.x.x",
+		function()
 		end
 	}
 }
