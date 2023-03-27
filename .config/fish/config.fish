@@ -32,7 +32,10 @@ function fish_greeting
 	echo -e (uname -ro | awk '{print " \\\\e[1mos: \\\\e[0;32m"$0"\\\\e[0m"}')
 	echo -e (uptime -p | sed 's/^up //' | awk '{print " \\\\e[1muptime: \\\\e[0;32m"$0"\\\\e[0m"}')
 	echo -e (uname -n | awk '{print " \\\\e[1mhostname: \\\\e[0;32m"$0"\\\\e[0m"}')
+	todos
+end
 
+function todos
 	set r (random 0 100)
 	if [ $r -lt 5 ] # only occasionally show backlog (5%)
 		echo -e " \e[1mbacklog:\e[0;32m"
@@ -68,7 +71,7 @@ function fish_greeting
 
 	if test -s ~/todo
 		set_color magenta
-		cat todo | sed 's/^/ /'
+		cat todo | sed 's/^/  /'
 		echo
 	end
 
