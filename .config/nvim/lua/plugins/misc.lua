@@ -120,5 +120,4 @@ return {
 	},
 	"kdheepak/lazygit.nvim",
 	"wakatime/vim-wakatime",
-	"ludovicchabant/vim-gutentags"
 }
