@@ -90,3 +90,8 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 set -gx PNPM_HOME "/home/lumi/.local/share/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
 # pnpm end
+
+# rbenv
+status --is-interactive; and rbenv init - fish | source
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/lumi/.ghcup/bin $PATH # ghcup-env
