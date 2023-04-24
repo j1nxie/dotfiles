@@ -23,7 +23,7 @@ vim.keymap.set("", "H", "^")
 vim.keymap.set("", "L", "$")
 
 vim.keymap.set("n", "<F5>", "<Cmd>Neotree<CR>", { silent = true })
-vim.keymap.set("n", "<Leader>cs", "<Cmd>nohlsearch<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>cs", [[<Cmd>nohlsearch<CR><Cmd>lua require("hlslens").stop()<CR>]], { silent = true })
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<Leader>ff", builtin.find_files, {})
