@@ -152,6 +152,8 @@ return {
 			})
 
 			require("rust-tools").setup({ server = rust_lsp })
+			vim.diagnostic.config({
+				virtual_text = false,
 			})
 		end
 	},
