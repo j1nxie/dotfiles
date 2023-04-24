@@ -136,7 +136,7 @@ return {
 				end
 			end)
 
-			lsp.configure("stylelint-lsp", {
+			lsp.configure("stylelint_lsp", {
 				settings = {
 					autoFixOnFormat = true,
 					autoFixOnSave = true,
