@@ -119,6 +119,18 @@ return {
 			require("nvim-autopairs").setup()
 		end
 	},
+	{
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		function()
+			require("trouble").setup()
+		end
+	},
+	{
+		"ThePrimeagen/harpoon",
+		requires = "nvim-lua/plenary.nvim",
+	},
+	"numToStr/FTerm.nvim",
 	"kdheepak/lazygit.nvim",
 	"wakatime/vim-wakatime",
 }
