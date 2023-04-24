@@ -20,8 +20,7 @@ return {
 		},
 		function()
 			local lsp = require("lsp-zero").preset({
-				name = "minimal",
-				set_lsp_keymaps = true,
+				name = "recommended",
 				manage_nvim_cmp = true,
 				configure_diagnostics = true,
 				suggest_lsp_servers = false,
