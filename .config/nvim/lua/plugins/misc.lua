@@ -132,5 +132,4 @@ return {
 	},
 	"numToStr/FTerm.nvim",
 	"kdheepak/lazygit.nvim",
-	"wakatime/vim-wakatime",
 }
