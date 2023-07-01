@@ -1,7 +1,7 @@
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v1.x",
+		branch = "v2.x",
 		requires = {
 			"neovim/nvim-lspconfig",
 			"williamboman/mason.nvim",
@@ -20,8 +20,7 @@ return {
 		},
 		function()
 			local lsp = require("lsp-zero").preset({
-				name = "minimal",
-				set_lsp_keymaps = true,
+				name = "recommended",
 				manage_nvim_cmp = true,
 				configure_diagnostics = true,
 				suggest_lsp_servers = false,
@@ -37,7 +36,6 @@ return {
 			local luasnip = require("luasnip")
 			lsp.nvim_workspace()
 			lsp.skip_server_setup("rust-analyzer")
-			lsp.skip_server_setup("hls")
 			lsp.setup_nvim_cmp({
 				snippet = {
 					expand = function(args)
@@ -136,17 +134,9 @@ return {
 				if (client.name == "eslint") then
 					vim.api.nvim_command("autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll")
 				end
-
-				local ht = require("haskell-tools")
-				if (client.name == "hls") then
-					local opts = vim.tbl.extend("keep", { noremap = true, silent = true }, { buffer = bufnr })
-					vim.keymap.set("n", "<Leader>ca", vim.lsp.codelens.run, opts)
-					vim.keymap.set("n", "<Leader>hs", ht.hoogle.hoogle_signature, opts)
-					vim.keymap.set("n", "<Leader>ea", ht.lsp.buf_eval_all, opts)
-				end
 			end)
 
-			lsp.configure("stylelint-lsp", {
+			lsp.configure("stylelint_lsp", {
 				settings = {
 					autoFixOnFormat = true,
 					autoFixOnSave = true,
@@ -161,22 +151,10 @@ return {
 				}
 			})
 
-			local haskell_lsp = lsp.build_options("hls", {})
-
 			require("rust-tools").setup({ server = rust_lsp })
-			require("haskell-tools").setup({
-				hls = haskell_lsp
+			vim.diagnostic.config({
+				virtual_text = false,
 			})
 		end
 	},
-	{
-		"mrcjkb/haskell-tools.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-		branch = "1.x.x",
-		function()
-		end
-	}
 }

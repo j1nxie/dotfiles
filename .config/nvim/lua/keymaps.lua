@@ -23,7 +23,7 @@ vim.keymap.set("", "H", "^")
 vim.keymap.set("", "L", "$")
 
 vim.keymap.set("n", "<F5>", "<Cmd>Neotree<CR>", { silent = true })
-vim.keymap.set("n", "<Leader>cs", "<Cmd>nohlsearch<CR>", { silent = true })
+vim.keymap.set("n", "<Leader>cs", [[<Cmd>nohlsearch<CR><Cmd>lua require("hlslens").stop()<CR>]], { silent = true })
 
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<Leader>ff", builtin.find_files, {})
@@ -50,3 +50,13 @@ end, { desc = "next todo comment" })
 vim.keymap.set("n", "[t", function()
 	require("todo-comments").jump_prev()
 end, { desc = "previous todo comment" })
+
+vim.keymap.set("n", "<Leader>xx", "<Cmd>TroubleToggle<CR>", kopts)
+vim.keymap.set("n", "<Leader>xw", "<Cmd>TroubleToggle workspace_diagnostics<CR>", kopts)
+vim.keymap.set("n", "<Leader>xd", "<Cmd>TroubleToggle document_diagnostics<CR>", kopts)
+vim.keymap.set("n", "<Leader>xl", "<Cmd>TroubleToggle loclist<CR>", kopts)
+vim.keymap.set("n", "<Leader>xq", "<Cmd>TroubleToggle quickfix<CR>", kopts)
+vim.keymap.set("n", "gR", "<Cmd>TroubleToggle lsp_references<CR>", kopts)
+
+vim.keymap.set("n", "<Leader>te", [[<Cmd>lua require("FTerm").toggle()<CR>]], kopts)
+vim.keymap.set("t", "<C-w>", [[<Cmd>lua require("FTerm").toggle()<CR>]], kopts)

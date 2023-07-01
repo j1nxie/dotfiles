@@ -4,7 +4,7 @@ return {
 		function()
 			require("lualine").setup({
 				options = {
-					theme = "auto",
+					theme = "nightfox",
 					globalstatus = true,
 					section_separators = { left = "", right = "" },
 				},
@@ -23,11 +23,12 @@ return {
 		end
 	},
 	{
-		"rebelot/kanagawa.nvim",
+		"EdenEast/nightfox.nvim",
 		function()
-			require("kanagawa").setup({
-				commentStyle = { italic = false },
-				theme = "dragon",
+			require("nightfox").setup({
+				styles = {
+					keywords = "bold",
+				}
 			})
 		end
 	},
@@ -118,6 +119,17 @@ return {
 			require("nvim-autopairs").setup()
 		end
 	},
+	{
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		function()
+			require("trouble").setup()
+		end
+	},
+	{
+		"ThePrimeagen/harpoon",
+		requires = "nvim-lua/plenary.nvim",
+	},
+	"numToStr/FTerm.nvim",
 	"kdheepak/lazygit.nvim",
-	"wakatime/vim-wakatime",
 }

@@ -1,11 +1,11 @@
 vim.g.mapleader = " "
-vim.o.background = ""
 vim.cmd [[
 	filetype plugin indent on
 	syntax enable
-	colorscheme kanagawa
+	colorscheme nightfox
 	autocmd BufWritePre * lua vim.lsp.buf.format()
 ]]
+vim.o.background = "dark"
 
 vim.opt.termguicolors = true
 vim.opt.guifont = "FiraCode Nerd Font Mono:style=Bold,Regular:h12"
