@@ -4,6 +4,8 @@
 	name = j1nxie
 	email = rylieeeeexd@gmail.com
 	signingkey = /home/lumi/.ssh/id_ed25519.pub
+[includeIf "gitdir:~/projects/Nabit/"]
+	path = ~/.gitconfig.work
 [core]
 	editor = nvim
 	autocrlf = input
