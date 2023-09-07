@@ -6,6 +6,8 @@ set --global tide_left_prompt_items context $tide_left_prompt_items
 set --global tide_context_always_display true
 set --global fish_greeting
 
+set --path -x XDG_DATA_DIRS $XDG_DATA_DIRS
+
 if command -v exa > /dev/null
 	abbr -a l "exa -lah"
 	abbr -a la "exa -lAh"
