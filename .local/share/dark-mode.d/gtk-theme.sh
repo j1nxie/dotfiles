@@ -4,3 +4,4 @@ gsettings set org.gnome.desktop.interface gtk-theme Catppuccin-Macchiato-Standar
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 export BAT_THEME="Catppuccin-macchiato"
 fish --command="set -U BAT_THEME Catppuccin-macchiato"
+kitty +kitten themes --reload-in=all Catppuccin-Macchiato
