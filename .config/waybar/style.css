@@ -1,26 +1,27 @@
+@import "macchiato.css";
+
 * {
 	border: none;
 	border-radius: 0;
 	font-family: "Noto Sans Mono", "Noto Sans CJK", "Twemoji", Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	min-height: 0;
+	color: @text;
 }
 
 window#waybar {
-	background: rgba(0, 0, 0, 0);
+	background: transparent;
 	border-bottom: 3px solid transparent;
-	color: white;
 }
 
 #workspaces button {
 	padding: 0 5px;
 	margin: 0 3px;
-	color: white;
 	border-bottom: 3px solid transparent;
 }
 
 #workspaces button.active {
-	background: rgba(100, 114, 125, 0.2);
+	background: @surface0;
 	border-bottom: 3px solid white;
 }
 
@@ -49,18 +50,8 @@ window#waybar {
 	border-bottom: 3px solid white;
 }
 
-#clock {
-	background-color: transparent;
-	color: white;
-}
-
 #battery {
 	padding: 0 15px 0 6px;
-	color: white;
-}
-
-#battery.charging {
-	color: white;
 }
 
 @keyframes blink {
@@ -71,7 +62,6 @@ window#waybar {
 
 #battery.warning:not(.charging) {
 	background: #f53c3c;
-	color: white;
 	animation-name: blink;
 	animation-duration: 0.5s;
 	animation-timing-function: linear;
@@ -82,28 +72,19 @@ window#waybar {
 #cpu {
 	background: transparent;
 	border-bottom: 3px solid palegoldenrod;
-	color: white;
 }
 
 #memory {
 	background: transparent;
 	border-bottom: 3px solid palegoldenrod;
-	color: white;
 }
 
 #network {
 	background: transparent;
-	color: white;
-}
-
-#network.disconnected {
-	background: transparent;
-	color: crimson;
 }
 
 #pulseaudio {
 	background: transparent;
-	color: white;
 }
 
 #pulseaudio.muted {
