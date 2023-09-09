@@ -1,3 +1,5 @@
+vim.opt.clipboard = "unnamed,unnamedplus"
+
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<C-h>", "<Cmd>call VSCodeCall('workbench.action.navigateLeft')<CR>")
