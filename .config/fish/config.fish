@@ -7,6 +7,8 @@ set --global tide_context_always_display true
 set --global fish_greeting
 
 set --path -x XDG_DATA_DIRS $XDG_DATA_DIRS
+set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x MANROFFOPT "-c"
 
 if command -v exa > /dev/null
 	abbr -a l "exa -lah"
