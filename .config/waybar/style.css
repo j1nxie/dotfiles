@@ -29,11 +29,6 @@ window#waybar {
 	margin-left: 5px;
 }
 
-#mode {
-	background: transparent;
-	border-bottom: 3px solid palegoldenrod;
-}
-
 #clock,
 #battery,
 #cpu,
@@ -43,8 +38,7 @@ window#waybar {
 #temperature,
 #backlight,
 #idle_inhibitor,
-#custom-sl,
-#custom-spotify {
+#custom-media {
 	padding: 0 6px;
 	margin: 0 3px;
 	border-bottom: 3px solid white;
@@ -69,53 +63,6 @@ window#waybar {
 	animation-direction: alternate;
 }
 
-#cpu {
-	background: transparent;
-	border-bottom: 3px solid palegoldenrod;
-}
-
-#memory {
-	background: transparent;
-	border-bottom: 3px solid palegoldenrod;
-}
-
-#network {
-	background: transparent;
-}
-
-#pulseaudio {
-	background: transparent;
-}
-
 #pulseaudio.muted {
-	border-bottom: 3px solid palegoldenrod;
-}
-
-#tray {
-	background-color: transparent;
-}
-
-#custom-sl.good {
-	border-bottom: 3px solid green;
-}
-
-#custom-sl.other {
-	border-bottom: 3px solid #f4af39;
-}
-
-#custom-sl.minor {
-	background-color: red;
-}
-
-#custom-sl.major {
-	background-color: red;
-}
-
-#custom-spotify.playing {
-	border-bottom: none;
-	border-bottom: 3px solid palegoldenrod;
-}
-
-#custom-spotify.paused {
 	border-bottom: 3px solid palegoldenrod;
 }
