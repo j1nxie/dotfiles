@@ -23,4 +23,5 @@ vim.keymap.set("n", "k", "gk")
 vim.keymap.set("", "H", "^")
 vim.keymap.set("", "L", "$")
 
-vim.keymap.set("n", "<Leader>fg", "<Cmd>call VSCodeCall('workbench.action.findInFiles')<CR>")
+vim.keymap.set("", "<Leader>fg", "<Cmd>call VSCodeCall('find-it-faster.findWithinFiles')<CR>")
+vim.keymap.set("", "<Leader>ff", "<Cmd>call VSCodeCall('find-it-faster.findFiles')<CR>")
