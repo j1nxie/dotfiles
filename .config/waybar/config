@@ -36,7 +36,8 @@
     },
     "hyprland/window": {
         "rewrite": {
-            "(.*) - Google Chrome": "🌎 $1"
+            "(.*) - Google Chrome": "🌎 $1",
+            "(.*) - Discord": "$1"
         }
     },
     "idle_inhibitor": {
