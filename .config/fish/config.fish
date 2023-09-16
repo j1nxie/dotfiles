@@ -99,3 +99,7 @@ set -gx PATH "$PNPM_HOME" $PATH
 status --is-interactive; and rbenv init - fish | source
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/lumi/.ghcup/bin $PATH # ghcup-env
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
