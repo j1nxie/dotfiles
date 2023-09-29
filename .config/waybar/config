@@ -38,7 +38,8 @@
         "rewrite": {
             "(.*) - Google Chrome": "🌎 $1",
             "(.*) - Discord": "$1"
-        }
+        },
+		"separate-outputs": true,
     },
     "idle_inhibitor": {
         "format": "{icon}",
