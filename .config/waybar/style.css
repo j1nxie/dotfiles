@@ -10,7 +10,7 @@
 }
 
 window#waybar {
-	background: transparent;
+	background: @base;
 	border-bottom: 3px solid transparent;
 }
 
@@ -22,11 +22,19 @@ window#waybar {
 
 #workspaces button.active {
 	background: @surface0;
-	border-bottom: 3px solid white;
+	border-bottom: 3px solid @overlay0;
 }
 
 #window {
 	margin-left: 5px;
+}
+
+tooltip {
+	background: @base;
+}
+
+tooltip label {
+	color: @text;
 }
 
 #clock,
@@ -42,7 +50,7 @@ window#waybar {
 #custom-notification {
 	padding: 0 6px;
 	margin: 0 3px;
-	border-bottom: 3px solid white;
+	border-bottom: 3px solid @overlay0;
 }
 
 #battery {
@@ -65,5 +73,5 @@ window#waybar {
 }
 
 #pulseaudio.muted {
-	border-bottom: 3px solid palegoldenrod;
+	border-bottom: 3px solid @yellow;
 }
