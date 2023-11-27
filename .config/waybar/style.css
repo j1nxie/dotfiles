@@ -57,19 +57,10 @@ tooltip label {
 	padding: 0 15px 0 6px;
 }
 
-@keyframes blink {
-	to {
-		background-color: rgba(1, 1, 1, 0);
-	}
-}
-
 #battery.warning:not(.charging) {
-	background: #f53c3c;
-	animation-name: blink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+	background: @base;
+	border-bottom: 3px solid @red;
+	animation: none;
 }
 
 #pulseaudio.muted {
