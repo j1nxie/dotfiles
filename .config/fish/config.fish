@@ -5,6 +5,9 @@ end
 set --global tide_left_prompt_items context $tide_left_prompt_items
 set --global tide_context_always_display true
 set --global fish_greeting
+set -x ANDROID_HOME $HOME/Android/Sdk
+fish_add_path $ANDROID_HOME/emulator
+fish_add_path $ANDROID_HOME/platform-tools
 
 set --path -x XDG_DATA_DIRS $XDG_DATA_DIRS
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
