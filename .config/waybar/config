@@ -39,7 +39,7 @@
             "(.*) - Google Chrome": "🌎 $1",
             "(.*) - Discord": "$1"
         },
-		"separate-outputs": true,
+        "separate-outputs": true,
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -52,8 +52,17 @@
         "spacing": 10
     },
     "clock": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "tooltip-format": "<big>{:%B %d, %Y}</big>\n<tt>{calendar}</tt>",
+        "format-alt": "{:%Y-%m-%d}",
+        "calendar": {
+            "format": {
+                "months": "",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
     },
     "cpu": {
         "format": "{usage}% ",
