@@ -8,6 +8,7 @@
 	path = ~/.gitconfig.work
 [core]
 	editor = nvim
+	pager = delta
 	autocrlf = input
 	excludesfile = /home/lumi/.gitignore_global
 [pull]
@@ -28,3 +29,12 @@
 	helper = !/usr/bin/gh auth git-credential
 [push]
 	autoSetupRemote = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	light = true
+[merge]
+	conflictstyle= diff3
+[diff]
+	colorMoved = default
