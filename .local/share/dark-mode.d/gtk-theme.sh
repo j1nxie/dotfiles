@@ -10,3 +10,4 @@ ln -sf ~/.config/waybar/macchiato.css ~/.config/waybar/theme.css
 ln -sf ~/.config/swaync/macchiato.css ~/.config/swaync/theme.css
 killall -SIGUSR2 waybar
 swaync-client -rs
+nwg-look -x

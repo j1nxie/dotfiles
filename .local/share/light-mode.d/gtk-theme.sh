@@ -10,3 +10,4 @@ ln -sf ~/.config/waybar/latte.css ~/.config/waybar/theme.css
 ln -sf ~/.config/swaync/latte.css ~/.config/swaync/style.css
 killall -SIGUSR2 waybar
 swaync-client -rs
+nwg-look -x
