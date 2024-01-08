@@ -1,19 +1,22 @@
 {
-  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.colorTheme": "Catppuccin Macchiato",
   "security.workspace.trust.untrustedFiles": "open",
-  "editor.fontFamily": "'FiraCode Nerd Font', Consolas, 'Courier New', monospace",
+  "editor.fontFamily": "'FiraCode Nerd Font', 'Fira Code', Consolas, 'Courier New', monospace",
   "editor.renderWhitespace": "all",
   "[python]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": "explicit"
     },
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": "explicit"
   },
-  "eslint.validate": ["javascript", "typescript"],
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
   "editor.fontVariations": true,
   "editor.formatOnSave": true,
   "editor.fontWeight": "normal",
@@ -32,7 +35,7 @@
   "python.formatting.provider": "none",
   "vscord.app.name": "Visual Studio Code",
   "vscode-neovim.useWSL": true,
-  "workbench.iconTheme": "catppuccin-latte",
+  "workbench.iconTheme": "catppuccin-macchiato",
   "todohighlight.isEnable": true,
   "todohighlight.include": [
     "**/*.js",
@@ -56,7 +59,6 @@
   "editor.inlayHints.fontSize": 12,
   "editor.inlayHints.padding": true,
   "editor.smoothScrolling": true,
-  "editor.stickyScroll.enabled": true,
   "terminal.integrated.tabFocusMode": true,
   "search.showLineNumbers": true,
   "terminal.integrated.cursorStyle": "line",
@@ -76,16 +78,30 @@
   "C_Cpp.codeAnalysis.clangTidy.enabled": true,
   "cmake.configureOnOpen": true,
   "redhat.telemetry.enabled": true,
-  "texlab.build.executable": "tectonic",
-  "texlab.build.args": [
-    "-X",
-    "compile",
-    "%f",
-    "--synctex",
-    "--keep-logs",
-    "--keep-intermediates"
+  "latex-workshop.latex.recipe.default": "tectonic",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "tectonic",
+      "tools": [
+        "tectonic"
+      ]
+    }
   ],
-  "texlab.build.onSave": true,
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": [
+        "-X",
+        "build",
+        "--keep-intermediates",
+        "--keep-logs"
+      ],
+      "env": {}
+    }
+  ],
   "javascript.inlayHints.enumMemberValues.enabled": true,
   "explorer.fileNesting.enabled": true,
   "editor.cursorSmoothCaretAnimation": "on",
@@ -117,5 +133,45 @@
     "editor.defaultFormatter": "vscode.html-language-features"
   },
   "workbench.startupEditor": "none",
-  "editor.codeActionWidget.includeNearbyQuickfixes": true
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.codeActionWidget.includeNearbyQuickFixes": true,
+  "remote.SSH.remotePlatform": {
+    "100.91.189.122": "linux"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "editor.hideCursorInOverviewRuler": true,
+  "[markdown]": {
+    "editor.rulers": [
+      80
+    ]
+  },
+  "[latex]": {
+    "editor.rulers": [
+      80
+    ]
+  },
+  "zig.path": "",
+  "zig.zls.path": "/home/lumi/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
+  "zig.initialSetupDone": true,
+  "prettier.tabWidth": 4,
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "editor.stickyScroll.enabled": true
 }
