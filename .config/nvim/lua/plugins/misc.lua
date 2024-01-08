@@ -4,7 +4,7 @@ return {
 		function()
 			require("lualine").setup({
 				options = {
-					theme = "nightfox",
+					theme = "catppuccin",
 					globalstatus = true,
 					section_separators = { left = "", right = "" },
 				},
@@ -23,13 +23,9 @@ return {
 		end
 	},
 	{
-		"EdenEast/nightfox.nvim",
+		"catppuccin/nvim",
 		function()
-			require("nightfox").setup({
-				styles = {
-					keywords = "bold",
-				}
-			})
+			require("catppuccin").setup()
 		end
 	},
 	{
@@ -92,11 +88,9 @@ return {
 		function()
 			vim.opt.list = true
 			vim.opt.listchars:append "space:·"
-			require("indent_blankline").setup({
-				char_blankline = "",
-				space_char_blankline = "",
-				show_current_context = true,
-				use_treesitter = true,
+			require("ibl").setup({
+				indent = { char = "|" },
+				whitespace = { highlight = { "Whitespace", "NonText" } },
 			})
 		end
 	},

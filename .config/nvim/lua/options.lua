@@ -2,10 +2,10 @@ vim.g.mapleader = " "
 vim.cmd [[
 	filetype plugin indent on
 	syntax enable
-	colorscheme nightfox
+	colorscheme catppuccin-latte
 	autocmd BufWritePre * lua vim.lsp.buf.format()
 ]]
-vim.o.background = "dark"
+vim.o.background = "light"
 
 vim.opt.termguicolors = true
 vim.opt.guifont = "FiraCode Nerd Font Mono:style=Bold,Regular:h12"
