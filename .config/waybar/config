@@ -7,9 +7,7 @@
         "hyprland/workspaces",
         "custom/media"
     ],
-    "modules-center": [
-        "hyprland/window"
-    ],
+    "modules-center": [],
     "modules-right": [
         "pulseaudio",
         "network",
@@ -37,7 +35,8 @@
     "hyprland/window": {
         "rewrite": {
             "(.*) - Google Chrome": "🌎 $1",
-            "(.*) - Discord": "$1"
+            "(.*) - Discord": "$1",
+            "(.*) | Discord | (.*)": "$2"
         },
         "separate-outputs": true,
     },
