@@ -34,9 +34,11 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.vscode
-    pkgs.neofetch
+  home.packages = with pkgs; [
+    vscode
+    neofetch
+    jetbrains-toolbox
+    nodejs.pkgs.pnpm
   ];
 
   # Let Home Manager install and manage itself.
