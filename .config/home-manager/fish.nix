@@ -88,6 +88,7 @@
 
         set_color normal
       end
+      direnv hook fish | source
     '';
   };
 }
