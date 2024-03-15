@@ -17,6 +17,9 @@
     "${config.home.homeDirectory}/.gitignore_global" = {
       source = ../../.gitignore_global;
     };
+    "${config.xdg.configHome}/nvim/vscode.lua" = {
+      source = ../nvim/vscode.lua;
+    };
   };
 
   programs.kitty = {
