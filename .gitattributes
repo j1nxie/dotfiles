@@ -1,1 +1,1 @@
-.config/mpv/shaders linguist-vendored
+*.glsl linguist-vendored
