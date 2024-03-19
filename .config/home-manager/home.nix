@@ -5,6 +5,7 @@
     ./fish.nix
     ./git.nix
     ./mpv.nix
+    ./nvim.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

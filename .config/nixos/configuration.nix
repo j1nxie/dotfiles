@@ -102,7 +102,6 @@
     lenovo-legion
     linuxKernel.packages.linux_6_1.lenovo-legion-module
     lm_sensors
-    neovim
     wget
     pop-launcher
     wl-clipboard
