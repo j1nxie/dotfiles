@@ -88,6 +88,9 @@
 
   environment.systemPackages = with pkgs; [
     babelfish
+    clang
+    llvmPackages_16.bintools
+    rustup
     (pkgs.discord.override {
       withOpenASAR = true;
       withVencord = true;
