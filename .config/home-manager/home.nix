@@ -4,6 +4,7 @@
   imports = [
     ./fish.nix
     ./git.nix
+    ./mpv.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
