@@ -46,6 +46,12 @@
     neofetch
     jetbrains-toolbox
     nodejs.pkgs.pnpm
+    nodejs_20
+    dotnet-sdk_7
+    trackma-gtk
+    htop
+    glxinfo
+    transmission_4-gtk
   ];
 
   # Let Home Manager install and manage itself.
