@@ -1,11 +1,13 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [
-      <nixos-hardware/lenovo/legion/15ach6>
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    <nixos-hardware/lenovo/legion/15ach6>
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.auto-optimise-store = true;
@@ -19,14 +21,14 @@
   # systemd-boot
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module ];
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.initrd.kernelModules = ["amdgpu"];
+  boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module];
+  boot.supportedFilesystems = ["ntfs"];
 
   networking.hostName = "kotonya";
   networking.networkmanager.enable = true;
-  networking.firewall.allowedTCPPorts = [ 57621 ];
-  networking.firewall.allowedUDPPorts = [ 5353 ];
+  networking.firewall.allowedTCPPorts = [57621];
+  networking.firewall.allowedUDPPorts = [5353];
 
   # timezone
   time.timeZone = "Asia/Ho_Chi_Minh";
@@ -66,15 +68,15 @@
 
   users.users.lumi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "tss" ];
+    extraGroups = ["wheel" "networkmanager" "tss"];
     shell = pkgs.fish;
   };
-  
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-  services.xserver.excludePackages = [ pkgs.xterm ];
+  services.xserver.videoDrivers = ["amdgpu" "nvidia"];
+  services.xserver.excludePackages = [pkgs.xterm];
 
   services.tailscale.enable = true;
 
@@ -118,9 +120,17 @@
     gnomeExtensions.kimpanel
     gnomeExtensions.dash-to-panel
     gnomeExtensions.hide-top-bar
+    gnomeExtensions.undecorate-window-for-wayland
+    gnomeExtensions.advanced-alttab-window-switcher
     libimobiledevice
     ifuse
     spotify
+    catppuccin-cursors.macchiatoRosewater
+    rio
+    python311Packages.ds4drv
+    lutris
+    wineWowPackages.stable
+    xwaylandvideobridge
   ];
 
   programs.kdeconnect = {
@@ -133,7 +143,7 @@
     guest.enable = true;
     guest.x11 = true;
   };
-  users.extraGroups.vboxusers.members = [ "lumi" ];
+  users.extraGroups.vboxusers.members = ["lumi"];
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -141,7 +151,7 @@
     noto-fonts-emoji
     fira-code
     fira-code-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     wqy_zenhei
   ];
 
@@ -182,6 +192,19 @@
     ];
   };
 
+  fileSystems."/mnt/stuff" = {
+    device = "/dev/disk/by-uuid/01D9D8D7E461C040";
+    fsType = "ntfs";
+    options = ["uid=1000" "gid=1000" "rw" "user" "exec" "umask=000" "x-gvfs-show"];
+  };
+
+  fileSystems."/mnt/more-stuff" = {
+    device = "/dev/disk/by-uuid/18E26960E26942DC";
+    fsType = "ntfs";
+    options = ["uid=1000" "gid=1000" "rw" "user" "exec" "umask=000" "x-gvfs-show"];
+  };
+
+  programs.gamemode.enable = true;
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     SDL
@@ -301,4 +324,3 @@
 
   system.stateVersion = "23.11";
 }
-

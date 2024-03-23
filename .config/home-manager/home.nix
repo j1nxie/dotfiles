@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./fish.nix
     ./git.nix
@@ -23,7 +25,7 @@
       source = ../nvim/vscode.lua;
     };
   };
-  
+
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -41,6 +43,31 @@
 
   programs.gh.enable = true;
 
+  programs.bat = {
+    enable = true;
+    themes = {
+      catppuccinLatte = {
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "bat";
+          rev = "HEAD";
+          hash = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=";
+        };
+        file = "themes/Catppuccin Latte.tmTheme";
+      };
+
+      catppuccinMacchiato = {
+        src = pkgs.fetchFromGitHub {
+          owner = "catppuccin";
+          repo = "bat";
+          rev = "HEAD";
+          hash = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=";
+        };
+        file = "themes/Catppuccin Macchiato.tmTheme";
+      };
+    };
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -54,6 +81,9 @@
     htop
     glxinfo
     transmission_4-gtk
+    weechat
+    firefox-devedition-bin
+    insomnia
   ];
 
   # Let Home Manager install and manage itself.

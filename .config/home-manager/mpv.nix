@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.mpv = {
     enable = true;
     config = {
@@ -10,7 +12,7 @@
       gpu-context = "waylandvk";
 
       hwdec = "auto";
-      
+
       target-trc = "srgb";
       gamma-factor = 1.1;
 
@@ -30,15 +32,15 @@
 
       alang = "ja,jp,jpn,en,eng";
       slang = "ja,jp,jpn,en,eng";
-      
+
       screenshot-format = "webp";
       screenshot-webp-lossless = "yes";
       screenshot-high-bit-depth = "yes";
       screenshot-sw = "yes";
-      screenshot-template="%f-%wH.%wM.%wS.%wT-#%#00n";
-      screenshot-directory="~/Screenshots";
+      screenshot-template = "%f-%wH.%wM.%wS.%wT-#%#00n";
+      screenshot-directory = "~/Screenshots";
     };
-    
+
     bindings = {
       "CTRL+1" = "no-osd change-list glsl-shaders set \"~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl\"; show-text \"Anime4K: Mode A (HQ)\"";
       "CTRL+2" = "no-osd change-list glsl-shaders set \"~~/shaders/Anime4K_Clamp_Highlights.glsl:~~/shaders/Anime4K_Restore_CNN_Soft_VL.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_VL.glsl:~~/shaders/Anime4K_AutoDownscalePre_x2.glsl:~~/shaders/Anime4K_AutoDownscalePre_x4.glsl:~~/shaders/Anime4K_Upscale_CNN_x2_M.glsl\"; show-text \"Anime4K: Mode B (HQ)\"";
@@ -50,7 +52,7 @@
       "CTRL+0" = "no-osd change-list glsl-shaders clr \"\"; show-text \"GLSL shaders cleared\"";
     };
   };
-  
+
   home.file = {
     "${config.xdg.configHome}/mpv/shaders" = {
       source = ../mpv/shaders;
