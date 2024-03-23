@@ -44,6 +44,7 @@
     shellInit = ''
       set -x EDITOR nvim
       set -x TERMINAL kitty
+      set -x DIRENV_LOG_FORMAT ""
       set --global tide_left_prompt_items context $tide_left_prompt_items
       set --global tide_context_always_display true
       set --global fish_greeting
