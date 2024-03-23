@@ -25,7 +25,7 @@
       ly = "${pkgs.lazygit}/bin/lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git";
 
       # cat
-      cat = "${pkgs.bat}/bin/bat --style=\"numbers,changes,header\"";
+      cat = "${pkgs.bat}/bin/bat --style=\"numbers,changes,header\" --theme=$(if [ (gsettings get org.gnome.desktop.interface color-scheme ) = \"'default'\" ]; echo \"catppuccinLatte\"; else; echo \"catppuccinMacchiato\"; end;)";
     };
 
     shellInit = ''
