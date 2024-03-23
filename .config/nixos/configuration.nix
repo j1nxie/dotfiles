@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     <nixos-hardware/lenovo/legion/15ach6>
     ./hardware-configuration.nix
