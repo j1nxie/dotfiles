@@ -97,6 +97,7 @@
         "--gtk-version=4"
       ];
     })
+    git
     procps
     eza
     lenovo-legion
@@ -125,7 +126,9 @@
     python311Packages.ds4drv
     lutris
     wineWowPackages.stable
+    winetricks
     xwaylandvideobridge
+    fuseiso
   ];
 
   programs.kdeconnect = {
@@ -186,6 +189,11 @@
       fcitx5-unikey
     ];
   };
+
+  i18n.supportedLocales = [
+    "en_US.UTF-8/UTF-8"
+    "ja_JP.UTF-8/UTF-8"
+  ];
 
   fileSystems."/mnt/stuff" = {
     device = "/dev/disk/by-uuid/01D9D8D7E461C040";
