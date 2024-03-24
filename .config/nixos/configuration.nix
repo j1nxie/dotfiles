@@ -1,11 +1,11 @@
 {pkgs, ...}: {
   imports = [
-    <nixos-hardware/lenovo/legion/15ach6>
     ./hardware-configuration.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.auto-optimise-store = true;
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   hardware.opengl = {
     enable = true;
