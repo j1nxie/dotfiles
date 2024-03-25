@@ -35,7 +35,7 @@
     enable = true;
     # FIXME: ligature breaks in fish?
     font = {
-      name = "Fira Code";
+      name = "Fira Code Regular";
       size = 11;
     };
     extraConfig = "include current-theme.conf";
