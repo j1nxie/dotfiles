@@ -109,7 +109,6 @@
     procps
     eza
     lenovo-legion
-    linuxKernel.packages.linux_6_1.lenovo-legion-module
     lm_sensors
     wget
     pop-launcher
