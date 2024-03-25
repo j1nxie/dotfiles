@@ -155,7 +155,15 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    fira-code
+    (pkgs.fira-code.overrideAttrs (oldAttrs: {
+      installPhase = ''
+        runHook preInstall
+
+        install -Dm644 ttf/*.ttf -t $out/share/fonts/truetype
+
+        runHook postInstall
+      '';
+    }))
     fira-code-symbols
     (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     wqy_zenhei
