@@ -5,6 +5,11 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";
+  };
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   hardware.opengl = {
@@ -14,7 +19,10 @@
   };
 
   # systemd-boot
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot = {
+    enable = true;
+    configurationLimit = 10;
+  };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = ["amdgpu"];
   boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module];
