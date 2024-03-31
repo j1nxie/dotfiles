@@ -147,6 +147,7 @@
     guest.x11 = true;
   };
   users.extraGroups.vboxusers.members = ["lumi"];
+  virtualisation.docker.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
