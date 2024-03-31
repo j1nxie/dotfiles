@@ -84,6 +84,7 @@
     weechat
     firefox-devedition-bin
     insomnia
+    vesktop
   ];
 
   # Let Home Manager install and manage itself.

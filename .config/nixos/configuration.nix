@@ -96,10 +96,6 @@
     clang
     llvmPackages_16.bintools
     rustup
-    (pkgs.discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
     (pkgs.google-chrome.override {
       commandLineArgs = [
         "--gtk-version=4"
