@@ -29,12 +29,13 @@
       alang = "ja,jp,jpn,en,eng";
       slang = "ja,jp,jpn,en,eng";
 
-      screenshot-format = "webp";
+      screenshot-format = "jpg";
+      screenshot-jpeg-quality = 95;
       screenshot-webp-lossless = "yes";
       screenshot-high-bit-depth = "yes";
       screenshot-sw = "yes";
       screenshot-template = "%f-%wH.%wM.%wS.%wT-#%#00n";
-      screenshot-directory = "~/Screenshots";
+      screenshot-directory = "~/Pictures/Screenshots";
     };
 
     bindings = {
