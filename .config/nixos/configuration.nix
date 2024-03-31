@@ -132,6 +132,8 @@
     winetricks
     xwaylandvideobridge
     fuseiso
+    ffmpeg
+    mpv
   ];
 
   programs.kdeconnect = {

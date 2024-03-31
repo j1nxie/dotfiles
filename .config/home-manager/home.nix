@@ -83,6 +83,7 @@
     transmission_4-gtk
     weechat
     firefox-devedition-bin
+    remmina
     insomnia
     vesktop
   ];
