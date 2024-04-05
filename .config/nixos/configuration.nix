@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -85,14 +89,14 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
   };
 
   environment.systemPackages = with pkgs; [
-    babelfish
+    delta
     clang
     llvmPackages_16.bintools
     rustup
@@ -102,10 +106,10 @@
       ];
     })
     git
+    gitflow
     procps
     eza
     lenovo-legion
-    lm_sensors
     wget
     pop-launcher
     wl-clipboard
@@ -118,15 +122,11 @@
     gnomeExtensions.appindicator
     gnomeExtensions.kimpanel
     gnomeExtensions.dash-to-panel
-    gnomeExtensions.hide-top-bar
-    gnomeExtensions.undecorate-window-for-wayland
     gnomeExtensions.advanced-alttab-window-switcher
     libimobiledevice
     ifuse
-    spotify
+    pkgs.unstable.spotify
     catppuccin-cursors.macchiatoRosewater
-    rio
-    python311Packages.ds4drv
     lutris
     wineWowPackages.stable
     winetricks
@@ -134,6 +134,7 @@
     fuseiso
     ffmpeg
     mpv
+    inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
   ];
 
   programs.kdeconnect = {
@@ -144,7 +145,6 @@
   virtualisation.virtualbox = {
     host.enable = true;
     guest.enable = true;
-    guest.x11 = true;
   };
   users.extraGroups.vboxusers.members = ["lumi"];
   virtualisation.docker.enable = true;
@@ -187,6 +187,8 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.wireshark.enable = true;
 
   # openssh
   services.openssh.enable = true;

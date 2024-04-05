@@ -71,17 +71,18 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    vscode
+    fzf
+    pkgs.unstable.vscode
     neofetch
     jetbrains-toolbox
     nodejs.pkgs.pnpm
     nodejs_20
     dotnet-sdk_7
     trackma-gtk
+    btop
     htop
     glxinfo
     transmission_4-gtk
-    weechat
     firefox-devedition-bin
     remmina
     insomnia
