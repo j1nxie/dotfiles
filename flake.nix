@@ -6,6 +6,10 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.3.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +20,7 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
+    lanzaboote,
     nixos-hardware,
     home-manager,
     ...
@@ -37,6 +42,7 @@
           pkgs,
           ...
         }: {nixpkgs.overlays = [overlay-unstable];})
+        lanzaboote.nixosModules.lanzaboote
         ./.config/nixos/configuration.nix
         nixos-hardware.nixosModules.lenovo-legion-15ach6
         home-manager.nixosModules.home-manager

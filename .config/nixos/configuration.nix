@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
@@ -24,9 +25,15 @@
 
   # systemd-boot
   boot.loader.systemd-boot = {
-    enable = true;
+    enable = lib.mkForce false;
     configurationLimit = 10;
   };
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = ["amdgpu"];
   boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module];
@@ -125,7 +132,6 @@
     gnomeExtensions.advanced-alttab-window-switcher
     libimobiledevice
     ifuse
-    pkgs.unstable.spotify
     catppuccin-cursors.macchiatoRosewater
     lutris
     wineWowPackages.stable
@@ -135,7 +141,11 @@
     ffmpeg
     mpv
     inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
+    python3
+    sbctl
   ];
+
+  hardware.opentabletdriver.enable = true;
 
   programs.kdeconnect = {
     enable = true;
