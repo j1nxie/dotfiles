@@ -87,6 +87,7 @@
     remmina
     insomnia
     vesktop
+    pkgs.unstable.spotify-player
   ];
 
   # Let Home Manager install and manage itself.
