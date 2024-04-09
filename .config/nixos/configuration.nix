@@ -161,7 +161,14 @@
   virtualisation.docker.enable = true;
 
   fonts.packages = with pkgs; [
-    noto-fonts
+    (pkgs.noto-fonts.overrideAttrs (oldAttrs: {
+      installPhase = ''
+        local out_font=$out/share/fonts/noto
+        for folder in $(ls -d fonts/*/); do
+          install -m444 -Dt $out_font "$folder"unhinted/otf/*.otf
+        done
+      '';
+    }))
     noto-fonts-cjk
     noto-fonts-emoji
     (pkgs.fira-code.overrideAttrs (oldAttrs: {
