@@ -81,6 +81,7 @@
   users.users.root.initialHashedPassword = "";
 
   users.users.lumi = {
+    description = "Rylie";
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager" "tss"];
     shell = pkgs.fish;
