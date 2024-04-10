@@ -1,22 +1,20 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}: let
-  inherit (lib) makeExtensible attrValues foldr;
-  inherit (modules) mapModules;
-
-  modules = import ./modules.nix {
-    inherit lib;
-    self.attrs = import ./attrs.nix {
-      inherit lib;
-      self = {};
-    };
-  };
-
-  mylib =
-    makeExtensible (self:
-      with self; mapModules ./. (file: import file {inherit self lib pkgs inputs;}));
-in
-  mylib.extend (self: super: foldr (a: b: a // b) {} (attrValues super))
+{lib, ...}: {
+  nixosSystem = import ./nixosSystem.nix;
+  attrs = import ./attrs.nix {inherit lib;};
+  # use path relative to the root of the project
+  relativeToRoot = lib.path.append ../.;
+  scanPaths = path:
+    builtins.map
+    (f: (path + "/${f}"))
+    (builtins.attrNames
+      (lib.attrsets.filterAttrs
+        (
+          path: _type:
+            (_type == "directory") # include directories
+            || (
+              (path != "default.nix") # ignore default.nix
+              && (lib.strings.hasSuffix ".nix" path) # include .nix files
+            )
+        )
+        (builtins.readDir path)));
+}

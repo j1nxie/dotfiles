@@ -14,25 +14,38 @@
   };
 
   inputs = {
+    # nixpkgs repository
+    # stable for my current main machine - which crashes under unstable
+    # unstable for various packages i want to have latest versions of
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # extra gaming / hardware repos
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # home-manager for user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # doomemacs repository, non-flake
+    doomemacs = {
+      url = "github:doomemacs/doomemacs";
+      flake = false;
+    };
   };
 
-  outputs = {
+  outputs = inputs: import ./outputs inputs;
+
+  /*
+     outputs = {
     self,
     nixpkgs,
     nixpkgs-unstable,
@@ -77,4 +90,5 @@
       ];
     };
   };
+  */
 }

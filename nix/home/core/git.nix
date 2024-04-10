@@ -1,7 +1,13 @@
-{...}: {
+{config, ...}: {
   programs.git = {
     enable = true;
     lfs.enable = true;
+
+    # global gitignore file
+    home.file."${config.home.homeDirectory}/.gitignore_global" = {
+      source = ../../../.gitignore_global;
+    };
+
     userName = "j1nxie";
     userEmail = "rylieeeeexd@gmail.com";
     extraConfig = {

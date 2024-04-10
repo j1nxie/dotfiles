@@ -1,20 +1,18 @@
+# kotonya - windows/nixOS + r5-5600h + rtx 3050 laptop
 {
-  lib,
   pkgs,
-  inputs,
+  nixos-hardware,
   ...
-}: {
+}: let
+  hostName = "kotonya";
+in {
   imports = [
     ./hardware-configuration.nix
+    ./secureboot.nix
+    nixos-hardware.nixosModules.lenovo-legion-15ach6
   ];
 
-  nix.settings.auto-optimise-store = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 1w";
-  };
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  networking = {inherit hostName;};
 
   hardware.opengl = {
     enable = true;
@@ -22,53 +20,11 @@
     driSupport32Bit = true;
   };
 
-  # systemd-boot
-  boot.loader.systemd-boot = {
-    enable = lib.mkForce false;
-    configurationLimit = 10;
-  };
-
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
-
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.kernelModules = ["amdgpu"];
-  boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module];
-  boot.supportedFilesystems = ["ntfs"];
-
-  networking.hostName = "kotonya";
-  networking.networkmanager.enable = true;
-  networking.firewall.allowedTCPPorts = [57621];
-  networking.firewall.allowedUDPPorts = [5353];
-
-  # timezone
-  time.timeZone = "Asia/Ho_Chi_Minh";
-
-  # sound
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-  };
-  hardware.pulseaudio.enable = false;
-
-  # backlight
-  hardware.acpilight.enable = true;
-
-  # bluetooth
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.package = pkgs.bluez;
-  services.blueman.enable = true;
-
-  programs.fish = {
-    enable = true;
-    useBabelfish = true;
+  boot = {
+    loader.efi.canTouchEfiVariables = true;
+    initrd.kernelModules = ["amdgpu"];
+    extraModulePackages = [pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module];
+    supportedFilesystems = ["ntfs"];
   };
 
   programs.steam = {
@@ -77,22 +33,7 @@
     dedicatedServer.openFirewall = true;
   };
 
-  users.users.root.initialHashedPassword = "";
-
-  users.users.lumi = {
-    description = "Rylie";
-    isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "tss"];
-    shell = pkgs.fish;
-  };
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];
-  services.xserver.excludePackages = [pkgs.xterm];
-
-  services.tailscale.enable = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -115,98 +56,16 @@
     wget
     pop-launcher
     wl-clipboard
-    gnome.adwaita-icon-theme
-    gnome.gnome-settings-daemon
-    gnome.gnome-tweaks
-    gnomeExtensions.alphabetical-app-grid
-    gnomeExtensions.pop-shell
-    gnomeExtensions.night-theme-switcher
-    gnomeExtensions.appindicator
-    gnomeExtensions.kimpanel
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.advanced-alttab-window-switcher
-    libimobiledevice
-    ifuse
-    catppuccin-cursors.macchiatoRosewater
     lutris
     wineWowPackages.stable
     winetricks
-    xwaylandvideobridge
     fuseiso
     ffmpeg
     inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
     python3
-    sbctl
   ];
-
-  hardware.opentabletdriver.enable = true;
-
-  programs.kdeconnect = {
-    enable = true;
-    package = pkgs.gnomeExtensions.gsconnect;
-  };
-
-  virtualisation.virtualbox = {
-    host.enable = true;
-    guest.enable = true;
-  };
-  users.extraGroups.vboxusers.members = ["lumi"];
-  virtualisation.docker.enable = true;
-
-  fonts.packages = with pkgs; [
-    (pkgs.noto-fonts.overrideAttrs (oldAttrs: {
-      installPhase = ''
-        local out_font=$out/share/fonts/noto
-        for folder in $(ls -d fonts/*/); do
-          install -m444 -Dt $out_font "$folder"unhinted/otf/*.otf
-        done
-      '';
-    }))
-    noto-fonts-cjk
-    noto-fonts-emoji
-    (pkgs.fira-code.overrideAttrs (oldAttrs: {
-      installPhase = ''
-        runHook preInstall
-
-        install -Dm644 ttf/*.ttf -t $out/share/fonts/truetype
-
-        runHook postInstall
-      '';
-    }))
-    fira-code-symbols
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
-    wqy_zenhei
-  ];
-
-  environment.gnome.excludePackages = with pkgs.gnome; [
-    epiphany
-    totem
-    gnome-terminal
-    pkgs.orca
-  ];
-
-  location.provider = "geoclue2";
-  services.geoclue2.enable = true;
-
-  services.usbmuxd = {
-    enable = true;
-    package = pkgs.usbmuxd2;
-  };
-
-  # gnupg agent
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   programs.wireshark.enable = true;
-
-  # openssh
-  services.openssh.enable = true;
-
-  security.tpm2.enable = true;
-  security.tpm2.pkcs11.enable = true;
-  security.tpm2.tctiEnvironment.enable = true;
 
   i18n.inputMethod = {
     enabled = "fcitx5";
@@ -216,11 +75,6 @@
       fcitx5-unikey
     ];
   };
-
-  i18n.supportedLocales = [
-    "en_US.UTF-8/UTF-8"
-    "ja_JP.UTF-8/UTF-8"
-  ];
 
   fileSystems."/mnt/stuff" = {
     device = "/dev/disk/by-uuid/01D9D8D7E461C040";

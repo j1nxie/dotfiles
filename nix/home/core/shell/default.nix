@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ./nvim
-    ./vscode.nix
+    ./direnv.nix
+    ./fish
   ];
 }
