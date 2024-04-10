@@ -1,12 +1,11 @@
-{
-  pkgs,
-  pkgs-unstable,
-  ...
+{ pkgs
+, pkgs-unstable
+, ...
 }: {
   home.packages = with pkgs; [
     fzf
     fd
-    (ripgrep.override {withPCRE2 = true;})
+    (ripgrep.override { withPCRE2 = true; })
     delta
     pkgs-unstable.lazygit
     duf

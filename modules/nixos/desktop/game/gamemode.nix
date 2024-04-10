@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  nix-gaming,
-  lib,
-  ...
+{ config
+, pkgs
+, nix-gaming
+, lib
+, ...
 }: {
   # Optimise Linux system performance on demand
   # https://github.com/FeralInteractive/GameMode

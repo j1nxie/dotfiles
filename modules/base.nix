@@ -1,7 +1,6 @@
-{
-  pkgs,
-  myvars,
-  ...
+{ pkgs
+, myvars
+, ...
 } @ args: {
   environment.systemPackages = with pkgs; [
     git
@@ -27,8 +26,8 @@
   };
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    trusted-users = [myvars.username];
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ myvars.username ];
     substituters = [
       "https://nix-community.cachix.org"
     ];

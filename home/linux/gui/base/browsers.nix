@@ -1,8 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.chromium = {
     enable = true;
     package = pkgs.google-chrome;
-    commandLineArgs = ["--gtk-version=4"];
+    commandLineArgs = [ "--gtk-version=4" ];
   };
 
   programs.firefox = {

@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   programs.mpv = {
     enable = true;
     config = {

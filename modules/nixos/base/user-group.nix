@@ -1,18 +1,17 @@
-{
-  pkgs,
-  myvars,
-  config,
-  ...
+{ pkgs
+, myvars
+, config
+, ...
 }: {
   users.groups = {
-    "${myvars.username}" = {};
-    docker = {};
-    wireshark = {};
+    "${myvars.username}" = { };
+    docker = { };
+    wireshark = { };
     # for android platform tools's udev rules
-    adbusers = {};
+    adbusers = { };
     # misc
-    uinput = {};
-    vboxusers = {};
+    uinput = { };
+    vboxusers = { };
   };
 
   users.users."${myvars.username}" = {

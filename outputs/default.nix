@@ -1,7 +1,8 @@
-{nixpkgs, ...} @ inputs: let
+{ nixpkgs, ... } @ inputs:
+let
   inherit (inputs.nixpkgs) lib;
-  mylib = import ../lib {inherit lib;};
-  myvars = import ../vars {inherit lib;};
+  mylib = import ../lib { inherit lib; };
+  myvars = import ../vars { inherit lib; };
 
   # Add my custom lib, vars, nixpkgs instance, and all the inputs to specialArgs,
   # so that I can use them in all my nixos/home-manager/darwin modules.
@@ -24,11 +25,11 @@
     };
 
   # This is the args for all the haumea modules in this folder.
-  args = {inherit inputs lib mylib myvars genSpecialArgs;};
+  args = { inherit inputs lib mylib myvars genSpecialArgs; };
 
   # modules for each supported system
   nixosSystems = {
-    x86_64-linux = import ./x86_64-linux (args // {system = "x86_64-linux";});
+    x86_64-linux = import ./x86_64-linux (args // { system = "x86_64-linux"; });
   };
   allSystems = nixosSystems;
   allSystemNames = builtins.attrNames allSystems;
@@ -36,24 +37,27 @@
 
   # Helper function to generate a set of attributes for each system
   forAllSystems = func: (nixpkgs.lib.genAttrs allSystemNames func);
-in {
+in
+{
   # Add attribute sets into outputs, for debugging
-  debugAttrs = {inherit nixosSystems allSystems allSystemNames;};
+  debugAttrs = { inherit nixosSystems allSystems allSystemNames; };
 
   # NixOS Hosts
   nixosConfigurations =
-    lib.attrsets.mergeAttrsList (map (it: it.nixosConfigurations or {}) nixosSystemValues);
+    lib.attrsets.mergeAttrsList (map (it: it.nixosConfigurations or { }) nixosSystemValues);
 
   # Packages
   packages = forAllSystems (
-    system: allSystems.${system}.packages or {}
+    system: allSystems.${system}.packages or { }
   );
 
   # Development Shells
   devShells = forAllSystems (
-    system: let
+    system:
+    let
       pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    in
+    {
       default = pkgs.mkShell {
         packages = with pkgs; [
           gcc

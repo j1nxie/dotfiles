@@ -1,3 +1,3 @@
-{...}: {
-  imports = [./mpv.nix];
+{ ... }: {
+  imports = [ ./mpv.nix ];
 }

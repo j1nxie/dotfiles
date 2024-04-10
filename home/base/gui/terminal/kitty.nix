@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   programs.kitty = {
     enable = true;
     # FIXME: ligature breaks in fish?

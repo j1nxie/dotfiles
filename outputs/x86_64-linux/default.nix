@@ -1,8 +1,8 @@
-{
-  lib,
-  inputs,
-  ...
-} @ args: let
+{ lib
+, inputs
+, ...
+} @ args:
+let
   inherit (inputs) haumea;
 
   # Contains all the flake outputs of this system architecture.
@@ -15,11 +15,11 @@
 
   # Merge all the machine's data into a single attribute set.
   outputs = {
-    nixosConfigurations = lib.attrsets.mergeAttrsList (map (it: it.nixosConfigurations or {}) dataWithoutPaths);
-    packages = lib.attrsets.mergeAttrsList (map (it: it.packages or {}) dataWithoutPaths);
+    nixosConfigurations = lib.attrsets.mergeAttrsList (map (it: it.nixosConfigurations or { }) dataWithoutPaths);
+    packages = lib.attrsets.mergeAttrsList (map (it: it.packages or { }) dataWithoutPaths);
   };
 in
-  outputs
+outputs
   // {
-    inherit data; # for debugging purposes
-  }
+  inherit data; # for debugging purposes
+}

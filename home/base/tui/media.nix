@@ -1,4 +1,4 @@
-{pkgs-unstable, ...}: {
+{ pkgs-unstable, ... }: {
   home.packages = [
     pkgs-unstable.spotify-player
   ];

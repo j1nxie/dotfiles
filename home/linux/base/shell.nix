@@ -1,10 +1,11 @@
-{
-  config,
-  myvars,
-  ...
-}: let
+{ config
+, myvars
+, ...
+}:
+let
   d = config.xdg.dataHome;
-in rec {
+in
+rec {
   home.homeDirectory = "/home/${myvars.username}";
 
   home.sessionVariables = {
