@@ -2,10 +2,14 @@ vim.opt.clipboard = "unnamed,unnamedplus"
 
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<C-h>", "<Cmd>call VSCodeCall('workbench.action.navigateLeft')<CR>")
-vim.keymap.set("n", "<C-j>", "<Cmd>call VSCodeCall('workbench.action.navigateDown')<CR>")
-vim.keymap.set("n", "<C-k>", "<Cmd>call VSCodeCall('workbench.action.navigateUp')<CR>")
-vim.keymap.set("n", "<C-l>", "<Cmd>call VSCodeCall('workbench.action.navigateRight')<CR>")
+vim.keymap.set("n", "<C-h>",
+               "<Cmd>call VSCodeCall('workbench.action.navigateLeft')<CR>")
+vim.keymap.set("n", "<C-j>",
+               "<Cmd>call VSCodeCall('workbench.action.navigateDown')<CR>")
+vim.keymap.set("n", "<C-k>",
+               "<Cmd>call VSCodeCall('workbench.action.navigateUp')<CR>")
+vim.keymap.set("n", "<C-l>",
+               "<Cmd>call VSCodeCall('workbench.action.navigateRight')<CR>")
 
 vim.keymap.set("n", "<up>", "<nop>")
 vim.keymap.set("n", "<down>", "<nop>")
@@ -25,5 +29,7 @@ vim.keymap.set("", "L", "$")
 
 vim.keymap.set("", "<Leader>cs", "<Cmd>nohlsearch<CR>")
 
-vim.keymap.set("", "<Leader>fg", "<Cmd>call VSCodeCall('find-it-faster.findWithinFiles')<CR>")
-vim.keymap.set("", "<Leader>ff", "<Cmd>call VSCodeCall('find-it-faster.findFiles')<CR>")
+vim.keymap.set("", "<Leader>fg",
+               "<Cmd>call VSCodeCall('find-it-faster.findWithinFiles')<CR>")
+vim.keymap.set("", "<Leader>ff",
+               "<Cmd>call VSCodeCall('find-it-faster.findFiles')<CR>")
