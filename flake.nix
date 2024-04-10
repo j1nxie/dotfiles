@@ -40,5 +40,10 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    doomemacs = {
+      url = "github:doomemacs/doomemacs";
+      flake = false;
+    };
   };
 }
