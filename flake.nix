@@ -58,16 +58,19 @@
           ...
         }: {nixpkgs.overlays = [overlay-unstable (import emacs-overlay)];})
         lanzaboote.nixosModules.lanzaboote
-        ./.config/nixos/configuration.nix
+        ./nix/hosts/kotonya
         nixos-hardware.nixosModules.lenovo-legion-15ach6
         home-manager.nixosModules.home-manager
         {
           nix.settings.trusted-users = ["lumi"];
         }
         {
+          nixpkgs.config.allowUnfree = true;
+        }
+        {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.lumi = import ./.config/home-manager/home.nix;
+          home-manager.users.lumi = import ./nix/home;
         }
       ];
     };

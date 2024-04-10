@@ -8,7 +8,6 @@
     ./hardware-configuration.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
   nix.settings.auto-optimise-store = true;
   nix.gc = {
     automatic = true;
@@ -108,11 +107,6 @@
     clang
     llvmPackages_16.bintools
     rustup
-    (pkgs.google-chrome.override {
-      commandLineArgs = [
-        "--gtk-version=4"
-      ];
-    })
     git
     gitflow
     procps
@@ -140,7 +134,6 @@
     xwaylandvideobridge
     fuseiso
     ffmpeg
-    mpv
     inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
     python3
     sbctl
