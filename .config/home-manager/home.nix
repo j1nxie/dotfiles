@@ -87,6 +87,7 @@
     remmina
     insomnia
     vesktop
+    lazygit
     pkgs.unstable.spotify-player
   ];
 
