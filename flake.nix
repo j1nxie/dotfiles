@@ -2,12 +2,11 @@
   description = "lumi's nix configuration!";
 
   nixConfig = {
-    substituters = [
-      "https://cache.nixos.org"
+    extra-substituters = [
       "https://nix-community.cachix.org"
     ];
 
-    trusted-public-keys = [
+    extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
@@ -17,6 +16,10 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +34,7 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
+    emacs-overlay,
     lanzaboote,
     nixos-hardware,
     home-manager,
@@ -52,7 +56,7 @@
           configs,
           pkgs,
           ...
-        }: {nixpkgs.overlays = [overlay-unstable];})
+        }: {nixpkgs.overlays = [overlay-unstable (import emacs-overlay)];})
         lanzaboote.nixosModules.lanzaboote
         ./.config/nixos/configuration.nix
         nixos-hardware.nixosModules.lenovo-legion-15ach6
