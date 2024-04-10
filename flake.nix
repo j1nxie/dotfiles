@@ -1,6 +1,17 @@
 {
   description = "lumi's nix configuration!";
 
+  nixConfig = {
+    substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -46,6 +57,9 @@
         ./.config/nixos/configuration.nix
         nixos-hardware.nixosModules.lenovo-legion-15ach6
         home-manager.nixosModules.home-manager
+        {
+          nix.settings.trusted-users = ["lumi"];
+        }
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
