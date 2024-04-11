@@ -1,8 +1,12 @@
 {
   pkgs,
   myvars,
+  emacs-lsp-booster,
   ...
 } @ args: {
+  nixpkgs.overlays = [
+    emacs-lsp-booster.overlays.default
+  ];
   environment.systemPackages = with pkgs; [
     git
     git-lfs
