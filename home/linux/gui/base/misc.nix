@@ -6,6 +6,7 @@
     freerdp
 
     transmission_4-gtk
+    trackma-gtk
   ];
 
   programs.gh.enable = true;
