@@ -27,6 +27,8 @@
       "wireshark"
       "adbusers"
       "vboxusers"
+      "uinput"
+      "input"
     ];
     shell = pkgs.fish;
   };
