@@ -36,7 +36,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -58,6 +58,17 @@
 (add-hook 'server-after-make-frame-hook #'catppuccin-reload)
 
 (auto-dark-mode 1)
+
+;; emulating my neovim keybinds
+(map! :nv "H" #'evil-beginning-of-visual-line)
+(map! :nv "L" #'evil-end-of-visual-line)
+(map! :nv "k" #'evil-previous-visual-line)
+(map! :nv "j" #'evil-next-visual-line)
+(map! "C-h" #'evil-window-left)
+(map! "C-j" #'evil-window-down)
+(map! "C-k" #'evil-window-up)
+(map! "C-l" #'evil-window-right)
+(map! "<f5>" #'treemacs-select-window)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
