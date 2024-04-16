@@ -8,7 +8,14 @@
       material-design-icons
       font-awesome
 
-      noto-fonts
+      (noto-fonts.overrideAttrs (oldAttrs: {
+        installPhase = ''
+          local out_font=$out/share/fonts/noto
+          for folder in $(ls -d fonts/*/); do
+            install -m444 -Dt $out_font "$folder"unhinted/otf/*.otf
+          done
+        '';
+      }))
       noto-fonts-cjk
       noto-fonts-emoji
 
@@ -17,13 +24,21 @@
       source-han-sans
       source-han-serif
 
-      fira-code
+      (fira-code.overrideAttrs (oldAttrs: {
+        installPhase = ''
+          runHook preInstall
+          install -Dm644 ttf/*.ttf -t $out/share/fonts/truetype
+          runHook postInstall
+        '';
+      }))
       (nerdfonts.override {
         fonts = [
           # symbols icon only
           "NerdFontsSymbolsOnly"
         ];
       })
+
+      emacs-all-the-icons-fonts
     ];
   };
 
