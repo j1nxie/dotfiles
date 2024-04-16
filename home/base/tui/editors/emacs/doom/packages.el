@@ -51,3 +51,4 @@
 
 (package! catppuccin-theme)
 (package! auto-dark)
+(package! elcord)

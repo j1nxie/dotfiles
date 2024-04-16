@@ -32,6 +32,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
+(setq doom-symbol-font (font-spec :family "Symbols Nerd Font" :size 12))
 (setq doom-theme 'catppuccin)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -46,29 +47,65 @@
 (setq auto-dark-light-theme 'catppuccin)
 
 (add-hook 'auto-dark-dark-mode-hook
-    (lambda ()
-      (setq catppuccin-flavor 'macchiato)
-      (catppuccin-reload)))
+          (lambda ()
+            (setq catppuccin-flavor 'macchiato)
+            (catppuccin-reload)))
 
 (add-hook 'auto-dark-light-mode-hook
-    (lambda ()
-      (setq catppuccin-flavor 'latte)
-      (catppuccin-reload)))
+          (lambda ()
+            (setq catppuccin-flavor 'latte)
+            (catppuccin-reload)))
 
 (add-hook 'server-after-make-frame-hook #'catppuccin-reload)
 
 (auto-dark-mode 1)
 
 ;; emulating my neovim keybinds
-(map! :nv "H" #'evil-beginning-of-visual-line)
-(map! :nv "L" #'evil-end-of-visual-line)
-(map! :nv "k" #'evil-previous-visual-line)
-(map! :nv "j" #'evil-next-visual-line)
-(map! "C-h" #'evil-window-left)
-(map! "C-j" #'evil-window-down)
-(map! "C-k" #'evil-window-up)
-(map! "C-l" #'evil-window-right)
+(map! :nvo "H" #'evil-beginning-of-visual-line
+      :nvo "L" #'evil-end-of-visual-line
+      :nvo "k" #'evil-previous-visual-line
+      :nvo "j" #'evil-next-visual-line)
+
+(map! "C-h" #'evil-window-left
+      "C-j" #'evil-window-down
+      "C-k" #'evil-window-up
+      "C-l" #'evil-window-right)
+
+(after! ccls
+  (map! :after ccls
+        :map (c-mode-map c++-mode-map)
+        :n "C-h" #'evil-window-left
+        :n "C-j" #'evil-window-down
+        :n "C-k" #'evil-window-up
+        :n "C-l" #'evil-window-right))
+
 (map! "<f5>" #'treemacs-select-window)
+
+(map! :nv "C-/" #'comment-line)
+
+(map! :nv "<left>" #'previous-buffer
+      :nv "<right>" #'next-buffer)
+
+(defun elcord--disable-elcord-if-no-frames (f)
+  (when (let ((frames (delete f (visible-frame-list))))
+          (or (null frames)
+              (and (null (cdr frames))
+                   (eq (car frames) terminal-frame))))
+    (elcord-mode -1)
+    (add-hook 'after-make-frame-functions 'elcord--enable-on-frame-created)))
+
+(defun elcord--enable-on-frame-created (_)
+  (elcord-mode +1))
+
+(defun my/elcord-mode-hook ()
+  (if elcord-mode
+      (add-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)
+    (remove-hook 'delete-frame-functions 'elcord--disable-elcord-if-no-frames)))
+
+(add-hook 'elcord-mode-hook 'my/elcord-mode-hook)
+
+(require 'elcord)
+(elcord-mode)
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -101,3 +138,18 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+;;
+
+(after! treemacs
+  (setq treemacs-select-when-already-in-treemacs 'close))
+
+(after! centaur-tabs
+  (setq centaur-tabs-set-bar 'over))
+
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))

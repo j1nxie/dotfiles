@@ -6,6 +6,7 @@
 ); in {
   home.packages = with pkgs; [
     clang
+    clang-tools
     dotnetPkgs
     nodePackages.pnpm
     nodejs_20
