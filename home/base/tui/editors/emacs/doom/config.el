@@ -71,6 +71,7 @@
       "C-k" #'evil-window-up
       "C-l" #'evil-window-right)
 
+;; override ccls binds to maintain above binds because i don't use ccls
 (after! ccls
   (map! :after ccls
         :map (c-mode-map c++-mode-map)
@@ -85,6 +86,8 @@
 
 (map! :nv "<left>" #'previous-buffer
       :nv "<right>" #'next-buffer)
+
+(setq fancy-splash-image (concat doom-user-dir "marivector.png"))
 
 (defun elcord--disable-elcord-if-no-frames (f)
   (when (let ((frames (delete f (visible-frame-list))))
@@ -106,6 +109,11 @@
 
 (require 'elcord)
 (elcord-mode)
+
+;; FIXME: change the icon for discord rpc
+(after! elcord
+  (setq elcord-idle-message "falling asleep...")
+  (setq elcord-use-major-mode-as-main-icon 't))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -140,12 +148,44 @@
 ;; they are implemented.
 ;;
 
+;; treemacs
 (after! treemacs
   (setq treemacs-select-when-already-in-treemacs 'close))
+
+;; centaur-tabs
+(defun centaur-tabs-hide-tab (x)
+  "Do no to show buffer X in tabs."
+  (let ((name (format "%s" x)))
+    (or
+     ;; Current window is not dedicated window.
+     (window-dedicated-p (selected-window))
+
+     ;; Buffer name not match below blacklist.
+     (string-prefix-p "*epc" name)
+     (string-prefix-p "*helm" name)
+     (string-prefix-p "*Helm" name)
+     (string-prefix-p "*Compile-Log*" name)
+     (string-prefix-p "*lsp" name)
+     (string-prefix-p "*company" name)
+     (string-prefix-p "*Flycheck" name)
+     (string-prefix-p "*tramp" name)
+     (string-prefix-p " *Mini" name)
+     (string-prefix-p "*help" name)
+     (string-prefix-p "*straight" name)
+     (string-prefix-p " *temp" name)
+     (string-prefix-p "*Help" name)
+     (string-prefix-p "*mybuf" name)
+     (string-prefix-p "Treemacs*" name)
+
+     ;; Is not magit buffer.
+     (and (string-prefix-p "magit" name)
+          (not (file-name-extension name)))
+     )))
 
 (after! centaur-tabs
   (setq centaur-tabs-set-bar 'over))
 
+;; :lang cc to use clangd
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
                                 "--clang-tidy"
@@ -153,3 +193,6 @@
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
+
+;; don't launch a new workspace every launch
+(after! persp-mode (setq persp-emacsclient-init-frame-behaviour-override "main"))
