@@ -196,3 +196,5 @@
 
 ;; don't launch a new workspace every launch
 (after! persp-mode (setq persp-emacsclient-init-frame-behaviour-override "main"))
+
+(after! lsp-mode (setq lsp-rust-analyzer-cargo-watch-command "clippy"))
