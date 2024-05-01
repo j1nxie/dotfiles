@@ -11,6 +11,7 @@
     nodePackages.pnpm
     nodejs_20
     omnisharp-roslyn
+    python3
     rustup
   ];
 
