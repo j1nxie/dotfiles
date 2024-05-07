@@ -27,6 +27,11 @@ in {
     };
   };
 
+  services.syncthing = {
+    user = "lumi";
+    dataDir = "/home/lumi";
+  };
+
   hardware.acpilight.enable = true;
 
   services.xserver.videoDrivers = ["amdgpu" "nvidia"];
