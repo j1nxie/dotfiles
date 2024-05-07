@@ -87,6 +87,8 @@
 (map! :nv "<left>" #'previous-buffer
       :nv "<right>" #'next-buffer)
 
+(map! [remap evil-quit] #'kill-current-buffer)
+
 (setq fancy-splash-image (concat doom-user-dir "marivector.png"))
 
 (defun elcord--disable-elcord-if-no-frames (f)
