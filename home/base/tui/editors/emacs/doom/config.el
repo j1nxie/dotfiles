@@ -154,7 +154,7 @@
 (after! treemacs
   (setq treemacs-select-when-already-in-treemacs 'close))
 
-;; :lang cc to use clangd
+;; `:lang cc' to use clangd
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
                                 "--clang-tidy"
@@ -167,3 +167,8 @@
 (after! persp-mode (setq persp-emacsclient-init-frame-behaviour-override "main"))
 
 (after! lsp-mode (setq lsp-rust-analyzer-cargo-watch-command "clippy"))
+
+(after! apheleia
+  (add-to-list 'apheleia-mode-alist '(python-mode . ruff))
+  (add-to-list 'apheleia-mode-alist '(python-ts-mode . ruff)))
+
