@@ -19,6 +19,7 @@
     gnome.adwaita-icon-theme
     gnome.gnome-settings-daemon
     gnome.gnome-tweaks
+    gnome.gnome-software
     gnomeExtensions.alphabetical-app-grid
     gnomeExtensions.pop-shell
     gnomeExtensions.night-theme-switcher
