@@ -3,5 +3,6 @@
     ffmpeg-full
     imagemagick
     pkgs-unstable.feishin
+    pkgs-unstable.jellyfin-mpv-shim
   ];
 }
