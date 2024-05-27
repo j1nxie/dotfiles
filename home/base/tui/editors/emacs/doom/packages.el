@@ -52,3 +52,6 @@
 (package! catppuccin-theme)
 (package! auto-dark)
 (package! elcord)
+(package! org-modern)
+(package! indent-bars
+  :recipe (:host github :repo "jdtsmith/indent-bars"))

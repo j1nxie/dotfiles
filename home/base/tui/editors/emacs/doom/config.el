@@ -32,8 +32,10 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-symbol-font (font-spec :family "Symbols Nerd Font" :size 12))
+;; (setq doom-symbol-font (font-spec :family "Symbols Nerd Font" :size 12))
 (setq doom-theme 'catppuccin)
+(setq doom-font (font-spec :family "Fira Code" :size 13 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "Noto Sans CJK JP" :size 13))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -161,14 +163,36 @@
                                 "--completion-style=detailed"
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 ;; don't launch a new workspace every launch
 (after! persp-mode (setq persp-emacsclient-init-frame-behaviour-override "main"))
 
-(after! lsp-mode (setq lsp-rust-analyzer-cargo-watch-command "clippy"))
+(after! lsp-mode
+  (after! rustic-lsp-client
+    (setq lsp-rust-analyzer-cargo-watch-command "clippy"))
+  (after! lsp-dart
+    (setq lsp-dart-line-length 120)
+    (setq lsp-dart-flutter-widget-guides nil))
+  (after! lsp-clangd
+    (set-lsp-priority! 'clangd 2)))
 
 (after! apheleia
   (add-to-list 'apheleia-mode-alist '(python-mode . ruff))
   (add-to-list 'apheleia-mode-alist '(python-ts-mode . ruff)))
 
+(with-eval-after-load 'org (global-org-modern-mode))
+
+(use-package! indent-bars
+  :config
+  :custom
+  (indent-bars-treesit-support t)
+  (indent-bars-prefer-character "|")
+  (indent-bars-color '(highlight :face-bg t :blend 0.15))
+  (indent-bars-pattern ".")
+  (indent-bars-width-frac 0.1)
+  (indent-bars-pad-frac 0.1)
+  (indent-bars-zigzag nil)
+  (indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1)) ; blend=1: blend with BG only
+  (indent-bars-highlight-current-depth '(:blend 0.5)) ; pump up the BG blend on current
+  (indent-bars-display-on-blank-lines t)
+  :hook ((prog-mode text-mode conf-mode) . indent-bars-mode))

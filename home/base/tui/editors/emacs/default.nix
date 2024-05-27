@@ -44,6 +44,7 @@ in {
     sqlite
     # :lang latex & :lang org (latex previews)
     # texlive.combined.scheme-medium
+    jansson
   ];
 
   xdg.configFile."doom" = {
