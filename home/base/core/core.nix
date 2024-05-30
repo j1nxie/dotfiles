@@ -45,7 +45,7 @@
             owner = "catppuccin";
             repo = "bat";
             rev = "HEAD";
-            hash = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=";
+            hash = "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=";
           };
           file = "themes/Catppuccin Latte.tmTheme";
         };
@@ -55,7 +55,7 @@
             owner = "catppuccin";
             repo = "bat";
             rev = "HEAD";
-            hash = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=";
+            hash = "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=";
           };
           file = "themes/Catppuccin Macchiato.tmTheme";
         };
