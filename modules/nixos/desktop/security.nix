@@ -15,7 +15,6 @@
   # gpg agent with pinentry
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "curses";
     enableSSHSupport = true;
     settings.default-cache-ttl = 4 * 60 * 60; # 4 hours
   };

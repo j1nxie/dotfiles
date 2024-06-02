@@ -4,6 +4,11 @@
   outputs = inputs: import ./outputs inputs;
 
   nixConfig = {
+    substituters = [
+      "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+      "https://cache.nixos.org"
+    ];
+
     extra-substituters = [
       "https://nix-community.cachix.org"
       "https://nix-gaming.cachix.org"
@@ -17,7 +22,7 @@
 
   inputs = {
     # official nixOS repos
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # extra repos for gaming and hardware
@@ -32,7 +37,7 @@
 
     # home-manager for managing user config
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
