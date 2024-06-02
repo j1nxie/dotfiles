@@ -30,6 +30,8 @@ in {
     dataDir = "/home/lumi";
   };
 
+  services.fwupd.enable = true;
+
   hardware.acpilight.enable = true;
 
   hardware.opengl = {
