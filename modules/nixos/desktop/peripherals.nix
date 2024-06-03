@@ -21,11 +21,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    package = pkgs.bluez;
   };
-  services.blueman.enable = true;
-
-  hardware.opentabletdriver.enable = true;
 
   services = {
     printing.enable = true;
