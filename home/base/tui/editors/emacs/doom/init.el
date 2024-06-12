@@ -115,6 +115,7 @@
        ;;tty               ; improve the terminal Emacs experience
 
        :lang
+       ;;(astro +lsp)
        ;;agda              ; types of types of types of types...
        ;;beancount         ; mind the GAAP
        (cc +lsp +tree-sitter)         ; C > C++ == 1
@@ -122,7 +123,7 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       ;;(csharp +dotnet +lsp +tree-sitter) ; unity, .NET, and mono shenanigans
+       (csharp +dotnet +lsp +tree-sitter) ; unity, .NET, and mono shenanigans
        data              ; config/data formats
        (dart +flutter +lsp)   ; paint ui and not much else
        ;;dhall
@@ -156,7 +157,7 @@
        nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +dragndrop +journal +pomodoro +roam2)               ; organize your plain life in plain text
-       ;;php               ; perl's insecure younger brother
+       (php +lsp)               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +lsp +poetry +pyright)           ; beautiful is better than ugly
