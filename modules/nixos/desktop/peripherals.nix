@@ -1,10 +1,12 @@
 {pkgs, ...}: {
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     pulseaudio
     libimobiledevice
     ifuse
     fuseiso
+
+    openrazer-daemon
+    polychromatic
   ];
 
   services.pipewire = {
@@ -36,5 +38,10 @@
       gnome.gnome-settings-daemon
       android-udev-rules
     ];
+  };
+
+  hardware.openrazer.enable = true;
+  users.users.lumi = {
+    extraGroups = [ "openrazer" ];
   };
 }
