@@ -14,7 +14,7 @@ in {
   boot = {
     loader.efi.canTouchEfiVariables = true;
     initrd.kernelModules = ["amdgpu"];
-    extraModulePackages = [pkgs.linuxKernel.packages.linux_6_1.lenovo-legion-module];
+    extraModulePackages = [pkgs.linuxKernel.packages.linux_6_6.lenovo-legion-module];
     supportedFilesystems = ["ntfs"];
   };
 
@@ -46,27 +46,14 @@ in {
   };
   virtualisation.docker.enableNvidia = true; # for nvidia-docker
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   environment.systemPackages = with pkgs; [
     lenovo-legion
   ];
-
-  fileSystems."/mnt/stuff" = {
-    device = "/dev/disk/by-uuid/01D9D8D7E461C040";
-    fsType = "ntfs";
-    options = ["uid=1000" "gid=1000" "rw" "user" "exec" "umask=000" "x-gvfs-show"];
-  };
-
-  fileSystems."/mnt/more-stuff" = {
-    device = "/dev/disk/by-uuid/18E26960E26942DC";
-    fsType = "ntfs";
-    options = ["uid=1000" "gid=1000" "rw" "user" "exec" "umask=000" "x-gvfs-show"];
-  };
 
   system.stateVersion = "23.11";
 }
