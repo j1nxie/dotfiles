@@ -1,0 +1,45 @@
+[
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "H": "vim::StartOfLine",
+      "L": "vim::EndOfLine",
+      "space c a": "editor::ToggleCodeActions",
+      "left": "pane::ActivatePrevItem",
+      "right": "pane::ActivateNextItem",
+      "up": "",
+      "down": "",
+      "space p p ": ["projects::OpenRecent", { "create_new_window": false }]
+    }
+  },
+  {
+    "context": "Editor && showing_code_actions",
+    "bindings": {
+      "j": "editor::ContextMenuNext",
+      "k": "editor::ContextMenuPrev"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrev"
+    }
+  },
+  {
+    "context": "vim_mode == normal || Dock",
+    "bindings": {
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  },
+  {
+    "context": "vim_mode == normal && (Editor || Dock)",
+    "bindings": {
+      "f5": "project_panel::ToggleFocus",
+      "space o t": "terminal_panel::ToggleFocus"
+    }
+  }
+]
