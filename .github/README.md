@@ -2,7 +2,7 @@
 
 ## about
 
-my linux dotfiles, powered by nixOS.
+my linux dotfiles, powered by ~~nixOS~~ Arch Linux.
 
 ## components
 
