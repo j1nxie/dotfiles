@@ -36,7 +36,8 @@
                 {
                     "displayLines": true
                 }
-            ]
+            ],
+            "space space": "file_finder::Toggle"
         }
     },
     {
