@@ -8,8 +8,11 @@
 // from the command palette or from `Zed` application menu.
 {
     "buffer_font_family": "Fira Code",
+    "buffer_font_features": {
+        "calt": true
+    },
     "vim_mode": true,
-    "ui_font_size": 14,
+    "ui_font_size": 16,
     "buffer_font_size": 14,
     "theme": {
         "mode": "system",
