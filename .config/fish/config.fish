@@ -24,7 +24,7 @@ alias l="exa -lah"
 alias lsa="exa -lah"
 
 alias lg="lazygit"
-alias ly="lazygit -ucd ~/.local/share/yadm/lazygit -w ~ -g ~/.local/share/yadm/repo.git"
+alias ly="lazygit -w ~ -g ~/.local/share/yadm/repo.git"
 
 alias cat='bat --style="numbers,changes,header" --theme=$(if [ (gsettings get org.gnome.desktop.interface color-scheme) = "\'default\'" ]; echo "catppuccinLatte"; else; echo "catppuccinMacchiato"; end;)'
 
