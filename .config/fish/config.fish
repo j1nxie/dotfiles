@@ -38,3 +38,6 @@ end
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
+
+# rbenv
+status --is-interactive; and rbenv init - fish | source
