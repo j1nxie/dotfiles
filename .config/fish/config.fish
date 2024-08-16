@@ -41,3 +41,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # rbenv
 status --is-interactive; and rbenv init - fish | source
+
+# Created by `pipx` on 2024-08-10 22:07:31
+set PATH $PATH /home/lumi/.local/bin
