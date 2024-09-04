@@ -38,6 +38,20 @@
     "vertical_scroll_margin": 0,
     "formatter": "language_server",
     "languages": {
+        "JavaScript": {
+            "formatter": {
+                "code_actions": {
+                    "source.fixAll.eslint": true
+                }
+            }
+        },
+        "JSX": {
+            "formatter": {
+                "code_actions": {
+                    "source.fixAll.eslint": true
+                }
+            }
+        },
         "TypeScript": {
             "formatter": {
                 "code_actions": {
