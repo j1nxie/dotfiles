@@ -65,6 +65,13 @@
                     "source.fixAll.eslint": true
                 }
             }
+        },
+        "Vue.js": {
+            "formatter": {
+                "code_actions": {
+                    "source.fixAll.eslint": true
+                }
+            }
         }
     },
     "tab_size": 4,
