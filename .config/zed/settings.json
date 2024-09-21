@@ -52,12 +52,18 @@
                 }
             }
         },
+        "Markdown": {
+            "soft_wrap": "bounded"
+        },
         "TypeScript": {
             "formatter": {
                 "code_actions": {
                     "source.fixAll.eslint": true
                 }
             }
+        },
+        "Typst": {
+            "soft_wrap": "bounded"
         },
         "TSX": {
             "formatter": {
