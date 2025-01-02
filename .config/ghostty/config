@@ -2,3 +2,4 @@ theme = dark:catppuccin-macchiato,light:catppuccin-latte
 window-decoration = false
 font-family = "Fira Code"
 font-size = 11
+window-inherit-working-directory = false
