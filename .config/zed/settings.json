@@ -23,7 +23,7 @@
     "buffer_font_size": 14,
     "file_types": {
         "CMake": [
-          "CMakeLists.txt"
+            "CMakeLists.txt"
         ]
     },
     "theme": {
@@ -50,6 +50,7 @@
         }
     },
     "indent_guides": {
+        "active_line_width": 2,
         "coloring": "indent_aware"
     },
     "relative_line_numbers": true,
@@ -74,7 +75,11 @@
             }
         },
         "Markdown": {
-            "soft_wrap": "bounded"
+            "soft_wrap": "bounded",
+            "show_wrap_guides": true,
+            "wrap_guides": [
+                80
+            ]
         },
         "Python": {
             "language_servers": [
