@@ -48,6 +48,17 @@
                     "command": "clippy"
                 }
             }
+        },
+        "basedpyright": {
+            "settings": {
+                "python.analysis": {
+                    "diagnosticMode": "workspace",
+                    "typeCheckingMode": "strict"
+                },
+                "python": {
+                    "pythonPath": ".venv/bin/python"
+                }
+            }
         }
     },
     "indent_guides": {
@@ -85,7 +96,17 @@
         "Python": {
             "language_servers": [
                 "basedpyright",
+                "ruff",
                 "!pyright"
+            ],
+            "format_on_save": "on",
+            "formatter": [
+                {
+                    "code_actions": {
+                        "source.fixAll.ruff": true,
+                        "source.organizeImports.ruff": true
+                    }
+                }
             ]
         },
         "TypeScript": {
