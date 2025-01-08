@@ -141,5 +141,16 @@
     "inlay_hints": {
         "enabled": true
     },
-    "show_whitespaces": "all"
+    "show_whitespaces": "all",
+    "terminal": {
+        "detect_venv": {
+            "on": {
+                "directories": [
+                    ".venv",
+                    "venv"
+                ],
+                "activate_script": "fish"
+            }
+        }
+    }
 }
