@@ -27,6 +27,9 @@ alias lg="lazygit"
 alias ly="lazygit -w ~ -g ~/.local/share/yadm/repo.git"
 
 alias cat='bat --style="numbers,changes,header" --theme=$(if [ (gsettings get org.gnome.desktop.interface color-scheme) = "\'default\'" ]; echo "catppuccinLatte"; else; echo "catppuccinMacchiato"; end;)'
+alias j="just"
+alias p="pnpm"
+alias c="cargo"
 
 # pnpm
 set -gx PNPM_HOME "/home/lumi/.local/share/pnpm"
