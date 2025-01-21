@@ -95,4 +95,18 @@ local function handle_screenshot()
     end)
 end
 
+local function handle_screenshot_no_subtitles()
+    mp.command_native_async({"screenshot", "video"}, function(success, result, error)
+        if success then
+            mp.add_timeout(0.1, function()
+                upload_to_chibisafe(result.filename)
+            end)
+        else
+            msg.error("Failed to take screenshot: " .. (error or "unknown error"))
+            mp.osd_message("Failed to take screenshot")
+        end
+    end)
+end
+
 mp.add_forced_key_binding("s", "upload-screenshot", handle_screenshot)
+mp.add_forced_key_binding("S", "upload-screenshot-no-subtitles", handle_screenshot_no_subtitles)
