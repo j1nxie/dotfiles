@@ -6,6 +6,7 @@ vim.keymap.set("n", "<C-h>", "<Cmd>call VSCodeCall('workbench.action.navigateLef
 vim.keymap.set("n", "<C-j>", "<Cmd>call VSCodeCall('workbench.action.navigateDown')<CR>")
 vim.keymap.set("n", "<C-k>", "<Cmd>call VSCodeCall('workbench.action.navigateUp')<CR>")
 vim.keymap.set("n", "<C-l>", "<Cmd>call VSCodeCall('workbench.action.navigateRight')<CR>")
+vim.keymap.set("n", "<leader>oT", "<Cmd>call VSCodeCall('workbench.terminal.toggleTerminal')<CR>")
 
 vim.keymap.set("n", "<up>", "<nop>")
 vim.keymap.set("n", "<down>", "<nop>")
