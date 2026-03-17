@@ -7,24 +7,28 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-    "features": {
-        "edit_prediction_provider": "zed"
+    "edit_predictions": {
+        "provider": "zed"
     },
-    "assistant": {
+    "buffer_line_height": "standard",
+    "buffer_font_weight": 400.0,
+    "context_servers": {
+        "mcp-server-github": {
+            "enabled": true
+        }
+    },
+    "agent": {
         "default_model": {
             "provider": "copilot_chat",
-            "model": "claude-3-5-sonnet"
-        },
-        "version": "2"
+            "model": "claude-sonnet-4"
+        }
     },
     "buffer_font_family": "Fira Code",
     "buffer_font_features": {
         "calt": true
     },
-    "buffer_font_weight": 450,
     "vim_mode": true,
-    "ui_font_size": 16,
-    "buffer_font_size": 14.0,
+    "ui_font_size": 16.0,
     "file_types": {
         "CMake": [
             "CMakeLists.txt"
@@ -57,9 +61,12 @@
         },
         "basedpyright": {
             "settings": {
-                "python.analysis": {
+                "basedpyright.analysis": {
                     "diagnosticMode": "workspace",
-                    "typeCheckingMode": "strict"
+                    "typeCheckingMode": "strict",
+                    "inlayHints": {
+                        "callArgumentNames": false
+                    }
                 },
                 "python": {
                     "pythonPath": ".venv/bin/python"
@@ -71,25 +78,24 @@
         "active_line_width": 2,
         "coloring": "indent_aware"
     },
-    "relative_line_numbers": true,
+    "relative_line_numbers": "enabled",
     "vertical_scroll_margin": 0,
     "formatter": "language_server",
     "languages": {
         "C++": {
             "format_on_save": "on"
         },
+        "HTML": {
+            "formatter": "prettier"
+        },
         "JavaScript": {
-            "formatter": {
-                "code_actions": {
-                    "source.fixAll.eslint": true
-                }
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
             }
         },
         "JSX": {
-            "formatter": {
-                "code_actions": {
-                    "source.fixAll.eslint": true
-                }
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
             }
         },
         "Markdown": {
@@ -100,44 +106,54 @@
             ]
         },
         "Python": {
-            "language_servers": [
-                "basedpyright",
-                "ruff",
-                "!pyright"
-            ],
+            "code_actions_on_format": {
+                "source.organizeImports.ruff": true,
+                "source.fixAll.ruff": true
+            },
             "format_on_save": "on",
             "formatter": [
                 {
-                    "code_actions": {
-                        "source.fixAll.ruff": true,
-                        "source.organizeImports.ruff": true
+                    "language_server": {
+                        "name": "ruff"
                     }
                 }
             ]
         },
         "TypeScript": {
-            "formatter": {
-                "code_actions": {
-                    "source.fixAll.eslint": true
-                }
-            }
+            "formatter": "prettier",
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
+            },
+            "prettier": {
+                "allowed": true
+            },
+            "language_servers": ["tsgo", "vtsls"]
         },
         "Typst": {
             "soft_wrap": "bounded"
         },
         "TSX": {
-            "formatter": {
-                "code_actions": {
-                    "source.fixAll.eslint": true
-                }
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
+            },
+            "prettier": {
+                "allowed": true
             }
         },
         "Vue.js": {
-            "formatter": {
-                "code_actions": {
-                    "source.fixAll.eslint": true
-                }
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
             }
+        },
+        "Svelte": {
+            "formatter": "prettier",
+            "code_actions_on_format": {
+                "source.fixAll.eslint": true
+            },
+            "prettier": {
+                "allowed": true
+            },
+            "language_server": ["tsgo", "vtsls"]
         }
     },
     "tab_size": 4,
